@@ -46,7 +46,13 @@ props:
       enum: [before, after]
       default: after
     icon:
-      type: object
+      type: [object, array]
       title: Icon
+      description: 'Icon props (name, size, …), or a list of icon props (e.g. the menu toggle with list + x icons).'
     extra_classes:
       type: string
+    extra_attributes:
+      type: array
+      description: 'Additional HTML attributes: list of { name, value }. Value may be omitted for boolean attributes.'
+      items:
+        type: object

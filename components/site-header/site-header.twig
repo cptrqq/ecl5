@@ -153,10 +153,10 @@
 
     {# Menu #}
     {%- if menu is not empty -%}
-      {{ include('ecl5:menu', menu, false) }}
+      {{ include('ecl5:menu', menu|merge({ id: menu.id|default('site-header-menu') }), false) }}
     {%- endif -%}
     {%- if mega_menu is not empty -%}
-      {{ include('ecl5:menu', mega_menu, false) }}
+      {{ include('ecl5:menu', mega_menu|merge({ id: mega_menu.id|default('site-header-mega-menu') }), false) }}
     {%- endif -%}
   </header>
 {%- endapply -%}

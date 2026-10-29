@@ -34,7 +34,7 @@
       <div class="ecl-carousel__slides">
         {%- for item in items|default([]) -%}
           <div class="ecl-carousel__slide" data-ecl-carousel-slide-index="{{ loop.index0 }}">
-            {{ include('ecl5:banner', item, false) }}
+            {{ include('ecl5:banner', item|merge({ id: id ~ '-slide-' ~ loop.index }), false) }}
           </div>
         {%- endfor -%}
       </div>

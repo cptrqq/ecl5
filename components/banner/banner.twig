@@ -3,19 +3,22 @@
   {%- set id = id|default('banner') -%}
   {%- set size = size|default('m') -%}
   {%- set has_media = (picture.img is defined and picture.img) or (video is defined and video) -%}
+  {%- set has_content = title is defined and title is not empty or description is defined and description is not empty or (cta.label is defined and cta.label) -%}
+  {# Only classes that exist in the ECL CSS: size s/m/l/xs; box dark/none (light is the default);
+     color light (dark is the default); h-center/h-right (left is the default); v-top/v-bottom (center is the default). #}
   {%- set classes = [
     'ecl-banner',
     'ecl-banner--' ~ size,
     variant ? 'ecl-banner--' ~ variant,
-    box ? 'ecl-banner--box-bg-' ~ box,
-    color ? 'ecl-banner--color-' ~ color,
-    horizontal ? 'ecl-banner--h-' ~ horizontal,
-    vertical ? 'ecl-banner--v-' ~ vertical,
+    box is defined and box not in ['', 'light'] ? 'ecl-banner--box-bg-' ~ box,
+    color is defined and color not in ['', 'dark'] ? 'ecl-banner--color-' ~ color,
+    horizontal is defined and horizontal not in ['', 'left'] ? 'ecl-banner--h-' ~ horizontal,
+    vertical is defined and vertical not in ['', 'center'] ? 'ecl-banner--v-' ~ vertical,
     full_width ? 'ecl-banner--full-width',
     has_media ? '' : 'ecl-banner--no-media',
     extra_classes,
   ]|filter(c => c)|join(' ') -%}
-  <section class="{{ classes }}" id="{{ id }}">
+  <section class="{{ classes }}" id="{{ id }}" data-ecl-banner data-ecl-auto-init="Banner">
     {%- if picture.img is defined and picture.img -%}
       <figure class="ecl-banner__picture-container">
         {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-banner__picture', extra_image_classes: 'ecl-banner__image' }), false) }}
@@ -25,24 +28,50 @@
       <div class="ecl-banner__video-container">
         {{ include('ecl5:video', video|merge({ extra_classes: 'ecl-banner__video' }), false) }}
         {%- if credit -%}<div class="ecl-banner__credit" data-ecl-banner-footer><div class="ecl-container">{{ credit }}</div></div>{%- endif -%}
+        {{ include('ecl5:button', {
+          type: 'button',
+          variant: 'tertiary',
+          style: 'neutral',
+          icon: { name: 'play-circle', family: 'phosphor', size: 'm' },
+          label: sr_play|default('Play'),
+          hide_label: true,
+          extra_classes: 'ecl-banner__play',
+          extra_attributes: [
+            { name: 'data-ecl-banner-play' },
+          ],
+        }, false) }}
+        {{ include('ecl5:button', {
+          type: 'button',
+          variant: 'tertiary',
+          style: 'neutral',
+          icon: { name: 'pause-circle', family: 'phosphor', size: 'm' },
+          label: sr_pause|default('Pause'),
+          hide_label: true,
+          extra_classes: 'ecl-banner__pause',
+          extra_attributes: [
+            { name: 'data-ecl-banner-pause' },
+          ],
+        }, false) }}
       </div>
     {%- endif -%}
-    <div class="ecl-container ecl-banner__info">
-      <div class="ecl-banner__container">
-        <div class="ecl-banner__content">
-          {%- if title -%}
-            <div class="ecl-banner__title" id="{{ id }}-title"><span class="ecl-banner__title-text">{{ title }}</span></div>
-          {%- endif -%}
-          {%- if description -%}
-            <p class="ecl-banner__description" id="{{ id }}-description"><span class="ecl-banner__description-text">{{ description }}</span></p>
-          {%- endif -%}
-          {%- if cta.label is defined and cta.label -%}
-            <div class="ecl-banner__cta">
-              {{ include('ecl5:link', cta|merge({ variant: 'standalone', extra_classes: 'ecl-banner__link-cta', icon: cta.icon|default({ name: 'arrow-right', family: 'phosphor', size: 'xs' }) }), false) }}
-            </div>
-          {%- endif -%}
+    {%- if has_content -%}
+      <div class="ecl-container ecl-banner__info">
+        <div class="ecl-banner__container" data-ecl-banner-container>
+          <div class="ecl-banner__content">
+            {%- if title -%}
+              <div class="ecl-banner__title" id="{{ id }}-title"><span class="ecl-banner__title-text">{{ title }}</span></div>
+            {%- endif -%}
+            {%- if description -%}
+              <p class="ecl-banner__description" id="{{ id }}-description"><span class="ecl-banner__description-text">{{ description }}</span></p>
+            {%- endif -%}
+            {%- if cta.label is defined and cta.label -%}
+              <div class="ecl-banner__cta">
+                {{ include('ecl5:link', cta|merge({ variant: 'standalone', extra_classes: 'ecl-banner__link-cta', icon: cta.icon|default({ name: 'arrow-right', family: 'phosphor', size: 'xs' }) }), false) }}
+              </div>
+            {%- endif -%}
+          </div>
         </div>
       </div>
-    </div>
+    {%- endif -%}
   </section>
 {%- endapply -%}

@@ -2,25 +2,86 @@
 {%- apply spaceless -%}
   {%- set id = id|default('menu') -%}
   {%- set title = title|default('Menu') -%}
+  {%- set toggle_label = toggle_label|default('Menu') -%}
+  {%- set close_label = close_label|default('Close') -%}
   {%- set classes = ['ecl-menu', extra_classes]|filter(c => c)|join(' ') -%}
-  <nav class="{{ classes }}" data-ecl-menu data-ecl-menu-max-lines="2" aria-label="{{ title }}"
+  <nav class="{{ classes }}" data-ecl-menu role="navigation" aria-label="{{ title }}"
+    data-ecl-menu-max-lines="{{ max_lines|default(2) }}"
     data-ecl-auto-init="Menu"
-    data-ecl-menu-label-open="{{ toggle_label|default('Menu')|e('html_attr') }}"
-    data-ecl-menu-label-close="{{ close_label|default('Close')|e('html_attr') }}">
+    data-ecl-menu-label-open="{{ toggle_label|e('html_attr') }}"
+    data-ecl-menu-label-close="{{ close_label|e('html_attr') }}">
     <div class="ecl-menu__overlay"></div>
     <div class="ecl-container ecl-menu__container">
-      <button type="button" class="ecl-button ecl-button--tertiary ecl-menu__open" data-ecl-menu-open>
-        <span class="ecl-button__label">{{ toggle_label|default('Menu') }}</span>
-        {{ include('ecl5:icon', { name: 'list', family: 'phosphor', size: 's', extra_classes: 'ecl-button__icon' }, false) }}
-      </button>
+      {{ include('ecl5:button', {
+        type: 'button',
+        variant: 'tertiary',
+        style: 'neutral',
+        icon_position: 'before',
+        icon: [
+          { name: 'list', family: 'phosphor' },
+          { name: 'x', family: 'phosphor' },
+        ],
+        label: toggle_label,
+        hide_label: true,
+        extra_classes: 'ecl-menu__open',
+        extra_attributes: [
+          { name: 'data-ecl-menu-open' },
+          { name: 'aria-expanded', value: 'false' },
+        ],
+      }, false) }}
       <section class="ecl-menu__inner" data-ecl-menu-inner aria-label="{{ title }}">
         <header class="ecl-menu__inner-header">
-          <button type="button" class="ecl-button ecl-button--tertiary ecl-menu__close ecl-button--icon-only" data-ecl-menu-close>
-            <span class="ecl-button__label" aria-hidden="true">{{ close_label|default('Close') }}</span>
-            {{ include('ecl5:icon', { name: 'x', family: 'phosphor', size: 's', extra_classes: 'ecl-button__icon' }, false) }}
-          </button>
+          {{ include('ecl5:button', {
+            type: 'button',
+            variant: 'tertiary',
+            icon: { name: 'x', family: 'phosphor' },
+            label: close_label,
+            extra_classes: 'ecl-menu__close',
+            extra_attributes: [
+              { name: 'data-ecl-menu-close' },
+            ],
+          }, false) }}
           <div class="ecl-menu__title">{{ title }}</div>
+          {%- if back_label|default('') -%}
+            {{ include('ecl5:button', {
+              type: 'button',
+              variant: 'tertiary',
+              icon_position: 'before',
+              icon: { name: 'caret-left', family: 'phosphor', size: 'xs' },
+              label: back_label,
+              extra_classes: 'ecl-menu__back',
+              extra_attributes: [
+                { name: 'data-ecl-menu-back' },
+              ],
+            }, false) }}
+          {%- endif -%}
         </header>
+        {{ include('ecl5:button', {
+          type: 'button',
+          variant: 'tertiary',
+          icon_position: 'before',
+          icon: { name: 'caret-left', family: 'phosphor', size: 's' },
+          label: previous_label|default(''),
+          hide_label: true,
+          extra_classes: 'ecl-menu__item ecl-menu__items-previous',
+          extra_attributes: [
+            { name: 'data-ecl-menu-items-previous' },
+            { name: 'tabindex', value: '-1' },
+          ],
+        }, false) }}
+        {{ include('ecl5:button', {
+          type: 'button',
+          variant: 'tertiary',
+          icon_position: 'before',
+          icon: { name: 'caret-right', family: 'phosphor', size: 's' },
+          label: next_label|default(''),
+          hide_label: true,
+          extra_classes: 'ecl-menu__item ecl-menu__items-next',
+          extra_attributes: [
+            { name: 'data-ecl-menu-items-next' },
+            { name: 'tabindex', value: '-1' },
+          ],
+        }, false) }}
         <ul class="ecl-menu__list" data-ecl-menu-list>
           {%- for key, item in items|default([]) -%}
             {{ include('ecl5:menu-item', item|merge({ id: 'ecl-menu-item-' ~ id ~ '-' ~ key, see_all_label: see_all_label|default('See all') }), false) }}

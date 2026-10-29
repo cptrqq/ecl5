@@ -4,13 +4,13 @@
   {%- set label_collapsed = label_collapsed|default('Show more') -%}
   {%- set label_expanded = label_expanded|default('Show less') -%}
   {%- set classes = ['ecl-expandable', extra_classes]|filter(c => c)|join(' ') -%}
-  <div class="{{ classes }}">
+  <div class="{{ classes }}" data-ecl-expandable data-ecl-auto-init="Expandable">
     <button type="button" class="ecl-button ecl-button--tertiary ecl-expandable__toggle"
       aria-controls="{{ id }}-content" aria-expanded="false"
       data-ecl-expandable-toggle
       data-ecl-label-expanded="{{ label_expanded|e('html_attr') }}"
       data-ecl-label-collapsed="{{ label_collapsed|e('html_attr') }}">
-      <span class="ecl-button__label">{{ label_collapsed }}</span>
+      <span class="ecl-button__label" data-ecl-label="true">{{ label_collapsed }}</span>
       {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'fluid', extra_classes: 'ecl-button__icon' }, false) }}
     </button>
     <div id="{{ id }}-content" class="ecl-expandable__content" hidden>

@@ -25,5 +25,21 @@ props:
     see_all_label:
       type: string
       default: 'See all'
+    max_lines:
+      type: integer
+      default: 2
+      description: 'Number of lines for each first-level item label. 0 disables the behavior.'
+    back_label:
+      type: string
+      default: ''
+      description: 'Mobile "back" button label. Leave empty to omit the button.'
+    previous_label:
+      type: string
+      default: ''
+      description: 'Screen-reader label of the previous-items button (menu overflow).'
+    next_label:
+      type: string
+      default: ''
+      description: 'Screen-reader label of the next-items button (menu overflow).'
     extra_classes:
       type: string

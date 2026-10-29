@@ -7,6 +7,10 @@
 #}
 
 {{ include('ecl5:menu', {
+  'title': 'Main navigation',
+  'toggle_label': 'Menu',
+  'previous_label': 'Previous items',
+  'next_label': 'Next items',
   'items': [
     {
       'label': 'Home',
@@ -16,6 +20,7 @@
     {
       'label': 'Policies',
       'path': '#',
+      'trigger_aria_label': 'Toggle Policies submenu',
       'children': [
         {
           'label': 'Energy',

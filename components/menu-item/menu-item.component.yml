@@ -17,11 +17,17 @@ props:
       type: boolean
     children:
       type: array
-      description: 'List of { label, path, is_current } for the mega submenu.'
+      description: 'List of { label, path, is_current, external } for the mega submenu.'
       items:
         type: object
     see_all_label:
       type: string
       default: 'See all'
+    external:
+      type: boolean
+      description: 'Mark the item link as external (adds the external icon).'
+    trigger_aria_label:
+      type: string
+      description: 'Accessible name of the submenu caret button. Defaults to the item label.'
     extra_classes:
       type: string

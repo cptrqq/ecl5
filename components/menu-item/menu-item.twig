@@ -1,6 +1,7 @@
 {{ attach_library('ecl5/global') }}
 {%- apply spaceless -%}
   {%- set id = id|default('ecl-menu-item') -%}
+  {%- set label = label|default('') -%}
   {%- set has_children = children is defined and children|default([])|length > 0 -%}
   {%- set item_class = [
     'ecl-menu__item',
@@ -8,25 +9,58 @@
     has_children ? 'ecl-menu__item--has-children',
     extra_classes,
   ]|filter(c => c)|join(' ') -%}
-  <li class="{{ item_class }}" data-ecl-menu-item id="{{ id }}">
-    <a href="{{ path|default('#') }}" class="ecl-menu__link{{ is_current ? ' ecl-menu__link--current' }}" data-ecl-menu-link{{ is_current ? ' aria-current="page"' }}>
-      <span class="ecl-menu__link-label">{{ label }}</span>
-    </a>
+  {%- set link_attributes = [
+    { name: 'data-ecl-menu-link' },
+    { name: 'id', value: id ~ '-link' },
+  ] -%}
+  {%- if is_current -%}
+    {%- set link_attributes = link_attributes|merge([{ name: 'aria-current', value: 'page' }]) -%}
+  {%- endif -%}
+  <li class="{{ item_class }}" data-ecl-menu-item{{ has_children ? ' data-ecl-has-children data-expanded="false"' }} id="{{ id }}">
+    {{ include('ecl5:link', {
+      label: label,
+      path: path|default('#'),
+      external: external|default(false),
+      extra_classes: 'ecl-menu__link' ~ (is_current ? ' ecl-menu__link--current' : ''),
+      extra_attributes: link_attributes,
+    }, false) }}
     {%- if has_children -%}
-      <button type="button" class="ecl-button ecl-button--tertiary ecl-menu__caret-button ecl-button--icon-only" data-ecl-menu-caret aria-expanded="false">
-        <span class="ecl-button__label" aria-hidden="true">{{ label }}</span>
-        {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 's', extra_classes: 'ecl-button__icon' }, false) }}
-      </button>
+      {{ include('ecl5:button', {
+        type: 'button',
+        variant: 'tertiary',
+        style: 'neutral',
+        icon: { name: 'caret-down', family: 'phosphor', size: 'xs' },
+        extra_classes: 'ecl-menu__button-caret',
+        extra_attributes: [
+          { name: 'data-ecl-menu-caret' },
+          { name: 'aria-haspopup', value: 'true' },
+          { name: 'aria-expanded', value: 'false' },
+          { name: 'aria-label', value: trigger_aria_label|default(label) },
+        ],
+      }, false) }}
       <div class="ecl-menu__mega" data-ecl-menu-mega>
         <ul class="ecl-menu__sublist">
           {%- for child in children -%}
             <li class="ecl-menu__subitem{{ child.is_current ? ' ecl-menu__subitem--current' }}" data-ecl-menu-subitem>
-              <a href="{{ child.path|default('#') }}" class="ecl-menu__sublink"{{ child.is_current ? ' aria-current="page"' }}>{{ child.label }}</a>
+              {{ include('ecl5:link', {
+                label: child.label,
+                path: child.path|default('#'),
+                external: child.external|default(false),
+                extra_classes: 'ecl-menu__sublink' ~ (child.is_current ? ' ecl-menu__sublink--current' : ''),
+                extra_attributes: child.is_current ? [{ name: 'aria-current', value: 'page' }] : [],
+              }, false) }}
             </li>
           {%- endfor -%}
-          <li class="ecl-menu__subitem ecl-menu__see-all">
-            <a href="{{ path|default('#') }}" class="ecl-menu__sublink">{{ see_all_label|default('See all') }}</a>
-          </li>
+          {%- if see_all_label|default('') -%}
+            <li class="ecl-menu__subitem ecl-menu__see-all">
+              {{ include('ecl5:link', {
+                label: see_all_label,
+                path: path|default('#'),
+                icon: { name: 'arrow-right', family: 'phosphor', size: 'xs' },
+                extra_classes: 'ecl-menu__sublink',
+              }, false) }}
+            </li>
+          {%- endif -%}
         </ul>
       </div>
     {%- endif -%}

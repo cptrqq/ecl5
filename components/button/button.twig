@@ -2,7 +2,15 @@
 {%- apply spaceless -%}
   {%- set variant = variant|default('primary') -%}
   {%- set tag = tag|default('button') -%}
-  {%- set has_icon = icon.name is defined and icon.name -%}
+  {%- set label = label|default('') -%}
+  {# icon: a single icon object ({ name, family, size, … }) OR a list of icon objects. #}
+  {%- set icons = [] -%}
+  {%- if icon is defined and icon.name is defined and icon.name is not empty -%}
+    {%- set icons = [icon] -%}
+  {%- elseif icon is defined and icon is iterable and icon is not empty and (icon|first).name is defined -%}
+    {%- set icons = icon -%}
+  {%- endif -%}
+  {%- set has_icon = icons|length > 0 -%}
   {%- set classes = [
     'ecl-button',
     'ecl-button--' ~ variant,
@@ -12,23 +20,35 @@
     extra_classes,
   ]|filter(c => c)|join(' ') -%}
 
-  {%- set icon_markup -%}
-    {%- if has_icon -%}
-      {{ include('ecl5:icon', icon|merge({ extra_classes: 'ecl-button__icon' }), false) }}
-    {%- endif -%}
+  {%- set icons_markup -%}
+    {%- for ic in icons -%}
+      {{ include('ecl5:icon', ic|merge({ extra_classes: 'ecl-button__icon' }), false) }}
+    {%- endfor -%}
   {%- endset -%}
 
   {%- set inner -%}
-    {%- if has_icon and icon_position == 'before' %}{{ icon_markup }}{% endif -%}
-    <span class="ecl-button__label"{{ hide_label ? ' aria-hidden="true"' : '' }}>{{ label }}</span>
-    {%- if has_icon and icon_position != 'before' %}{{ icon_markup }}{% endif -%}
+    {%- if has_icon -%}
+      <span class="ecl-button__container">
+        {%- if icon_position == 'before' %}{{ icons_markup }}{% endif -%}
+        {%- if label is not empty %}<span class="ecl-button__label" data-ecl-label="true">{{ label }}</span>{% endif -%}
+        {%- if icon_position != 'before' %}{{ icons_markup }}{% endif -%}
+      </span>
+    {%- else -%}
+      {%- if label is not empty %}<span class="ecl-button__label" data-ecl-label="true">{{ label }}</span>{% endif -%}
+    {%- endif -%}
   {%- endset -%}
 
   {%- if tag == 'a' -%}
     <a href="{{ path|default('#') }}" class="{{ classes }}"
-      {{- disabled ? ' aria-disabled="true"' : '' }} role="button">{{ inner }}</a>
+      {{- disabled ? ' aria-disabled="true"' : '' -}}
+      {%- for attr in extra_attributes|default([]) -%}
+        {{- ' ' ~ attr.name }}{% if attr.value is defined and attr.value is not null %}="{{ attr.value|e('html_attr') }}"{% endif %}
+      {%- endfor -%} role="button">{{ inner }}</a>
   {%- else -%}
     <button type="{{ type|default('submit') }}" class="{{ classes }}"
-      {{- disabled ? ' disabled' : '' }}>{{ inner }}</button>
+      {{- disabled ? ' disabled' : '' -}}
+      {%- for attr in extra_attributes|default([]) -%}
+        {{- ' ' ~ attr.name }}{% if attr.value is defined and attr.value is not null %}="{{ attr.value|e('html_attr') }}"{% endif %}
+      {%- endfor -%}>{{ inner }}</button>
   {%- endif -%}
 {%- endapply -%}

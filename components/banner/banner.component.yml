@@ -27,14 +27,24 @@ props:
       default: m
     variant:
       type: string
-      enum: ['', overlay, plain-background, image-overlay]
+      enum: ['', overlay]
+      description: 'overlay renders the semi-transparent background overlay (ecl-banner--overlay).'
     box:
       type: string
-      enum: ['', grey, dark, none]
-      description: 'Content box background.'
+      enum: ['', light, dark, none]
+      description: 'Content box background. light is the default (no modifier class).'
     color:
       type: string
-      enum: ['', light, dark]
+      enum: ['', light]
+      description: 'Text color over media. dark is the default (no modifier class).'
+    sr_play:
+      type: string
+      default: Play
+      description: 'Screen-reader label of the video play button.'
+    sr_pause:
+      type: string
+      default: Pause
+      description: 'Screen-reader label of the video pause button.'
     horizontal:
       type: string
       enum: ['', left, center, right]
