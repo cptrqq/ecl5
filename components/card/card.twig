@@ -6,16 +6,19 @@
       {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-card__picture', extra_image_classes: 'ecl-card__image' }), false) }}
     {%- endif -%}
     <div class="ecl-card__body">
-      {{ include('ecl5:content-block', {
-        title: title|default(null),
-        description: description|default(null),
+      {%- set cb_props = {
+        description: description|default(''),
         labels: labels|default([]),
         primary_meta: primary_meta|default([]),
         secondary_meta: secondary_meta|default([]),
         secondary_meta_direction: secondary_meta_direction|default(''),
         links: links|default([]),
         extra_classes: 'ecl-card__content-block',
-      }, false) }}
+      } -%}
+      {%- if title is not empty -%}
+        {%- set cb_props = cb_props|merge({ title: title }) -%}
+      {%- endif -%}
+      {{ include('ecl5:content-block', cb_props, false) }}
     </div>
   </article>
 {%- endapply -%}

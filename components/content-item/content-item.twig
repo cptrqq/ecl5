@@ -13,14 +13,17 @@
     {%- if date is not empty -%}
       {{ include('ecl5:date-block', date|merge({ extra_classes: 'ecl-content-item__date' }), false) }}
     {%- endif -%}
-    {{ include('ecl5:content-block', {
-      title: title|default(null),
-      description: description|default(null),
+    {%- set cb_props = {
+      description: description|default(''),
       labels: labels|default([]),
       primary_meta: primary_meta|default([]),
       secondary_meta: secondary_meta|default([]),
       links: links|default([]),
       extra_classes: 'ecl-content-item__content-block',
-    }, false) }}
+    } -%}
+    {%- if title is not empty -%}
+      {%- set cb_props = cb_props|merge({ title: title }) -%}
+    {%- endif -%}
+    {{ include('ecl5:content-block', cb_props, false) }}
   </article>
 {%- endapply -%}
