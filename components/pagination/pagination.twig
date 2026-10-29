@@ -1,0 +1,25 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-pagination', extra_classes]|filter(c => c)|join(' ') -%}
+  <nav class="{{ classes }}" aria-label="{{ label|default('Pagination') }}">
+    <ul class="ecl-pagination__list">
+      {%- for item in items|default([]) -%}
+        <li class="ecl-pagination__item{{ item.type ? ' ecl-pagination__item--' ~ item.type }}">
+          {%- if item.path is defined and item.path -%}
+            {%- set icon = {} -%}
+            {%- if item.type == 'previous' -%}{%- set icon = { name: 'arrow-left', family: 'phosphor', size: 'xs' } -%}
+            {%- elseif item.type == 'next' -%}{%- set icon = { name: 'arrow-right', family: 'phosphor', size: 'xs' } -%}{%- endif -%}
+            {{ include('ecl5:link', {
+              label: item.label, path: item.path, variant: 'standalone',
+              aria_label: item.aria_label|default(null),
+              icon: icon, icon_position: item.type == 'previous' ? 'before' : 'after',
+              extra_classes: 'ecl-pagination__link',
+            }) }}
+          {%- else -%}
+            <span class="ecl-pagination__text ecl-pagination__text--summary"{{ item.type == 'current' ? ' aria-current="true"' : '' }}>{{ item.label }}</span>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+{%- endapply -%}

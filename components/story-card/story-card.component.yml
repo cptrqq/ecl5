@@ -1,0 +1,24 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Story card
+status: stable
+description: 'Header plus a carousel of story/testimonial cards (ECL JS enhanced when more than one item).'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: story-card
+    title:
+      type: string
+    description:
+      type: string
+    variant:
+      type: string
+      enum: ['', testimonial]
+    items:
+      type: array
+      description: 'List of story-card-card props.'
+      items:
+        type: object
+    extra_classes:
+      type: string

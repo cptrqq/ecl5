@@ -1,0 +1,19 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Splash page
+status: stable
+description: 'Language-selection splash page with a logo and a list of language links.'
+props:
+  type: object
+  properties:
+    title:
+      type: string
+    logo:
+      type: object
+      description: '{ picture, path, alt }.'
+    languages:
+      type: array
+      description: 'List of { lang, label, path, active }.'
+      items:
+        type: object
+    extra_classes:
+      type: string

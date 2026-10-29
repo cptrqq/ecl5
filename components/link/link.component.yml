@@ -1,0 +1,42 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Link
+status: stable
+description: 'ECL link, optionally with an icon, external marker or icon-only variant.'
+props:
+  type: object
+  properties:
+    label:
+      type: string
+      title: Label
+    path:
+      type: string
+      title: URL
+      default: '#'
+    variant:
+      type: string
+      title: Variant
+      enum: ['', standalone, primary, secondary]
+    inverted:
+      type: boolean
+      title: Inverted
+    external:
+      type: boolean
+      title: External
+      description: 'Adds an external-link icon after the label.'
+    icon_position:
+      type: string
+      title: Icon position
+      enum: [before, after]
+      default: after
+    hide_label:
+      type: boolean
+      title: Icon only
+      description: 'Visually hide the label (kept for screen readers). Requires an icon.'
+    icon:
+      type: object
+      title: Icon
+      description: 'Icon props (name, size, …). See the icon component.'
+    aria_label:
+      type: string
+    extra_classes:
+      type: string

@@ -1,0 +1,12 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-indicator', extra_classes]|filter(c => c)|join(' ') -%}
+  <span data-ecl-indicator data-ecl-auto-init="Indicator" class="{{ classes }}">
+    {%- if value is not empty -%}
+      <span class="ecl-indicator__value">{{ value }}</span>
+    {%- endif -%}
+    {%- if sr_label is not empty -%}
+      <span class="ecl-indicator__label">{{ sr_label }}</span>
+    {%- endif -%}
+  </span>
+{%- endapply -%}

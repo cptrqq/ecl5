@@ -1,0 +1,18 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set controls = controls is defined ? controls : true -%}
+  {%- set classes = ['ecl-video', extra_classes]|filter(c => c)|join(' ') -%}
+  <video class="{{ classes }}"
+    {{- poster ? ' poster="' ~ poster|e('html_attr') ~ '"' -}}
+    {{- controls ? ' controls' -}}
+    {{- autoplay ? ' autoplay' -}}
+    {{- muted ? ' muted' -}}
+    {{- loop ? ' loop' -}}>
+    {%- for source in sources|default([]) -%}
+      <source src="{{ source.src }}"{% if source.type %} type="{{ source.type }}"{% endif %}>
+    {%- endfor -%}
+    {%- for track in tracks|default([]) -%}
+      <track{% if track.kind %} kind="{{ track.kind }}"{% endif %}{% if track.label %} label="{{ track.label }}"{% endif %}{% if track.src %} src="{{ track.src }}"{% endif %}{% if track.src_lang %} srclang="{{ track.src_lang }}"{% endif %}{% if track.default %} default{% endif %}>
+    {%- endfor -%}
+  </video>
+{%- endapply -%}

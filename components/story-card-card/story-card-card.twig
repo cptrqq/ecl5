@@ -1,0 +1,32 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set testimonial = variant|default('') == 'testimonial' -%}
+  {%- set classes = ['ecl-story-card__card', extra_classes]|filter(c => c)|join(' ') -%}
+  <div class="{{ classes }}">
+    {%- if show_picture and picture is not empty -%}
+      <div class="ecl-story-card__image-wrapper">
+        {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-story-card__picture' })) }}
+      </div>
+    {%- endif -%}
+    <div class="ecl-story-card__content">
+      {%- if testimonial -%}
+        <figure class="ecl-story-card__testimonial-container">
+          {%- if title -%}<blockquote class="ecl-story-card__card-title">{{ title }}</blockquote>{%- endif -%}
+          {%- if author or role or source -%}
+            <figcaption class="ecl-story-card__testimonial">
+              {%- if author -%}<span class="ecl-story-card__author">{{ author }}</span>{%- endif -%}
+              {%- if role -%}<span class="ecl-story-card__role">{{ role }}</span>{%- endif -%}
+              {%- if source -%}<cite class="ecl-story-card__source">{{ source }}</cite>{%- endif -%}
+            </figcaption>
+          {%- endif -%}
+        </figure>
+      {%- else -%}
+        {%- if title -%}<div class="ecl-story-card__card-title">{{ title }}</div>{%- endif -%}
+        {%- if description -%}<div class="ecl-story-card__card-description">{{ description }}</div>{%- endif -%}
+        {%- if link.label is defined and link.label -%}
+          {{ include('ecl5:link', link|merge({ variant: 'standalone', extra_classes: 'ecl-story-card__link' })) }}
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+{%- endapply -%}

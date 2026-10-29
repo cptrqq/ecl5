@@ -1,0 +1,35 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Icon
+status: stable
+description: 'ECL icon rendered as a CSS-glyph span (Phosphor family by default).'
+props:
+  type: object
+  properties:
+    name:
+      type: string
+      title: Name
+      description: 'Icon name, e.g. "arrow-up", "facebook".'
+    size:
+      type: string
+      title: Size
+      enum: ['2xs', xs, s, m, l, xl, '2xl', fluid]
+      default: m
+    family:
+      type: string
+      title: Family
+      default: phosphor
+    transform:
+      type: string
+      title: Transform
+      enum: ['', rotate-90, rotate-180, rotate-270, flip-horizontal, flip-vertical]
+    color:
+      type: string
+      title: Color
+      enum: ['', primary, inverted]
+    title:
+      type: string
+      title: Accessible title
+      description: 'If set, the icon is exposed as an image with role="img".'
+    extra_classes:
+      type: string
+      title: Extra classes

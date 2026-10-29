@@ -1,0 +1,30 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set variant = variant|default('info') -%}
+  {%- set default_icons = { info: 'info', success: 'check-circle', warning: 'warning', error: 'warning-circle' } -%}
+  {%- set icon_props = (icon|default({}))|merge({
+    name: (icon.name is defined and icon.name) ? icon.name : default_icons[variant],
+    family: 'phosphor',
+    extra_classes: 'ecl-notification__icon',
+  }) -%}
+  {%- set closeable = closeable is defined ? closeable : true -%}
+  {%- set classes = ['ecl-notification', 'ecl-notification--' ~ variant, extra_classes]|filter(c => c)|join(' ') -%}
+  <div class="{{ classes }}" data-ecl-notification role="alert">
+    {{ include('ecl5:icon', icon_props|merge({ title: sr_icon|default('') })) }}
+    <div class="ecl-notification__content">
+      {%- if closeable -%}
+        <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-notification__close" data-ecl-notification-close>
+          <span class="ecl-button__label" aria-hidden="true">{{ close_label|default('Close') }}</span>
+          {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+        </button>
+      {%- endif -%}
+      {%- if title -%}<div class="ecl-notification__title">{{ title }}</div>{%- endif -%}
+      {%- if description -%}<div class="ecl-notification__description">{{ description }}</div>{%- endif -%}
+      {%- for link in links|default([]) -%}
+        <div class="ecl-notification__link">
+          {{ include('ecl5:link', link|merge({ extra_classes: (link.extra_classes|default('')) ~ ' ecl-notification__link-item' })) }}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endapply -%}

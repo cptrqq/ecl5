@@ -1,0 +1,6 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set variant = variant|default('low') -%}
+  {%- set classes = ['ecl-label', 'ecl-label--' ~ variant, extra_classes]|filter(c => c)|join(' ') -%}
+  <span class="{{ classes }}">{{- label -}}</span>
+{%- endapply -%}

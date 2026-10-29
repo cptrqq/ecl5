@@ -1,0 +1,14 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-date-block', variant ? 'ecl-date-block--' ~ variant, extra_classes]|filter(c => c)|join(' ') -%}
+  <time class="{{ classes }}"{{ date_time ? ' datetime="' ~ date_time|e('html_attr') ~ '"' : '' }}>
+    {%- if date_time -%}<span class="ecl-date-block__daytime">{{ date_time }}</span>{%- endif -%}
+    <span class="ecl-date-block__day" aria-hidden="true">{{ day }}</span>
+    {%- if month_full and month_full != month -%}
+      <abbr title="{{ month_full|e('html_attr') }}" class="ecl-date-block__month" aria-hidden="true">{{ month }}</abbr>
+    {%- else -%}
+      <span class="ecl-date-block__month">{{ month }}</span>
+    {%- endif -%}
+    <span class="ecl-date-block__year" aria-hidden="true">{{ year }}</span>
+  </time>
+{%- endapply -%}

@@ -1,0 +1,37 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Highlighted search
+status: stable
+description: 'Prominent search block with a title, description, search field + button and optional suggestion tags.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+    title:
+      type: string
+    description:
+      type: string
+    search_input:
+      type: object
+      description: 'Search field props (ECL text input: name, placeholder, id, …).'
+    search_helper:
+      type: string
+      description: 'Helper text shown below the field.'
+    search_button:
+      type: object
+      description: 'Search button props (ECL button: label, …).'
+    suggestion_label:
+      type: string
+    suggestions:
+      type: array
+      description: 'List of suggestion tags: { label, path }.'
+      items:
+        type: object
+    action:
+      type: string
+      description: 'Form action URL.'
+    method:
+      type: string
+      default: get
+    extra_classes:
+      type: string

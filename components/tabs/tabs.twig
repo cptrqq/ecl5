@@ -1,0 +1,25 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-tabs', extra_classes]|filter(c => c)|join(' ') -%}
+  {%- if items is not empty -%}
+    <div class="{{ classes }}" data-ecl-auto-init="Tabs">
+      <div class="ecl-tabs__container">
+        <div class="ecl-tabs__list" role="tablist">
+          {%- for item in items -%}
+            {%- set item_id = item.id|default('ecl-tabs-item-' ~ loop.index) -%}
+            <div class="ecl-tabs__item">
+              <a href="{{ item.path|default('#') }}" id="{{ item_id }}" role="tab"
+                class="ecl-link ecl-tabs__link{{ item.is_current ? ' ecl-tabs__link--active' }}"
+                {{- item.is_current ? ' aria-current="page"' -}}>{{ item.label }}</a>
+            </div>
+          {%- endfor -%}
+          <div class="ecl-tabs__item ecl-tabs__item--more"></div>
+        </div>
+        <button type="button" class="ecl-button ecl-button--tertiary ecl-tabs__toggle" aria-expanded="false">
+          <span class="ecl-button__label">{{ more_label|default('More') }}</span>
+          {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'xs', extra_classes: 'ecl-button__icon' }) }}
+        </button>
+      </div>
+    </div>
+  {%- endif -%}
+{%- endapply -%}

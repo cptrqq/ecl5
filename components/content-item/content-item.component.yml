@@ -1,0 +1,38 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Content item
+status: stable
+description: 'List row combining an optional image, date block and content block.'
+props:
+  type: object
+  properties:
+    variant:
+      type: string
+      enum: ['', inline, stack, divider]
+    picture:
+      type: object
+      description: 'Picture props plus optional size/position keys.'
+    date:
+      type: object
+      description: 'Date-block props.'
+    title:
+      type: object
+    description:
+      type: string
+    labels:
+      type: array
+      items:
+        type: object
+    primary_meta:
+      type: array
+      items:
+        type: string
+    secondary_meta:
+      type: array
+      items:
+        type: object
+    links:
+      type: array
+      items:
+        type: object
+    extra_classes:
+      type: string

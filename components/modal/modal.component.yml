@@ -1,0 +1,31 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Modal
+status: stable
+description: 'Dialog modal with header, scrollable body and a footer of actions.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: modal
+    header:
+      type: string
+      title: Header title
+    header_icon:
+      type: object
+    size:
+      type: string
+      enum: ['', s, m, l]
+    close_label:
+      type: string
+      default: Close
+    buttons:
+      type: array
+      description: 'Footer button props.'
+      items:
+        type: object
+    extra_classes:
+      type: string
+slots:
+  body:
+    title: Body

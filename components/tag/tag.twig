@@ -1,0 +1,33 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set type = type|default('link') -%}
+  {%- set classes = [
+    'ecl-tag',
+    type == 'removable' ? 'ecl-tag--removable',
+    nowrap ? 'ecl-tag--nowrap',
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+
+  {%- if type == 'removable' -%}
+    <button type="button" class="{{ classes }}">
+      {{- label -}}
+      <span class="ecl-tag__icon">
+        {{ include('ecl5:icon', {
+          name: 'x-circle', family: 'phosphor', size: 'xs',
+          title: aria_label|default('Remove'),
+          extra_classes: 'ecl-tag__icon-close',
+        }) }}
+      </span>
+    </button>
+  {%- else -%}
+    <a href="{{ path|default('#') }}" class="{{ classes }}">
+      {{- label -}}
+      {%- if external -%}
+        {{ include('ecl5:icon', {
+          name: 'arrow-square-out', family: 'phosphor', size: '2xs',
+          extra_classes: 'ecl-tag__icon ecl-tag__icon--external',
+        }) }}
+      {%- endif -%}
+    </a>
+  {%- endif -%}
+{%- endapply -%}

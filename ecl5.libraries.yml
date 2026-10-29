@@ -1,0 +1,14 @@
+global:
+  version: 5.x
+  css:
+    theme:
+      assets/styles/ecl-ec.css: {}
+      assets/styles/ecl-ec-color-modes.css: {}
+  js:
+    assets/scripts/ecl-ec.js: { attributes: { defer: true } }
+
+print:
+  version: 5.x
+  css:
+    theme:
+      assets/styles/ecl-ec-print.css: { media: print }

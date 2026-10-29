@@ -1,0 +1,29 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Text and media
+status: stable
+description: 'Text content beside a media container.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: text-media
+    micro_title:
+      type: string
+    title:
+      type: string
+    description:
+      type: string
+    link:
+      type: object
+      description: 'Link props ({ label, path }).'
+    media_container:
+      type: object
+      description: 'Media-container props.'
+    position:
+      type: string
+      enum: ['', left, right]
+    full_width:
+      type: boolean
+    extra_classes:
+      type: string

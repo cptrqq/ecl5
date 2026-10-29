@@ -1,0 +1,33 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Fact and figures
+status: stable
+description: 'Grid of key facts/figures, each with an icon, value, title and description.'
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      description: 'List of { icon, value, title, description }.'
+      items:
+        type: object
+    columns:
+      type: integer
+      enum: [2, 3, 4]
+      default: 3
+    centered:
+      type: boolean
+    display_icons:
+      type: boolean
+      default: true
+    icon_size:
+      type: string
+      default: xl
+    font_size:
+      type: string
+      enum: [m, l]
+      default: l
+    view_all:
+      type: object
+      description: 'Link props for a "view all" standalone link.'
+    extra_classes:
+      type: string

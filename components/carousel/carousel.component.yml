@@ -1,0 +1,34 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Carousel
+status: stable
+description: 'Carousel of banner slides with prev/next, play/pause controls and a counter (ECL JS enhanced).'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: carousel
+    items:
+      type: array
+      description: 'List of banner props, one per slide.'
+      items:
+        type: object
+    counter_label:
+      type: string
+      default: of
+    sr_previous:
+      type: string
+      default: Previous
+    sr_next:
+      type: string
+      default: Next
+    sr_play:
+      type: string
+      default: Play
+    sr_pause:
+      type: string
+      default: Pause
+    full_width:
+      type: boolean
+    extra_classes:
+      type: string

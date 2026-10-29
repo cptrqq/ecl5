@@ -1,0 +1,20 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('rating') -%}
+  {%- set name = name|default('rating') -%}
+  {%- set classes = ['ecl-rating-field', disabled ? 'ecl-rating-field--disabled', extra_classes]|filter(c => c)|join(' ') -%}
+  {%- if items is not empty -%}
+    <div class="{{ classes }}">
+      {%- for item in items -%}
+        {%- set item_id = id ~ '-' ~ item.value -%}
+        <label class="ecl-rating-field__label" for="{{ item_id }}">
+          {%- if item.label -%}<span class="ecl-rating-field__sr-label">{{ item.label }}</span>{%- endif -%}
+          {{ include('ecl5:icon', { name: 'star-fill', family: 'phosphor', extra_classes: 'ecl-rating-field__icon-filled' }) }}
+          {{ include('ecl5:icon', { name: 'star', family: 'phosphor', extra_classes: 'ecl-rating-field__icon-outline' }) }}
+        </label>
+        <input id="{{ item_id }}" name="{{ name }}" class="ecl-rating-field__input" type="radio" value="{{ item.value }}"
+          {{- item.checked ? ' checked' -}}{{- required ? ' required' -}}{{- disabled ? ' disabled' -}}>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+{%- endapply -%}

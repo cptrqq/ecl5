@@ -1,0 +1,27 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-table', zebra ? 'ecl-table--zebra', extra_classes]|filter(c => c)|join(' ') -%}
+  <div class="ecl-table-responsive">
+    <table class="{{ classes }}">
+      {%- if caption -%}<caption class="ecl-table__caption">{{ caption }}</caption>{%- endif -%}
+      {%- if headers is not empty -%}
+        <thead class="ecl-table__head">
+          <tr class="ecl-table__row">
+            {%- for header in headers -%}
+              <th{{ header.sortable ? ' data-ecl-table-sort-toggle' : '' }} class="ecl-table__header" scope="col">{{ header.label }}</th>
+            {%- endfor -%}
+          </tr>
+        </thead>
+      {%- endif -%}
+      <tbody class="ecl-table__body">
+        {%- for row in rows|default([]) -%}
+          <tr class="ecl-table__row">
+            {%- for cell in row -%}
+              <td{{ cell.header is defined and cell.header ? ' data-ecl-table-header="' ~ cell.header|e('html_attr') ~ '"' : '' }} class="ecl-table__cell">{{ cell.label }}</td>
+            {%- endfor -%}
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+  </div>
+{%- endapply -%}

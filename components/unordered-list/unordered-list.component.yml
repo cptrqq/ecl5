@@ -1,0 +1,17 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Unordered list
+status: stable
+description: 'Unordered list with optional nested items.'
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      description: 'List of { label, nested: [...] }.'
+      items:
+        type: object
+    variant:
+      type: string
+      enum: ['', no-bullet]
+    extra_classes:
+      type: string

@@ -1,0 +1,18 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- for item in items|default([]) -%}
+    {%- set classes = ['ecl-radio', loop.first and extra_classes ? extra_classes]|filter(c => c)|join(' ') -%}
+    <div class="{{ classes }}">
+      <input name="{{ name }}" class="ecl-radio__input" type="radio" value="{{ item.value|default('') }}"
+        {{- item.id ? ' id="' ~ item.id|e('html_attr') ~ '"' -}}
+        {{- item.disabled ? ' disabled' -}}
+        {{- item.checked ? ' checked' -}}
+        {{- item.required ? ' required' -}}>
+      <label{{ item.id ? ' for="' ~ item.id|e('html_attr') ~ '"' : '' }} class="ecl-radio__label">
+        <span class="ecl-radio__box"></span>
+        {%- if item.label -%}<span class="ecl-radio__text">{{ item.label }}</span>{%- endif -%}
+        {%- if item.helper -%}<span class="ecl-radio__helper">{{ item.helper }}</span>{%- endif -%}
+      </label>
+    </div>
+  {%- endfor -%}
+{%- endapply -%}

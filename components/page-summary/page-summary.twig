@@ -1,0 +1,20 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('page-summary') -%}
+  {%- set classes = ['ecl-page-summary', extra_classes]|filter(c => c)|join(' ') -%}
+  <section class="{{ classes }}" id="{{ id }}" aria-labelledby="{{ id }}-title">
+    {%- if title or (icon.name is defined and icon.name) -%}
+      <div class="ecl-page-summary__header">
+        {%- if icon.name is defined and icon.name -%}
+          {{ include('ecl5:icon', icon|merge({ extra_classes: 'ecl-page-summary__icon' })) }}
+        {%- endif -%}
+        {%- if title -%}
+          <h2 class="ecl-page-summary__title" id="{{ id }}-title">{{ title }}</h2>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- if description -%}
+      <div class="ecl-page-summary__description">{{ description }}</div>
+    {%- endif -%}
+  </section>
+{%- endapply -%}

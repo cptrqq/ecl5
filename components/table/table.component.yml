@@ -1,0 +1,23 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Table
+status: stable
+description: 'Responsive data table with header row and body rows.'
+props:
+  type: object
+  properties:
+    caption:
+      type: string
+    headers:
+      type: array
+      description: 'List of { label, sortable } for the header row.'
+      items:
+        type: object
+    rows:
+      type: array
+      description: 'List of rows; each row is a list of { label, header } cells. Set header to the matching column label for responsive stacking.'
+      items:
+        type: array
+    zebra:
+      type: boolean
+    extra_classes:
+      type: string

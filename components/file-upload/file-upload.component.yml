@@ -1,0 +1,26 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: File upload
+status: stable
+description: 'File input styled as a button, with a dynamic selected-files list (ECL JS enhanced).'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: file-upload
+    name:
+      type: string
+    multiple:
+      type: boolean
+    accept:
+      type: string
+    disabled:
+      type: boolean
+    button_choose_label:
+      type: string
+      default: 'Choose file'
+    button_replace_label:
+      type: string
+      default: 'Replace file'
+    extra_classes:
+      type: string

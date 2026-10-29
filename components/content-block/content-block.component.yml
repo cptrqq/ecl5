@@ -1,0 +1,39 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Content block
+status: stable
+description: 'Reusable content stack: labels, meta, title (optionally a link), description, lists and links. Used by card, content-item, etc.'
+props:
+  type: object
+  properties:
+    title:
+      type: object
+      description: 'Either { label } for plain text, or link props ({ label, path }) to render a title link.'
+    description:
+      type: string
+    labels:
+      type: array
+      description: 'List of label props ({ label, variant }).'
+      items:
+        type: object
+    labels_aria:
+      type: string
+    primary_meta:
+      type: array
+      description: 'List of plain strings shown above the title.'
+      items:
+        type: string
+    secondary_meta:
+      type: array
+      description: 'List of { icon, label } shown below the content.'
+      items:
+        type: object
+    secondary_meta_direction:
+      type: string
+      enum: ['', horizontal]
+    links:
+      type: array
+      description: 'Flat list of link props.'
+      items:
+        type: object
+    extra_classes:
+      type: string

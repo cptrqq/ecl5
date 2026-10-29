@@ -1,0 +1,27 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set media_type = media_type|default('picture') -%}
+  {%- set classes = ['ecl-media-container', full_width ? 'ecl-media-container--full-width', extra_classes]|filter(c => c)|join(' ') -%}
+  {%- set figure_class = ['ecl-media-container__figure', ratio ? 'ecl-media-container__media--ratio-' ~ ratio]|filter(c => c)|join(' ') -%}
+  <div class="{{ classes }}">
+    <figure class="{{ figure_class }}">
+      {%- if media_type == 'embedded' -%}
+        <div class="ecl-media-container__embed">
+          {%- block embedded_media %}{{ embedded_media }}{% endblock -%}
+        </div>
+      {%- elseif media_type == 'video' -%}
+        <div class="ecl-media-container__video-wrapper">
+          {{ include('ecl5:video', video|default({})|merge({ extra_classes: 'ecl-media-container__media' })) }}
+        </div>
+      {%- else -%}
+        {{ include('ecl5:picture', picture|default({})|merge({ extra_classes: 'ecl-media-container__picture', extra_image_classes: 'ecl-media-container__media' })) }}
+      {%- endif -%}
+      {%- if description -%}
+        <figcaption class="ecl-media-container__caption">{{ description }}</figcaption>
+      {%- endif -%}
+      {%- if credit -%}
+        <footer class="ecl-media-container__credit">{{ credit }}</footer>
+      {%- endif -%}
+    </figure>
+  </div>
+{%- endapply -%}

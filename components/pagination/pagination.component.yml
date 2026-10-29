@@ -1,0 +1,17 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Pagination
+status: stable
+description: 'Pagination navigation with previous/next and numbered pages.'
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      description: 'Ordered list of { type: previous|next|current|''''|ellipsis, label, path, aria_label }.'
+      items:
+        type: object
+    label:
+      type: string
+      default: Pagination
+    extra_classes:
+      type: string

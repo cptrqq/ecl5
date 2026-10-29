@@ -1,0 +1,24 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Select
+status: stable
+description: 'Native select, optionally enhanced by the ECL select JS.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    options:
+      type: array
+      description: 'List of { value, label, selected, disabled } or { optgroup: { label, options } }.'
+      items:
+        type: object
+    disabled:
+      type: boolean
+    required:
+      type: boolean
+    invalid:
+      type: boolean
+    extra_classes:
+      type: string

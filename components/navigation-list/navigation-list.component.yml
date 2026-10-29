@@ -1,0 +1,20 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Navigation list
+status: stable
+description: 'A list of navigation items, each combining an image and a content block.'
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      description: 'List of navigation-list-item props.'
+      items:
+        type: object
+    columns:
+      type: integer
+      enum: [1, 2]
+      default: 1
+    border:
+      type: boolean
+    extra_classes:
+      type: string

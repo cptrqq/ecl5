@@ -1,0 +1,67 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-content-block', extra_classes]|filter(c => c)|join(' ') -%}
+  <div class="{{ classes }}" data-ecl-auto-init="ContentBlock" data-ecl-content-block>
+    {%- if labels is not empty -%}
+      {%- set lt = labels|length == 1 ? 'div' : 'ul' -%}
+      {%- set li = labels|length == 1 ? 'div' : 'li' -%}
+      <{{ lt }} class="ecl-content-block__label-container"{{ labels_aria ? ' aria-label="' ~ labels_aria|e('html_attr') ~ '"' : '' }}>
+        {%- for label in labels -%}
+          <{{ li }} class="ecl-content-block__label-item">{{ include('ecl5:label', label) }}</{{ li }}>
+        {%- endfor -%}
+      </{{ lt }}>
+    {%- endif -%}
+
+    {%- if primary_meta is not empty -%}
+      {%- set mt = primary_meta|length == 1 ? 'div' : 'ul' -%}
+      {%- set mi = primary_meta|length == 1 ? 'div' : 'li' -%}
+      <{{ mt }} class="ecl-content-block__primary-meta-container">
+        {%- for meta in primary_meta -%}
+          <{{ mi }} class="ecl-content-block__primary-meta-item">{{ meta }}</{{ mi }}>
+        {%- endfor -%}
+      </{{ mt }}>
+    {%- endif -%}
+
+    {%- if title is not empty -%}
+      <div class="ecl-content-block__title">
+        {%- if title.path is defined -%}
+          {{ include('ecl5:link', title) }}
+        {%- else -%}
+          {{ title.label|default(title) }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if description -%}
+      <div class="ecl-content-block__description">{{ description }}</div>
+    {%- endif -%}
+
+    {%- if secondary_meta is not empty -%}
+      {%- set sclass = ['ecl-content-block__secondary-meta-container', secondary_meta_direction == 'horizontal' ? 'ecl-content-block__secondary-meta-container--horizontal']|filter(c => c)|join(' ') -%}
+      {%- set st = secondary_meta|length == 1 ? 'div' : 'ul' -%}
+      {%- set si = secondary_meta|length == 1 ? 'div' : 'li' -%}
+      <{{ st }} class="{{ sclass }}">
+        {%- for meta in secondary_meta -%}
+          <{{ si }} class="ecl-content-block__secondary-meta-item">
+            {%- if meta.icon is defined and meta.icon -%}
+              {{ include('ecl5:icon', meta.icon|merge({ size: 's', extra_classes: 'ecl-content-block__secondary-meta-icon' })) }}
+            {%- endif -%}
+            <span class="ecl-content-block__secondary-meta-label">{{ meta.label }}</span>
+          </{{ si }}>
+        {%- endfor -%}
+      </{{ st }}>
+    {%- endif -%}
+
+    {%- if links is not empty -%}
+      <div class="ecl-content-block__link-container">
+        {%- set clt = links|length == 1 ? 'div' : 'ul' -%}
+        {%- set cli = links|length == 1 ? 'div' : 'li' -%}
+        <{{ clt }} class="ecl-content-block__link-list">
+          {%- for link in links -%}
+            <{{ cli }} class="ecl-content-block__link-item">{{ include('ecl5:link', link|merge({ variant: 'standalone' })) }}</{{ cli }}>
+          {%- endfor -%}
+        </{{ clt }}>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endapply -%}

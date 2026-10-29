@@ -1,0 +1,36 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Datepicker
+status: stable
+description: 'Date picker wrapping the Duet date-picker web component, initialised by the ECL JS.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: ecl-datepicker
+    name:
+      type: string
+    default_value:
+      type: string
+      description: 'YYYY-MM-DD.'
+    min:
+      type: string
+    max:
+      type: string
+    placeholder:
+      type: string
+      default: DD-MM-YYYY
+    width:
+      type: string
+      enum: [s, m, l]
+      default: m
+    first_day_of_week:
+      type: integer
+      default: 1
+    autoinit:
+      type: boolean
+      default: true
+    invalid:
+      type: boolean
+    extra_classes:
+      type: string

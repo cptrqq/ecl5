@@ -1,0 +1,20 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('file-upload') -%}
+  {%- set choose = button_choose_label|default('Choose file') -%}
+  {%- set replace = button_replace_label|default('Replace file') -%}
+  {%- set classes = ['ecl-file-upload', extra_classes]|filter(c => c)|join(' ') -%}
+  <input type="file" class="{{ classes }}" id="{{ id }}"
+    {{- name ? ' name="' ~ name|e('html_attr') ~ '"' -}}
+    {{- multiple ? ' multiple' -}}
+    {{- accept ? ' accept="' ~ accept|e('html_attr') ~ '"' -}}
+    {{- disabled ? ' disabled' -}}
+    data-ecl-auto-init="FileUpload" data-ecl-file-upload>
+  <label class="ecl-file-upload__button-container" for="{{ id }}">
+    <span class="ecl-file-upload__button ecl-button ecl-button--primary" data-ecl-file-upload-button
+      data-ecl-file-upload-label-choose="{{ choose|e('html_attr') }}"
+      data-ecl-file-upload-label-replace="{{ replace|e('html_attr') }}"
+      {{- disabled ? ' disabled' -}}>{{ choose }}</span>
+  </label>
+  <ul class="ecl-file-upload__list" data-ecl-file-upload-list aria-live="polite"></ul>
+{%- endapply -%}

@@ -1,0 +1,21 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-card', extra_classes]|filter(c => c)|join(' ') -%}
+  <article class="{{ classes }}">
+    {%- if picture.img is defined and picture.img -%}
+      {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-card__picture', extra_image_classes: 'ecl-card__image' })) }}
+    {%- endif -%}
+    <div class="ecl-card__body">
+      {{ include('ecl5:content-block', {
+        title: title|default(null),
+        description: description|default(null),
+        labels: labels|default([]),
+        primary_meta: primary_meta|default([]),
+        secondary_meta: secondary_meta|default([]),
+        secondary_meta_direction: secondary_meta_direction|default(''),
+        links: links|default([]),
+        extra_classes: 'ecl-card__content-block',
+      }) }}
+    </div>
+  </article>
+{%- endapply -%}

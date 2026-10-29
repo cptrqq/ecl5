@@ -1,0 +1,18 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set input = input|default({}) -%}
+  {%- set input_id = input.id|default('search-form-input') -%}
+  {%- set classes = ['ecl-search-form', extra_classes]|filter(c => c)|join(' ') -%}
+  <form class="{{ classes }}"{{ action ? ' action="' ~ action|e('html_attr') ~ '"' : '' }} method="{{ method|default('get') }}" role="search">
+    <label for="{{ input_id }}" class="ecl-form-label ecl-form-label--hidden ecl-search-form__label">{{ label|default('Search') }}</label>
+    {{ include('ecl5:text-input', input|merge({
+      id: input_id,
+      type: 'search',
+      extra_classes: ('ecl-search-form__text-input ' ~ input.extra_classes|default(''))|trim,
+    })) }}
+    <button type="submit" class="ecl-button ecl-button--primary ecl-button--icon-only ecl-search-form__button">
+      <span class="ecl-button__label" aria-hidden="true">{{ button_label|default('Search') }}</span>
+      {{ include('ecl5:icon', { name: 'magnifying-glass', family: 'phosphor', size: 'm', extra_classes: 'ecl-button__icon' }) }}
+    </button>
+  </form>
+{%- endapply -%}

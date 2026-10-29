@@ -1,0 +1,18 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Page summary
+status: stable
+description: 'Introductory summary section with optional icon, title and description.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: page-summary
+    title:
+      type: string
+    description:
+      type: string
+    icon:
+      type: object
+    extra_classes:
+      type: string

@@ -1,0 +1,93 @@
+{{ attach_library('ecl5/global') }}
+{%- import _self as li -%}
+{%- apply spaceless -%}
+  {%- set items = items|default([]) -%}
+  {%- set column = column|default(1) -%}
+  {%- set zebra = zebra|default(false) -%}
+  {%- set icon_inline = icon_inline|default(false) -%}
+  {%- set icon_list = icon_list|default(false) -%}
+  {%- set number_list = number_list|default(false) -%}
+  {%- set divider = divider|default(false) -%}
+  {%- set counter_reset = counter_reset is defined ? counter_reset : true -%}
+  {%- set counter_start = counter_start|default(0) -%}
+  {%- set centered = centered|default(false) -%}
+  {%- set font_size = font_size|default('l') -%}
+  {%- set list_tag = number_list ? 'ol' : 'ul' -%}
+
+  {%- set classes = [
+    'ecl-list-illustration',
+    zebra ? 'ecl-list-illustration--zebra',
+    icon_inline ? 'ecl-list-illustration--icon-inline',
+    icon_list ? 'ecl-list-illustration--icon-list',
+    number_list ? 'ecl-list-illustration--number-list',
+    (number_list and counter_reset) ? 'ecl-list-illustration--number-list-reset',
+    centered ? 'ecl-list-illustration--centered',
+    font_size != 'l' ? 'ecl-list-illustration--font-' ~ font_size,
+    (column > 1 and column < 5) ? 'ecl-list-illustration--col-' ~ column,
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+
+  {%- if items is not empty -%}
+    <{{ list_tag }} class="{{ classes }}"
+      {%- if number_list %} start="{{ counter_start|e('html_attr') }}"
+        {%- if counter_reset %} style="--ecl-list-illustration-counter-start: {{ counter_start|e('html_attr') }};"{% endif -%}
+      {%- endif -%}
+    >
+      {%- set cutoff = items|length - (items|length % column == 0 ? column : items|length % column) -%}
+      {%- for item in items -%}
+        {{ li.item(item, column, divider, loop.index0 >= cutoff) }}
+      {%- endfor -%}
+    </{{ list_tag }}>
+  {%- endif -%}
+{%- endapply -%}
+
+{%- macro item(item, column, divider, last) -%}
+  {%- apply spaceless -%}
+    {%- set picture = item.picture|default({}) -%}
+    {%- set square = item.square|default(false) -%}
+    {%- set icon = item.icon|default({}) -%}
+    {%- set media_size = item.media_size|default('m') -%}
+    {%- set icon_size = media_size == 'l' ? '2xl' : 'l' -%}
+    {%- set item_classes = [
+      'ecl-list-illustration__item',
+      last ? 'ecl-list-illustration__item--is-last',
+      item.extra_classes|default(''),
+    ]|filter(c => c)|join(' ') -%}
+    {%- set content_classes = [
+      'ecl-list-illustration__item-content',
+      divider ? 'ecl-list-illustration__divider',
+      (picture.img is defined and picture.img and column == 1) ? 'ecl-list-illustration__item-content--row',
+    ]|filter(c => c)|join(' ') -%}
+    {%- set image_classes = [
+      'ecl-list-illustration__image',
+      square ? 'ecl-list-illustration__image--square',
+      square ? 'ecl-list-illustration__image--' ~ media_size,
+    ]|filter(c => c)|join(' ') -%}
+    {%- set picture_classes = ['ecl-list-illustration__picture', square ? 'ecl-list-illustration__picture--square']|filter(c => c)|join(' ') -%}
+    <li class="{{ item_classes }}">
+      <div class="{{ content_classes }}">
+        {%- if picture.img is defined and picture.img -%}
+          {{ include('ecl5:picture', picture|merge({ extra_classes: picture_classes, extra_image_classes: image_classes })) }}
+        {%- endif -%}
+        {%- if icon is not empty -%}
+          {{ include('ecl5:icon', icon|merge({ size: icon_size, extra_classes: 'ecl-list-illustration__icon' })) }}
+        {%- endif -%}
+        <div class="ecl-list-illustration__detail">
+          {%- if item.title is not empty or item.value is not empty -%}
+            <div class="ecl-list-illustration__title-container">
+              {%- if item.value is not empty -%}
+                <div class="ecl-list-illustration__value">{{ item.value }}</div>
+              {%- endif -%}
+              {%- if item.title is not empty -%}
+                <div class="ecl-list-illustration__title">{{ item.title }}</div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+          {%- if item.description is not empty -%}
+            <div class="ecl-list-illustration__description">{{ item.description }}</div>
+          {%- endif -%}
+        </div>
+      </div>
+    </li>
+  {%- endapply -%}
+{%- endmacro -%}

@@ -1,0 +1,14 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Indicator
+status: stable
+description: 'Small count indicator (e.g. notification badge).'
+props:
+  type: object
+  properties:
+    value:
+      type: string
+    sr_label:
+      type: string
+      title: Screen-reader label
+    extra_classes:
+      type: string

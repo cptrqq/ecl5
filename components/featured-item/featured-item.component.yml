@@ -1,0 +1,29 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Featured item
+status: stable
+description: 'Prominent featured block pairing text with a media container.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: featured-item
+    micro_title:
+      type: string
+    title:
+      type: string
+    description:
+      type: string
+    link:
+      type: object
+    media_container:
+      type: object
+    orientation:
+      type: string
+      enum: [horizontal, vertical]
+      default: horizontal
+    position:
+      type: string
+      enum: ['', right]
+    extra_classes:
+      type: string

@@ -1,0 +1,17 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Tabs
+status: stable
+description: 'Tab navigation (links), with overflow handling by the ECL JS.'
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      description: 'List of { id, label, path, is_current }.'
+      items:
+        type: object
+    more_label:
+      type: string
+      default: More
+    extra_classes:
+      type: string

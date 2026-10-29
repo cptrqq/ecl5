@@ -1,0 +1,26 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Spinner
+status: stable
+description: 'Loading indicator / spinner, optionally with overlay and text.'
+props:
+  type: object
+  properties:
+    variant:
+      type: string
+      enum: [primary, negative]
+      default: primary
+    size:
+      type: string
+      enum: [s, m, l]
+      default: m
+    text:
+      type: string
+    centered:
+      type: boolean
+    overlay:
+      type: boolean
+    visible:
+      type: boolean
+      default: true
+    extra_classes:
+      type: string

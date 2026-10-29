@@ -1,0 +1,34 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Notification
+status: stable
+description: 'ECL notification / alert banner with optional close button and links.'
+props:
+  type: object
+  properties:
+    variant:
+      type: string
+      enum: [info, success, warning, error]
+      default: info
+    title:
+      type: string
+    description:
+      type: string
+    icon:
+      type: object
+      description: 'Override the default icon for the variant.'
+    sr_icon:
+      type: string
+      title: Screen-reader icon label
+    closeable:
+      type: boolean
+      default: true
+    close_label:
+      type: string
+      default: Close
+    links:
+      type: array
+      description: 'List of link props.'
+      items:
+        type: object
+    extra_classes:
+      type: string

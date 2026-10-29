@@ -1,0 +1,25 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('inpage-navigation') -%}
+  {%- set title = title|default('Page contents') -%}
+  {%- set classes = ['ecl-inpage-navigation', extra_classes]|filter(c => c)|join(' ') -%}
+  <nav class="{{ classes }}" data-ecl-inpage-navigation="true" aria-labelledby="{{ id }}">
+    <div class="ecl-inpage-navigation__title" id="{{ id }}">{{ title }}</div>
+    <div class="ecl-inpage-navigation__body">
+      <div class="ecl-inpage-navigation__trigger-wrapper">
+        <button type="button" class="ecl-inpage-navigation__trigger" id="{{ id }}-trigger"
+          data-ecl-inpage-navigation-trigger="true" aria-controls="{{ id }}-list" aria-expanded="false">
+          <span class="ecl-inpage-navigation__trigger-current" data-ecl-inpage-navigation-trigger-current="true">{{ title }}</span>
+          {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'xs', extra_classes: 'ecl-inpage-navigation__trigger-icon' }) }}
+        </button>
+      </div>
+      <ul class="ecl-inpage-navigation__list" data-ecl-inpage-navigation-list="true" id="{{ id }}-list">
+        {%- for link in links|default([]) -%}
+          <li class="ecl-inpage-navigation__item">
+            {{ include('ecl5:link', { label: link.label, path: link.path|default('#'), extra_classes: 'ecl-inpage-navigation__link' }) }}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </nav>
+{%- endapply -%}

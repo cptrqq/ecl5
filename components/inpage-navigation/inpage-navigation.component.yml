@@ -1,0 +1,20 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Inpage navigation
+status: stable
+description: 'Sticky in-page navigation listing anchors to sections of the current page.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: inpage-navigation
+    title:
+      type: string
+      default: 'Page contents'
+    links:
+      type: array
+      description: 'List of { label, path }.'
+      items:
+        type: object
+    extra_classes:
+      type: string

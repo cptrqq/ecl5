@@ -1,0 +1,27 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Social media follow
+status: stable
+description: 'A labelled list of social-network follow links with icons.'
+props:
+  type: object
+  properties:
+    title:
+      type: string
+    description:
+      type: string
+    links:
+      type: array
+      description: 'List of { label, path, icon: { name } }.'
+      items:
+        type: object
+    variant:
+      type: string
+      enum: ['', horizontal, vertical]
+    position:
+      type: string
+      enum: [left, right]
+      default: left
+    description_inline:
+      type: boolean
+    extra_classes:
+      type: string

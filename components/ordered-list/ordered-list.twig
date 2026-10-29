@@ -1,0 +1,19 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- macro ol(items, classes) -%}
+    {%- if items is not empty -%}
+      <ol class="{{ classes }}">
+        {%- for item in items -%}
+          <li class="ecl-ordered-list__item">
+            {{- item.label -}}
+            {%- if item.nested is defined and item.nested -%}
+              {{- _self.ol(item.nested, 'ecl-ordered-list') -}}
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ol>
+    {%- endif -%}
+  {%- endmacro -%}
+  {%- set classes = ['ecl-ordered-list', extra_classes]|filter(c => c)|join(' ') -%}
+  {{- _self.ol(items, classes) -}}
+{%- endapply -%}

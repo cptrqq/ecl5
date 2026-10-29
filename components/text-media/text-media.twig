@@ -1,0 +1,25 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('text-media') -%}
+  {%- set classes = [
+    'ecl-text-media',
+    position ? 'ecl-text-media--position-' ~ position,
+    full_width ? 'ecl-text-media--full-width',
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+  <article class="{{ classes }}">
+    <div class="ecl-text-media__content">
+      {%- if micro_title -%}<div class="ecl-text-media__micro-title">{{ micro_title }}</div>{%- endif -%}
+      {%- if title -%}<div class="ecl-text-media__title" id="{{ id }}-title">{{ title }}</div>{%- endif -%}
+      {%- if description -%}<div class="ecl-text-media__description ecl-content-color">{{ description }}</div>{%- endif -%}
+      {%- if link.label is defined and link.label -%}
+        {{ include('ecl5:link', link|merge({ variant: 'standalone', extra_classes: 'ecl-text-media__link' })) }}
+      {%- endif -%}
+    </div>
+    {%- if media_container is not empty -%}
+      <div class="ecl-text-media__media">
+        {{ include('ecl5:media-container', media_container) }}
+      </div>
+    {%- endif -%}
+  </article>
+{%- endapply -%}

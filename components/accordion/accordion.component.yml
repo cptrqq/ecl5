@@ -1,0 +1,23 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Accordion
+status: stable
+description: 'ECL accordion built on native <details>/<summary> elements.'
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      title: Items
+      description: 'List of { label, content, open }.'
+      items:
+        type: object
+    name:
+      type: string
+      description: 'Shared name attribute so only one item stays open at a time.'
+    sidebar:
+      type: boolean
+    icon:
+      type: object
+      description: 'Toggle icon props (defaults to a plus/minus caret).'
+    extra_classes:
+      type: string

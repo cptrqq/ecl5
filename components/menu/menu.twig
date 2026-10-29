@@ -1,0 +1,32 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('menu') -%}
+  {%- set title = title|default('Menu') -%}
+  {%- set classes = ['ecl-menu', extra_classes]|filter(c => c)|join(' ') -%}
+  <nav class="{{ classes }}" data-ecl-menu data-ecl-menu-max-lines="2" aria-label="{{ title }}"
+    data-ecl-auto-init="Menu"
+    data-ecl-menu-label-open="{{ toggle_label|default('Menu')|e('html_attr') }}"
+    data-ecl-menu-label-close="{{ close_label|default('Close')|e('html_attr') }}">
+    <div class="ecl-menu__overlay"></div>
+    <div class="ecl-container ecl-menu__container">
+      <button type="button" class="ecl-button ecl-button--tertiary ecl-menu__open" data-ecl-menu-open>
+        <span class="ecl-button__label">{{ toggle_label|default('Menu') }}</span>
+        {{ include('ecl5:icon', { name: 'list', family: 'phosphor', size: 's', extra_classes: 'ecl-button__icon' }) }}
+      </button>
+      <section class="ecl-menu__inner" data-ecl-menu-inner aria-label="{{ title }}">
+        <header class="ecl-menu__inner-header">
+          <button type="button" class="ecl-button ecl-button--tertiary ecl-menu__close ecl-button--icon-only" data-ecl-menu-close>
+            <span class="ecl-button__label" aria-hidden="true">{{ close_label|default('Close') }}</span>
+            {{ include('ecl5:icon', { name: 'x', family: 'phosphor', size: 's', extra_classes: 'ecl-button__icon' }) }}
+          </button>
+          <div class="ecl-menu__title">{{ title }}</div>
+        </header>
+        <ul class="ecl-menu__list" data-ecl-menu-list>
+          {%- for key, item in items|default([]) -%}
+            {{ include('ecl5:menu-item', item|merge({ id: 'ecl-menu-item-' ~ id ~ '-' ~ key, see_all_label: see_all_label|default('See all') })) }}
+          {%- endfor -%}
+        </ul>
+      </section>
+    </div>
+  </nav>
+{%- endapply -%}

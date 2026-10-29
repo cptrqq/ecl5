@@ -1,0 +1,23 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Search form
+status: stable
+description: 'Search input with a magnifying-glass submit button.'
+props:
+  type: object
+  properties:
+    action:
+      type: string
+    method:
+      type: string
+      default: get
+    label:
+      type: string
+      default: Search
+    input:
+      type: object
+      description: 'Text-input props ({ id, name, placeholder, ... }).'
+    button_label:
+      type: string
+      default: Search
+    extra_classes:
+      type: string

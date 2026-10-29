@@ -1,0 +1,19 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- macro ul(items, classes) -%}
+    {%- if items is not empty -%}
+      <ul class="{{ classes }}">
+        {%- for item in items -%}
+          <li class="ecl-unordered-list__item">
+            {{- item.label -}}
+            {%- if item.nested is defined and item.nested -%}
+              {{- _self.ul(item.nested, 'ecl-unordered-list') -}}
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  {%- endmacro -%}
+  {%- set classes = ['ecl-unordered-list', variant ? 'ecl-unordered-list--' ~ variant, extra_classes]|filter(c => c)|join(' ') -%}
+  {{- _self.ul(items, classes) -}}
+{%- endapply -%}

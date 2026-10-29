@@ -1,0 +1,30 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-add-to-calendar', full_width ? 'ecl-add-to-calendar--full-width', extra_classes]|filter(c => c)|join(' ') -%}
+  <div class="{{ classes }}">
+    <div class="ecl-add-to-calendar__info">
+      {%- if title or meta is not empty or button is not empty -%}
+        <div class="ecl-add-to-calendar__info-content">
+          {%- if title -%}<div class="ecl-add-to-calendar__title">{{ title }}</div>{%- endif -%}
+          {%- if meta is not empty -%}
+            {%- set tag_list = meta|length == 1 ? 'div' : 'ul' -%}
+            {%- set tag_item = meta|length == 1 ? 'div' : 'li' -%}
+            <{{ tag_list }} class="ecl-add-to-calendar__meta-list">
+              {%- for item in meta -%}
+                <{{ tag_item }} class="ecl-add-to-calendar__meta-item">
+                  {%- if item.icon is defined and item.icon -%}
+                    {{ include('ecl5:icon', item.icon|merge({ size: 's', extra_classes: 'ecl-add-to-calendar__meta-icon' })) }}
+                  {%- endif -%}
+                  <span class="ecl-add-to-calendar__meta-label">{{ item.label }}</span>
+                </{{ tag_item }}>
+              {%- endfor -%}
+            </{{ tag_list }}>
+          {%- endif -%}
+          {%- if button is not empty -%}
+            <div class="ecl-add-to-calendar__action">{{ include('ecl5:button', button) }}</div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endapply -%}

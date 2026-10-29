@@ -1,0 +1,27 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Menu item
+status: stable
+description: 'One top-level menu entry, optionally with a mega submenu of children.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: ecl-menu-item
+    label:
+      type: string
+    path:
+      type: string
+      default: '#'
+    is_current:
+      type: boolean
+    children:
+      type: array
+      description: 'List of { label, path, is_current } for the mega submenu.'
+      items:
+        type: object
+    see_all_label:
+      type: string
+      default: 'See all'
+    extra_classes:
+      type: string

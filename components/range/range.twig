@@ -1,0 +1,26 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('range') -%}
+  {%- set width = width|default('full') -%}
+  {%- set classes = ['ecl-range', invalid ? 'ecl-range--invalid', extra_classes]|filter(c => c)|join(' ') -%}
+  <div class="ecl-range-container ecl-range-container--{{ width }}" data-ecl-range-container>
+    <input data-ecl-range-input type="range" class="{{ classes }}" id="{{ id }}"
+      {{- value_text ? ' aria-describedby="' ~ id ~ '-value"' -}}
+      {{- name ? ' name="' ~ name|e('html_attr') ~ '"' -}}
+      {{- min is not null ? ' min="' ~ min ~ '"' -}}
+      {{- max is not null ? ' max="' ~ max ~ '"' -}}
+      {{- step is not null ? ' step="' ~ step ~ '"' -}}
+      {{- value is not null ? ' value="' ~ value ~ '"' -}}
+      {{- disabled ? ' disabled' -}}
+      {{- required ? ' required' -}}>
+    <div class="ecl-range__bubble" data-ecl-range-bubble>
+      <span class="ecl-range__value-bubble" data-ecl-range-value-current></span>
+    </div>
+    {%- if value_text -%}
+      <div class="ecl-range__value" id="{{ id }}-value">
+        {{ value_text }}
+        <span class="ecl-range__value-current" data-ecl-range-value-current></span>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endapply -%}

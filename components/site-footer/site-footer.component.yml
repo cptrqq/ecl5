@@ -1,0 +1,33 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Site footer
+status: stable
+description: 'European Commission site footer: optional co-owner banner plus a set of named sections (site info, contact, about, more, related, common, feedback) with titles, logos, links, social media and action buttons.'
+props:
+  type: object
+  properties:
+    co_owner:
+      type: object
+      description: '{ title, links: [{ label, path }] } banner on top of the footer.'
+    section_site_info:
+      type: object
+    section_core:
+      type: object
+    section_contact:
+      type: object
+    section_about:
+      type: object
+    section_more:
+      type: object
+    section_related:
+      type: object
+    section_feedback:
+      type: object
+    section_common:
+      type: object
+    sections_custom:
+      type: array
+      description: 'Additional custom sections (same structure as named sections).'
+      items:
+        type: object
+    extra_classes:
+      type: string

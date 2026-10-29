@@ -1,0 +1,11 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-text-area', invalid ? 'ecl-text-area--invalid', extra_classes]|filter(c => c)|join(' ') -%}
+  <textarea class="{{ classes }}" rows="{{ rows|default(4) }}"
+    {{- id ? ' id="' ~ id|e('html_attr') ~ '"' -}}
+    {{- name ? ' name="' ~ name|e('html_attr') ~ '"' -}}
+    {{- placeholder ? ' placeholder="' ~ placeholder|e('html_attr') ~ '"' -}}
+    {{- disabled ? ' disabled' -}}
+    {{- required ? ' required' -}}
+    {{- invalid ? ' aria-invalid="true"' -}}>{{- value -}}</textarea>
+{%- endapply -%}

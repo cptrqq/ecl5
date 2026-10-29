@@ -1,0 +1,150 @@
+{{ attach_library('ecl5/global') }}
+{%- import _self as footer -%}
+{%- apply spaceless -%}
+  {%- set co_owner = co_owner|default({}) -%}
+  {%- set section_site_info = section_site_info|default({}) -%}
+  {%- set section_common = section_common|default({}) -%}
+  {%- set section_core = section_core|default({}) -%}
+  {%- set section_contact = section_contact|default({}) -%}
+  {%- set section_about = section_about|default({}) -%}
+  {%- set section_more = section_more|default({}) -%}
+  {%- set section_related = section_related|default({}) -%}
+  {%- set section_feedback = section_feedback|default({}) -%}
+  {%- set sections_custom = sections_custom|default([]) -%}
+  {%- set classes = ['ecl-site-footer', extra_classes]|filter(c => c)|join(' ') -%}
+
+  <footer class="{{ classes }}">
+    {%- if co_owner is not empty -%}
+      <div class="ecl-site-footer__co-owner">
+        <div class="ecl-container ecl-site-footer__co-owner-container">
+          {%- if co_owner.title is not empty -%}
+            <div class="ecl-site-footer__co-owner-title">{{- co_owner.title -}}</div>
+          {%- endif -%}
+          {%- if co_owner.links is not empty -%}
+            {%- set list_tag = co_owner.links|length == 1 ? 'div' : 'ul' -%}
+            {%- set item_tag = co_owner.links|length == 1 ? 'div' : 'li' -%}
+            <{{ list_tag }} class="ecl-site-footer__co-owner-list">
+              {%- for item in co_owner.links -%}
+                <{{ item_tag }} class="ecl-site-footer__co-owner-item{{ loop.first ? ' is-first' }}">
+                  {{ include('ecl5:link', item|merge({ variant: 'standalone', extra_classes: 'ecl-site-footer__co-owner-link' })) }}
+                </{{ item_tag }}>
+              {%- endfor -%}
+            </{{ list_tag }}>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="ecl-site-footer__main">
+      <div class="ecl-container ecl-site-footer__container">
+        {%- if section_feedback is not empty -%}
+          <div class="ecl-site-footer__row">{{ footer.section(section_feedback, 'feedback') }}</div>
+        {%- endif -%}
+
+        <div class="ecl-site-footer__row ecl-site-footer__row--specific">
+          {%- if section_site_info is not empty -%}{{ footer.section(section_site_info, 'site-info') }}{%- endif -%}
+
+          {%- if section_core is not empty -%}
+            {{ footer.section(section_core, 'core') }}
+          {%- else -%}
+            {%- if section_contact is not empty or section_about is not empty or section_more is not empty or section_related is not empty -%}
+              <div class="ecl-site-footer__section ecl-site-footer__section--links">
+                {%- if section_contact is not empty or section_about is not empty -%}
+                  <div class="ecl-site-footer__row">
+                    {%- if section_contact is not empty -%}{{ footer.section(section_contact, 'contact') }}{%- endif -%}
+                    {%- if section_about is not empty -%}{{ footer.section(section_about, 'about') }}{%- endif -%}
+                  </div>
+                {%- endif -%}
+                {%- if section_more is not empty or section_related is not empty -%}
+                  <div class="ecl-site-footer__row">
+                    {%- if section_more is not empty -%}{{ footer.section(section_more, 'more') }}{%- endif -%}
+                    {%- if section_related is not empty -%}{{ footer.section(section_related, 'related') }}{%- endif -%}
+                  </div>
+                {%- endif -%}
+                {%- if sections_custom is not empty -%}
+                  {%- for key, pair in sections_custom|batch(2) -%}
+                    <div class="ecl-site-footer__row">
+                      {%- for custom in pair -%}
+                        {{ footer.section(custom, 'custom-' ~ ((key * 2) + loop.index)) }}
+                      {%- endfor -%}
+                    </div>
+                  {%- endfor -%}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+
+        {%- if section_common is not empty -%}
+          <div class="ecl-site-footer__row ecl-site-footer__row--common">{{ footer.section(section_common, 'common') }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </footer>
+{%- endapply -%}
+
+{%- macro section(section, name) -%}
+  {%- apply spaceless -%}
+    {%- set classes = ['ecl-site-footer__section', name ? 'ecl-site-footer__section--' ~ name, section.extra_classes|default('')]|filter(c => c)|join(' ') -%}
+    <div class="{{ classes }}">
+      {%- if section.title is not empty -%}
+        <div class="ecl-site-footer__title">
+          {%- if section.title.link is defined and section.title.link is not empty -%}
+            {{ include('ecl5:link', section.title.link|merge({ variant: 'standalone', inverted: true, icon: section.title.icon|default({}), extra_classes: 'ecl-site-footer__title-link' })) }}
+          {%- else -%}
+            {{- section.title -}}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.logo is not empty and section.logo.picture is not empty -%}
+        {%- set logo_label -%}
+          {{ include('ecl5:picture', section.logo.picture|merge({ extra_classes: 'ecl-site-footer__picture', extra_image_classes: 'ecl-site-footer__logo-image' })) }}
+        {%- endset -%}
+        {{ include('ecl5:link', { path: section.logo.path, label: logo_label, variant: 'standalone', inverted: true, extra_classes: 'ecl-site-footer__logo-link' }) }}
+      {%- endif -%}
+
+      {%- if section.description is not empty -%}
+        <div class="ecl-site-footer__description">{{ section.description }}</div>
+      {%- endif -%}
+
+      {%- if section.action_button is not empty -%}
+        {%- set btn_size = section.action_button.size|default('m') -%}
+        {%- set btn_classes = ['ecl-site-footer__action-button', btn_size != 'l' ? 'ecl-button--' ~ btn_size]|filter(c => c)|join(' ') -%}
+        {{ include('ecl5:link', section.action_button|merge({ variant: section.action_button.variant|default('secondary'), inverted: true, extra_classes: btn_classes })) }}
+      {%- endif -%}
+
+      {%- if section.social_media is not empty or section.extra_links is not empty -%}
+        {%- if section.extra_links is not empty -%}<div class="ecl-site-footer__extra-links-container">{%- endif -%}
+        {%- if section.social_media is not empty -%}
+          {{ include('ecl5:social-media-follow', section.social_media|merge({ extra_classes: 'ecl-site-footer__social-media' })) }}
+        {%- endif -%}
+        {%- if section.extra_links is not empty -%}
+          {%- set list_tag = section.extra_links|length == 1 ? 'div' : 'ul' -%}
+          {%- set item_tag = section.extra_links|length == 1 ? 'div' : 'li' -%}
+          <{{ list_tag }} class="ecl-site-footer__list ecl-site-footer__list--inline">
+            {%- for item in section.extra_links -%}
+              <{{ item_tag }} class="ecl-site-footer__list-item">
+                {{ include('ecl5:link', item|merge({ variant: 'standalone', inverted: true, extra_classes: 'ecl-site-footer__link' })) }}
+              </{{ item_tag }}>
+            {%- endfor -%}
+          </{{ list_tag }}>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- if section.links is not empty -%}
+        {%- set list_class = ['ecl-site-footer__list', section.links_inline ? 'ecl-site-footer__list--inline']|filter(c => c)|join(' ') -%}
+        {%- set list_tag = section.links|length == 1 ? 'div' : 'ul' -%}
+        {%- set item_tag = section.links|length == 1 ? 'div' : 'li' -%}
+        <{{ list_tag }} class="{{ list_class }}">
+          {%- for item in section.links -%}
+            <{{ item_tag }} class="ecl-site-footer__list-item">
+              {{ include('ecl5:link', item|merge({ variant: 'standalone', inverted: true, extra_classes: 'ecl-site-footer__link' })) }}
+            </{{ item_tag }}>
+          {%- endfor -%}
+        </{{ list_tag }}>
+      {%- endif -%}
+    </div>
+  {%- endapply -%}
+{%- endmacro -%}

@@ -1,0 +1,14 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set columns = columns|default(1) -%}
+  {%- set classes = ['ecl-navigation-list', 'ecl-navigation-list--col-' ~ columns, extra_classes]|filter(c => c)|join(' ') -%}
+  {%- if items is not empty -%}
+    <div class="{{ classes }}">
+      <div class="ecl-navigation-list__items">
+        {%- for item in items -%}
+          {{ include('ecl5:navigation-list-item', item|merge({ border: border|default(false) })) }}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+{%- endapply -%}

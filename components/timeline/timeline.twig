@@ -1,0 +1,43 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set display_amount = display_amount|default(0) -%}
+  {%- set toggle_collapsed = toggle_collapsed|default('Show more') -%}
+  {%- set toggle_expanded = toggle_expanded|default('Show less') -%}
+  {%- set total = items|default([])|length -%}
+  {%- set hide_amount = (display_amount > 0 and total > display_amount) ? total - display_amount : 0 -%}
+  {%- set classes = ['ecl-timeline', headline ? 'ecl-timeline--has-headline', extra_classes]|filter(c => c)|join(' ') -%}
+  <ol class="{{ classes }}" data-ecl-auto-init="Timeline">
+    {%- if headline is not empty -%}
+      <li class="ecl-timeline__item ecl-timeline__item--headline">
+        <div class="ecl-timeline__tooltip">
+          <div class="ecl-timeline__tooltip-arrow"></div>
+          {%- if headline.label is defined and headline.label -%}<div class="ecl-timeline__label">{{ headline.label }}</div>{%- endif -%}
+          {%- if headline.title is defined and headline.title -%}<div class="ecl-timeline__title">{{ headline.title }}</div>{%- endif -%}
+          {%- if headline.content is defined and headline.content -%}<div class="ecl-timeline__content">{{ headline.content }}</div>{%- endif -%}
+        </div>
+      </li>
+    {%- endif -%}
+    {%- for item in items|default([]) -%}
+      {%- set collapsed = hide_amount > 0 and loop.index > display_amount -%}
+      <li class="ecl-timeline__item{{ collapsed ? ' ecl-timeline__item--collapsed' : '' }}" id="{{ item.id|default('ecl-timeline-item-' ~ loop.index) }}">
+        <div class="ecl-timeline__tooltip">
+          <div class="ecl-timeline__tooltip-arrow"></div>
+          {%- if item.label is defined and item.label -%}<div class="ecl-timeline__label">{{ item.label }}</div>{%- endif -%}
+          {%- if item.title is defined and item.title -%}<div class="ecl-timeline__title">{{ item.title }}</div>{%- endif -%}
+          {%- if item.content is defined and item.content -%}<div class="ecl-timeline__content">{{ item.content }}</div>{%- endif -%}
+        </div>
+      </li>
+      {%- if hide_amount > 0 and loop.last -%}
+        <li class="ecl-timeline__item ecl-timeline__item--toggle">
+          <button type="button" class="ecl-button ecl-button--secondary ecl-timeline__toggle"
+            data-ecl-timeline-button
+            data-ecl-label-collapsed="{{ toggle_collapsed|e('html_attr') }}"
+            data-ecl-label-expanded="{{ toggle_expanded|e('html_attr') }}">
+            <span class="ecl-button__label">{{ toggle_collapsed }}</span>
+            {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'xs', extra_classes: 'ecl-button__icon' }) }}
+          </button>
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ol>
+{%- endapply -%}

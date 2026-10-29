@@ -1,0 +1,36 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-description-list', extra_classes]|filter(c => c)|join(' ') -%}
+  {%- if items is not empty -%}
+    <div class="{{ classes }}">
+      <dl class="ecl-description-list__content">
+        {%- for item in items -%}
+          {%- if item.term is defined and item.term -%}
+            {%- set terms = item.term is iterable ? item.term : [item.term] -%}
+            {%- for term in terms -%}
+              <dt class="ecl-description-list__term">{{ term }}</dt>
+            {%- endfor -%}
+          {%- endif -%}
+          {%- if item.definition is defined and item.definition -%}
+            {%- if item.type|default('') == 'taxonomy' and item.definition is iterable -%}
+              <dd class="ecl-description-list__definition ecl-description-list__definition--taxonomy">
+                <ul class="ecl-description-list__definition-list">
+                  {%- for def in item.definition -%}
+                    <li class="ecl-description-list__definition-item">
+                      {%- if def.label is defined -%}{{ include('ecl5:link', def) }}{%- else -%}{{ def }}{%- endif -%}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </dd>
+            {%- else -%}
+              {%- set defs = item.definition is iterable ? item.definition : [item.definition] -%}
+              {%- for def in defs -%}
+                <dd class="ecl-description-list__definition">{{ def }}</dd>
+              {%- endfor -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </dl>
+    </div>
+  {%- endif -%}
+{%- endapply -%}

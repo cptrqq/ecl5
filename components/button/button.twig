@@ -1,0 +1,34 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set variant = variant|default('primary') -%}
+  {%- set tag = tag|default('button') -%}
+  {%- set has_icon = icon.name is defined and icon.name -%}
+  {%- set classes = [
+    'ecl-button',
+    'ecl-button--' ~ variant,
+    style ? 'ecl-button--' ~ style,
+    size ? 'ecl-button--' ~ size,
+    (hide_label and has_icon) ? 'ecl-button--icon-only',
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+
+  {%- set icon_markup -%}
+    {%- if has_icon -%}
+      {{ include('ecl5:icon', icon|merge({ extra_classes: 'ecl-button__icon' })) }}
+    {%- endif -%}
+  {%- endset -%}
+
+  {%- set inner -%}
+    {%- if has_icon and icon_position == 'before' %}{{ icon_markup }}{% endif -%}
+    <span class="ecl-button__label"{{ hide_label ? ' aria-hidden="true"' : '' }}>{{ label }}</span>
+    {%- if has_icon and icon_position != 'before' %}{{ icon_markup }}{% endif -%}
+  {%- endset -%}
+
+  {%- if tag == 'a' -%}
+    <a href="{{ path|default('#') }}" class="{{ classes }}"
+      {{- disabled ? ' aria-disabled="true"' : '' }} role="button">{{ inner }}</a>
+  {%- else -%}
+    <button type="{{ type|default('submit') }}" class="{{ classes }}"
+      {{- disabled ? ' disabled' : '' }}>{{ inner }}</button>
+  {%- endif -%}
+{%- endapply -%}

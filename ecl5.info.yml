@@ -1,0 +1,5 @@
+name: 'ECL 5 Components'
+type: module
+description: 'Europa Component Library (ECL v5) implemented as Drupal Single Directory Components, without the @ecl / @ecl-twig include dependencies.'
+package: 'ECL'
+core_version_requirement: ^11

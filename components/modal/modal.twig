@@ -1,0 +1,40 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('modal') -%}
+  {%- set classes = ['ecl-modal', size ? 'ecl-modal--' ~ size, extra_classes]|filter(c => c)|join(' ') -%}
+  <dialog class="{{ classes }}" id="{{ id }}" data-ecl-auto-init="Modal" data-ecl-modal aria-labelledby="{{ id }}-header">
+    <div class="ecl-modal__container">
+      <div class="ecl-modal__content ecl-container">
+        <header class="ecl-modal__header">
+          {%- if header or (header_icon.name is defined and header_icon.name) -%}
+            <div class="ecl-modal__header-content" id="{{ id }}-header">
+              {%- if header_icon.name is defined and header_icon.name -%}
+                {{ include('ecl5:icon', header_icon|merge({ extra_classes: 'ecl-modal__icon' })) }}
+              {%- endif -%}
+              {{ header }}
+            </div>
+          {%- endif -%}
+          <button type="button" class="ecl-button ecl-button--tertiary ecl-button--icon-only ecl-modal__close" data-ecl-modal-close>
+            <span class="ecl-button__label" aria-hidden="true">{{ close_label|default('Close') }}</span>
+            {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+          </button>
+        </header>
+        <div class="ecl-modal__body">
+          <div class="ecl-modal__body-scroll" id="{{ id }}-body-scroll" data-ecl-modal-scroll>
+            {%- block body %}{{ body }}{% endblock -%}
+          </div>
+          <div class="ecl-modal__body-overflow" aria-hidden="true"></div>
+        </div>
+        {%- if buttons is not empty -%}
+          <footer class="ecl-modal__footer">
+            <div class="ecl-modal__footer-content">
+              {%- for button in buttons -%}
+                {{ include('ecl5:button', button|merge({ extra_classes: ('ecl-modal__button ' ~ button.extra_classes|default(''))|trim })) }}
+              {%- endfor -%}
+            </div>
+          </footer>
+        {%- endif -%}
+      </div>
+    </div>
+  </dialog>
+{%- endapply -%}

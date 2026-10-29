@@ -1,0 +1,24 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-spotlight', full_width ? 'ecl-spotlight--full-width', extra_classes]|filter(c => c)|join(' ') -%}
+  <section class="{{ classes }}">
+    {%- if header -%}
+      <div class="ecl-spotlight__header"><div class="ecl-container">{{ header }}</div></div>
+    {%- endif -%}
+    <a href="{{ path|default('#') }}" class="ecl-spotlight__link">
+      {%- if picture.img is defined and picture.img -%}
+        <figure class="ecl-spotlight__picture-container">
+          {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-spotlight__picture', extra_image_classes: 'ecl-spotlight__image' })) }}
+        </figure>
+      {%- endif -%}
+      {%- if title or credit -%}
+        <div class="ecl-spotlight__container">
+          <div class="ecl-container">
+            {%- if title -%}<div class="ecl-spotlight__title">{{ title }}</div>{%- endif -%}
+            {%- if credit -%}<footer class="ecl-spotlight__credit">{{ credit }}</footer>{%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </a>
+  </section>
+{%- endapply -%}

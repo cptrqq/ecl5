@@ -1,0 +1,21 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Add to calendar
+status: stable
+description: 'Event summary (title + meta) with an "add to calendar" action.'
+props:
+  type: object
+  properties:
+    title:
+      type: string
+    meta:
+      type: array
+      description: 'List of { icon, label } (e.g. date, time, location).'
+      items:
+        type: object
+    button:
+      type: object
+      description: 'Button/popover props for the add action.'
+    full_width:
+      type: boolean
+    extra_classes:
+      type: string

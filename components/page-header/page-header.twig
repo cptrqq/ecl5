@@ -1,0 +1,135 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set has_background = has_background|default(false) -%}
+  {%- set description = description|default('') -%}
+  {%- set description_position = description_position|default('top') -%}
+  {%- set picture_thumbnail = picture_thumbnail|default({}) -%}
+  {%- set picture_background = picture_background|default({}) -%}
+  {%- set picture_position = picture_position|default('top') -%}
+  {%- set breadcrumb = breadcrumb|default({}) -%}
+  {%- set meta = meta|default([]) -%}
+  {%- set expandable = expandable|default({}) -%}
+  {%- set has_thumbnail = picture_thumbnail.img is defined and picture_thumbnail.img -%}
+  {%- set has_background_img = picture_background.img is defined and picture_background.img -%}
+
+  {%- set classes = [
+    'ecl-page-header',
+    has_background ? 'ecl-page-header--background',
+    description is not empty ? 'ecl-page-header--description-' ~ description_position,
+    has_background_img ? 'ecl-page-header--picture-' ~ picture_position,
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+
+  {# --- reusable markup fragments --- #}
+  {%- set breadcrumb_markup -%}
+    {%- if breadcrumb is not empty -%}
+      {{ include('ecl5:breadcrumb', breadcrumb|merge({ extra_classes: 'ecl-page-header__breadcrumb' })) }}
+    {%- endif -%}
+  {%- endset -%}
+
+  {%- set picture_markup -%}
+    {%- if has_background_img -%}
+      {{ include('ecl5:picture', picture_background|merge({ extra_classes: 'ecl-page-header__picture-background', extra_image_classes: 'ecl-page-header__background' })) }}
+    {%- endif -%}
+  {%- endset -%}
+
+  {%- set title_markup -%}
+    {%- if title is not empty -%}
+      <h1 class="ecl-page-header__title{{ hide_title ? ' ecl-page-header__title--hidden' }}">{{ title }}</h1>
+    {%- endif -%}
+  {%- endset -%}
+
+  {%- set description_markup -%}
+    {%- if description is not empty or has_thumbnail -%}
+      <div class="ecl-page-header__description-container">
+        {%- if has_thumbnail -%}
+          {{ include('ecl5:picture', picture_thumbnail|merge({ extra_classes: 'ecl-page-header__picture-thumbnail', extra_image_classes: 'ecl-page-header__description-thumbnail' })) }}
+        {%- endif -%}
+        {%- if description is not empty -%}
+          <p class="ecl-page-header__description">{{ description }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endset -%}
+
+  {%- set meta_markup -%}
+    {%- if meta is not empty -%}
+      {%- set meta_list_tag = meta|length == 1 ? 'div' : 'ul' -%}
+      {%- set meta_item_tag = meta|length == 1 ? 'div' : 'li' -%}
+      <{{ meta_list_tag }} class="ecl-page-header__meta">
+        {%- for item in meta -%}
+          {%- if item.label is defined -%}
+            <{{ meta_item_tag }} class="ecl-page-header__meta-item">
+              {%- if item.icon is defined -%}
+                {{ include('ecl5:icon', item.icon|merge({ size: '2xs', extra_classes: 'ecl-page-header__meta-icon' })) }}
+              {%- endif -%}
+              {{- item.label -}}
+            </{{ meta_item_tag }}>
+          {%- else -%}
+            <{{ meta_item_tag }} class="ecl-page-header__meta-item">{{- item -}}</{{ meta_item_tag }}>
+          {%- endif -%}
+        {%- endfor -%}
+      </{{ meta_list_tag }}>
+    {%- endif -%}
+  {%- endset -%}
+
+  <div class="{{ classes }}">
+    {%- if expandable is not empty -%}
+      {%- set panel_id = expandable.panel_id|default('ecl-page-header-expandable-panel-' ~ random()) -%}
+      {%- set is_expandable = expandable.panel_content is defined and expandable.panel_content is not empty -%}
+      <div class="ecl-page-header-expandable{{ not is_expandable ? ' ecl-page-header-no-toggle' }}"{% if is_expandable %} data-ecl-auto-init="PageHeaderExpandable"{% endif %}>
+        <div class="ecl-page-header-expandable__header" data-ecl-page-header-expandable-header>
+          <div class="ecl-container ecl-page-header-expandable__container">
+            <div class="ecl-page-header-expandable__header-text">{{ expandable.header_content }}</div>
+            {%- if is_expandable -%}
+              <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-button--l ecl-button--icon-only ecl-page-header-expandable__toggle"
+                aria-controls="{{ panel_id }}" aria-expanded="false" data-ecl-page-header-expandable-toggle>
+                <span class="ecl-button__label" aria-hidden="true">{{ expandable.toggle_label|default('') }}</span>
+                {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'm', extra_classes: 'ecl-button__icon' }) }}
+              </button>
+            {%- endif -%}
+          </div>
+        </div>
+        {%- if is_expandable -%}
+          <div class="ecl-page-header-expandable__panel" id="{{ panel_id }}" hidden>
+            <div class="ecl-container ecl-page-header-expandable__container">{{ expandable.panel_content }}</div>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if picture_position == 'top' -%}{{ picture_markup }}{%- endif -%}
+
+    <div class="ecl-page-header__container">
+      {%- if picture_position == 'beside' -%}
+        {{ picture_markup }}
+        <div class="ecl-page-header__section-info ecl-container">
+          {{ breadcrumb_markup }}
+          <div class="ecl-page-header__content-info">
+            {{ title_markup }}
+            {%- if description_position == 'top' and (description is not empty or has_thumbnail) -%}
+              <div class="ecl-page-header__description-top">{{ description_markup }}</div>
+            {%- endif -%}
+          </div>
+          {{ meta_markup }}
+        </div>
+      {%- else -%}
+        <div class="ecl-container">
+          {{ breadcrumb_markup }}
+          {{ title_markup }}
+          {%- if description_position == 'top' and (description is not empty or has_thumbnail) -%}
+            <div class="ecl-page-header__description-top">{{ description_markup }}</div>
+          {%- endif -%}
+          {{ meta_markup }}
+          {%- if picture_position == 'bottom' -%}{{ picture_markup }}{%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if description_position == 'bottom' and (description is not empty or has_thumbnail) -%}
+      <div class="ecl-page-header__description-bottom">
+        <div class="ecl-container">{{ description_markup }}</div>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endapply -%}

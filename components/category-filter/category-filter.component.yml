@@ -1,0 +1,20 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Category filter
+status: stable
+description: 'Nested, collapsible navigation list used to filter by category. Parent items expand to reveal children.'
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      description: 'Menu items: { label, path, current, children }. Children follow the same structure.'
+      items:
+        type: object
+    label:
+      type: string
+      description: 'Aria-label for the nav element.'
+    id:
+      type: string
+      description: 'Unique id base for the category filter.'
+    extra_classes:
+      type: string

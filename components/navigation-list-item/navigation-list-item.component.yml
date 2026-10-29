@@ -1,0 +1,25 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Navigation list item
+status: stable
+description: 'One entry of a navigation list: optional image plus a content block.'
+props:
+  type: object
+  properties:
+    picture:
+      type: object
+    title:
+      type: object
+    description:
+      type: string
+    primary_meta:
+      type: array
+      items:
+        type: string
+    links:
+      type: array
+      items:
+        type: object
+    border:
+      type: boolean
+    extra_classes:
+      type: string

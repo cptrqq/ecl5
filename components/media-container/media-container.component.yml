@@ -1,0 +1,33 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Media container
+status: stable
+description: 'Figure wrapping an image, a video or embedded media, with optional caption and credit.'
+props:
+  type: object
+  properties:
+    media_type:
+      type: string
+      enum: [picture, video, embedded]
+      default: picture
+    picture:
+      type: object
+      description: 'Picture props when media_type is "picture".'
+    video:
+      type: object
+      description: 'Video props when media_type is "video".'
+    ratio:
+      type: string
+      enum: ['', '1-1', '3-2', '4-3', '16-9']
+    description:
+      type: string
+      title: Caption
+    credit:
+      type: string
+    full_width:
+      type: boolean
+    extra_classes:
+      type: string
+slots:
+  embedded_media:
+    title: Embedded media
+    description: 'Iframe/embed markup when media_type is "embedded".'

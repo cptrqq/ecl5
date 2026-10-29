@@ -1,0 +1,20 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Tooltip
+status: stable
+description: 'A trigger element paired with a tooltip panel positioned by the ECL JS.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: tooltip
+    label:
+      type: string
+      description: 'Visible trigger text.'
+    inverted:
+      type: boolean
+    extra_classes:
+      type: string
+slots:
+  content:
+    title: Tooltip content

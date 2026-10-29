@@ -1,0 +1,14 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Ordered list
+status: stable
+description: 'Ordered list with optional nested items.'
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      description: 'List of { label, nested: [...] }.'
+      items:
+        type: object
+    extra_classes:
+      type: string

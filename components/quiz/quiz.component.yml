@@ -1,0 +1,35 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Quiz
+status: stable
+description: 'Interactive quiz/poll made of flippable or selectable cards with a slider pager. Reveal variant flips a card to show the answer; poll variant lets the user pick an option.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+    variant:
+      type: string
+      enum: [reveal, poll]
+      default: reveal
+    title:
+      type: string
+    description:
+      type: string
+    with_background:
+      type: boolean
+    full_width:
+      type: boolean
+    prev_label:
+      type: string
+    next_label:
+      type: string
+    skip_text:
+      type: string
+      default: 'Use ESC to skip the quiz'
+    items:
+      type: array
+      description: 'Quiz cards. Each: { question, answer, answer_title, image_display, picture, icon, back_icon, flip_text, flip_icon, back_text, options, correct_label, incorrect_label, correct_chosen_label, incorrect_chosen_label }.'
+      items:
+        type: object
+    extra_classes:
+      type: string

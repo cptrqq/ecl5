@@ -1,0 +1,52 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('gallery') -%}
+  {%- set columns = columns|default(3) -%}
+  {%- set classes = [
+    'ecl-gallery', 'ecl-gallery--grid', 'ecl-gallery--col-' ~ columns,
+    expandable ? '' : 'ecl-gallery--not-expandable',
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+  <section class="{{ classes }}"{{ sr_gallery_label ? ' aria-label="' ~ sr_gallery_label|e('html_attr') ~ '"' : '' }} data-ecl-gallery>
+    <div class="ecl-gallery__viewport">
+      <ul class="ecl-gallery__list">
+        {%- for key, item in items|default([]) -%}
+          <li class="ecl-gallery__item">
+            <a href="{{ item.media_href|default(item.picture.img.src) }}" data-ecl-gallery-item class="ecl-gallery__item-link" id="ecl-gallery-item-{{ id }}-{{ key }}"{{ item.picture.img.alt is defined and item.picture.img.alt ? ' aria-label="' ~ item.picture.img.alt|e('html_attr') ~ '"' : '' }}>
+              <figure class="ecl-gallery__image-container">
+                <div class="ecl-gallery__icon-zoom-wrapper">
+                  {{ include('ecl5:icon', { name: 'arrows-out-simple', family: 'phosphor', size: 's', extra_classes: 'ecl-gallery__icon-zoom' }) }}
+                </div>
+                {%- if item.is_video -%}
+                  <div class="ecl-gallery__item-icon-wrapper">
+                    {{ include('ecl5:icon', { name: 'play-fill', family: 'phosphor', size: 's', extra_classes: 'ecl-gallery__item-icon' }) }}
+                  </div>
+                {%- endif -%}
+                {{ include('ecl5:picture', item.picture|default({})|merge({ extra_classes: 'ecl-gallery__picture', extra_image_classes: 'ecl-gallery__image' })) }}
+                {%- if item.caption -%}
+                  <figcaption class="ecl-gallery__description">{{ item.caption }}</figcaption>
+                {%- endif -%}
+              </figure>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+    <div class="ecl-gallery__footer">
+      {%- if expandable -%}
+        <div class="ecl-gallery__info">
+          <div class="ecl-gallery__info-total" id="{{ id }}-info">
+            <strong data-ecl-gallery-count>0</strong> {{ counter_label|default('images') }}
+          </div>
+          <button type="submit" class="ecl-button ecl-button--tertiary ecl-gallery__view-all"
+            data-ecl-gallery-all
+            data-ecl-gallery-collapsed-label="{{ view_all_label|e('html_attr') }}"
+            data-ecl-gallery-expanded-label="{{ view_all_expanded_label|e('html_attr') }}"
+            aria-describedby="{{ id }}-info">
+            <span class="ecl-button__label">{{ view_all_label|default('See all') }}</span>
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endapply -%}

@@ -1,0 +1,126 @@
+{{ attach_library('ecl5/global') }}
+{%- import _self as animated_numbers -%}
+{%- apply spaceless -%}
+  {%- set counter_color = counter_color is defined ? counter_color : true -%}
+  {%- set no_header = no_header|default(false) -%}
+  {%- set border = border|default(false) -%}
+  {%- set with_background = with_background|default(false) -%}
+  {%- set full_width = full_width|default(false) -%}
+  {%- set items = items|default([]) -%}
+  {%- set sources = sources|default([]) -%}
+  {%- set sources_label = sources_label|default('') -%}
+
+  {%- if with_background or full_width -%}
+    {%- set counter_color = false -%}
+  {%- endif -%}
+
+  {%- set classes = [
+    'ecl-animated-numbers',
+    border ? 'ecl-animated-numbers--border',
+    (with_background or full_width) ? 'ecl-animated-numbers--with-background',
+    full_width ? 'ecl-animated-numbers--full-width',
+    counter_color ? 'ecl-animated-numbers--counter-color',
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+
+  <div class="{{ classes }}" data-ecl-animated-numbers data-ecl-auto-init="AnimatedNumbers">
+    {%- if items is not empty or sources is not empty -%}
+      {%- if full_width -%}<div class="ecl-container">{%- endif -%}
+      <article class="ecl-animated-numbers__wrapper">
+        {%- if items is not empty -%}
+          <ul class="ecl-animated-numbers__items">
+            {%- for item in items -%}
+              <li class="ecl-animated-number">
+                {%- if not no_header and (item.category is not empty or item.icon is not empty) -%}
+                  <div class="ecl-animated-number__header">
+                    {%- if item.category is defined and item.category is not empty -%}
+                      <div class="ecl-animated-number__category">{{- item.category -}}</div>
+                    {%- endif -%}
+                    {%- if item.icon is defined and item.icon is not empty -%}
+                      {{ include('ecl5:icon', item.icon|merge({
+                        size: 'xl',
+                        color: counter_color ? 'primary' : null,
+                        extra_classes: 'ecl-animated-number__icon',
+                      })) }}
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+                <div class="ecl-animated-number__content">
+                  <span class="ecl-animated-number__number">
+                    {%- if item.prefix is defined and item.prefix is not empty -%}
+                      <span class="ecl-animated-number__prefix">
+                        {%- if item.prefix_label is defined and item.prefix_label is not empty -%}
+                          <span class="ecl-animated-number__prefix-label">{{- item.prefix_label -}}</span>
+                        {%- endif -%}
+                        {{- item.prefix -}}
+                      </span>
+                    {%- endif -%}
+                    {%- if item.value is defined and item.value is not empty -%}
+                      <span class="ecl-animated-number__value" data-ecl-animated-numbers-value>{{- item.value -}}</span>
+                    {%- endif -%}
+                    {%- if item.suffix is defined and item.suffix is not empty -%}
+                      <span class="ecl-animated-number__suffix">
+                        {%- if item.suffix_label is defined and item.suffix_label is not empty -%}
+                          <span class="ecl-animated-number__suffix-label">{{- item.suffix_label -}}</span>
+                        {%- endif -%}
+                        {{- item.suffix -}}
+                      </span>
+                    {%- endif -%}
+                  </span>
+                  {%- if item.description is defined and item.description is not empty -%}
+                    <span class="ecl-animated-number__description">{{- item.description -}}</span>
+                  {%- endif -%}
+                  {%- if item.sources is not empty -%}
+                    <div class="ecl-animated-numbers__sources">
+                      {{ animated_numbers.render_sources(item.sources, item.sources_label|default(sources_label), with_background, counter_color) }}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+        {%- if sources is not empty -%}
+          <footer class="ecl-animated-numbers__sources">
+            {{ animated_numbers.render_sources(sources, sources_label, with_background, counter_color) }}
+          </footer>
+        {%- endif -%}
+      </article>
+      {%- if full_width -%}</div>{%- endif -%}
+    {%- endif -%}
+  </div>
+{%- endapply -%}
+
+{%- macro render_sources(sources, label, with_background, counter_color) -%}
+  {%- apply spaceless -%}
+    {%- if label is not empty -%}
+      <span class="ecl-animated-numbers__sources-label">{{- label -}}</span>
+    {%- endif -%}
+    {%- if sources|length == 1 -%}
+      {%- set source = sources|first -%}
+      {%- if source.link is defined and source.link is not empty -%}
+        {{ include('ecl5:link', source.link|merge({
+          inverted: with_background,
+          extra_classes: 'ecl-animated-numbers__source',
+        })) }}
+      {%- else -%}
+        <span class="ecl-animated-numbers__source">{{ source.name }}</span>
+      {%- endif -%}
+    {%- elseif sources|length > 1 -%}
+      <ul class="ecl-animated-numbers__sources-list">
+        {%- for source in sources -%}
+          <li class="ecl-animated-numbers__sources-item">
+            {%- if source.link is defined and source.link is not empty -%}
+              {{ include('ecl5:link', source.link|merge({
+                inverted: with_background,
+                extra_classes: 'ecl-animated-numbers__source',
+              })) }}
+            {%- else -%}
+              <span class="ecl-animated-numbers__source">{{- source.name -}}</span>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  {%- endapply -%}
+{%- endmacro -%}

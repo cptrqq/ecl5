@@ -1,0 +1,54 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: File
+status: stable
+description: 'Downloadable file with icon/thumbnail, title, metadata, labels and an optional collapsible panel of translations.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+    icon:
+      type: object
+      description: 'ECL icon props indicating the file type.'
+    title:
+      type: [string, object]
+      description: 'Plain text title, or { link: { label, path } }.'
+    description:
+      type: string
+    language:
+      type: string
+      description: 'Language label for the file.'
+    meta:
+      type: string
+      description: 'File metadata (size, format, …) shown next to the download link.'
+    primary_meta:
+      type: array
+      description: 'List of primary meta strings.'
+      items:
+        type: string
+    download:
+      type: object
+      description: 'Download link: { link: { label, path } }.'
+    download_attribute:
+      type: boolean
+      description: 'Add the HTML download attribute to the download link.'
+    picture:
+      type: object
+      description: 'Thumbnail image (ECL picture props).'
+    labels:
+      type: array
+      description: 'List of ECL label objects.'
+      items:
+        type: object
+    labels_aria:
+      type: string
+    lists:
+      type: array
+      description: 'List of ECL description-list objects.'
+      items:
+        type: object
+    translation:
+      type: object
+      description: 'Translation panel: { sr_toggle, download_attribute, items: [{ title, meta, lang, download, download_attribute }] }.'
+    extra_classes:
+      type: string

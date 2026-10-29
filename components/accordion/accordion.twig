@@ -1,0 +1,19 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-accordion', sidebar ? 'ecl-accordion--sidebar', extra_classes]|filter(c => c)|join(' ') -%}
+  <div class="{{ classes }}" data-ecl-auto-init="Accordion">
+    {%- for item in items|default([]) -%}
+      {%- set item_class = ['ecl-accordion__item', loop.first ? 'is-first', loop.last ? 'is-last']|filter(c => c)|join(' ') -%}
+      <details class="{{ item_class }}"
+        {{- name ? ' name="' ~ name|e('html_attr') ~ '"' : '' -}}
+        {{- sidebar ? ' data-desktop-open' : '' -}}
+        {{- item.open ? ' open' : '' -}}>
+        <summary class="ecl-accordion__toggle">
+          {{- item.label -}}
+          {{ include('ecl5:icon', (icon|default({ name: 'caret-down', family: 'phosphor' }))|merge({ size: 's', extra_classes: 'ecl-accordion__toggle-icon' })) }}
+        </summary>
+        <div class="ecl-accordion__content">{{ item.content }}</div>
+      </details>
+    {%- endfor -%}
+  </div>
+{%- endapply -%}

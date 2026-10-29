@@ -1,0 +1,16 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Checkbox
+status: stable
+description: 'One or more checkbox items sharing a field name.'
+props:
+  type: object
+  properties:
+    name:
+      type: string
+    items:
+      type: array
+      description: 'List of { id, value, label, checked, disabled, required }.'
+      items:
+        type: object
+    extra_classes:
+      type: string

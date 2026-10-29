@@ -1,0 +1,14 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Description list
+status: stable
+description: 'Term/definition pairs. Definitions may be a single value or a taxonomy list of links.'
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      description: 'List of { term, definition, type }. term/definition may be string or array; type "taxonomy" renders a link list.'
+      items:
+        type: object
+    extra_classes:
+      type: string

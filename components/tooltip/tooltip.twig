@@ -1,0 +1,10 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('tooltip') -%}
+  <button type="button" class="{{ ['ecl-link', 'ecl-link--standalone', extra_classes]|filter(c => c)|join(' ') }}"
+    aria-describedby="{{ id }}" data-ecl-tooltip="{{ id }}"{{ inverted ? ' data-ecl-tooltip-inverted' : '' }}>{{ label }}</button>
+  <div class="ecl-tooltip{{ inverted ? ' ecl-tooltip--inverted' }}" id="{{ id }}" role="tooltip" aria-hidden="true">
+    {%- block content %}{{ content }}{% endblock -%}
+    <div class="ecl-tooltip__arrow" data-popper-arrow></div>
+  </div>
+{%- endapply -%}

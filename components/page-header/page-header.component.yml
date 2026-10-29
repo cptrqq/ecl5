@@ -1,0 +1,43 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Page header
+status: stable
+description: 'Page header with breadcrumb, title, description, meta, optional thumbnail/background pictures and an optional expandable panel.'
+props:
+  type: object
+  properties:
+    has_background:
+      type: boolean
+    title:
+      type: string
+    hide_title:
+      type: boolean
+      description: 'Visually hide the h1 (kept for screen readers).'
+    description:
+      type: string
+    description_position:
+      type: string
+      enum: [top, bottom]
+      default: top
+    expandable:
+      type: object
+      description: '{ toggle_label, header_content, panel_content }.'
+    picture_thumbnail:
+      type: object
+      description: 'Thumbnail image (ECL picture props).'
+    picture_background:
+      type: object
+      description: 'Background image (ECL picture props).'
+    picture_position:
+      type: string
+      enum: [top, beside, bottom]
+      default: top
+    meta:
+      type: array
+      description: 'Meta items: plain strings, or { label, icon }.'
+      items:
+        type: [string, object]
+    breadcrumb:
+      type: object
+      description: 'ECL breadcrumb props ({ links, aria_label }).'
+    extra_classes:
+      type: string

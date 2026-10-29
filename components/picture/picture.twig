@@ -1,0 +1,16 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set lazy = lazy is defined ? lazy : true -%}
+  {%- set bp = { xs: '(min-width: 415px)', s: '(min-width: 480px)', m: '(min-width: 768px)', l: '(min-width: 996px)', xl: '(min-width: 1140px)', xxl: '(min-width: 1368px)' } -%}
+  {%- set classes = ['ecl-picture', extra_classes]|filter(c => c)|join(' ') -%}
+  <picture class="{{ classes }}"
+    {%- if image_anchor %} data-picture-focal-point="{{ image_anchor|e('html_attr') }}" data-ecl-auto-init="Picture"{% endif -%}>
+    {%- for source in sources|default([]) -%}
+      {%- set media = bp[source.media] is defined ? bp[source.media] : source.media -%}
+      <source{% if source.src %} srcset="{{ source.src }}"{% endif %}{% if media %} media="{{ media }}"{% endif %}{% if source.type %} type="{{ source.type }}"{% endif %}>
+    {%- endfor -%}
+    {%- if img.src is defined and img.src -%}
+      <img{% if image_anchor %} style="--ecl-image-anchor: {{ image_anchor|e('html_attr') }}" data-image-focal-pending{% endif %}{% if extra_image_classes %} class="{{ extra_image_classes }}"{% endif %} src="{{ img.src }}" alt="{{ img.alt|default('') }}"{% if lazy %} loading="lazy"{% endif %}>
+    {%- endif -%}
+  </picture>
+{%- endapply -%}

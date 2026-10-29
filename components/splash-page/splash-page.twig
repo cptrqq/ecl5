@@ -1,0 +1,34 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-splash-page', extra_classes]|filter(c => c)|join(' ') -%}
+  <div class="{{ classes }}">
+    {%- if logo is not empty -%}
+      <div class="ecl-splash-page__logo-container">
+        <div class="ecl-container">
+          <a href="{{ logo.path|default('#') }}" class="ecl-splash-page__logo-link" aria-label="{{ logo.alt|default('Home') }}">
+            {%- if logo.picture is defined and logo.picture -%}
+              {{ include('ecl5:picture', logo.picture|merge({ extra_classes: 'ecl-splash-page__picture', extra_image_classes: 'ecl-splash-page__logo-image' })) }}
+            {%- endif -%}
+          </a>
+        </div>
+      </div>
+    {%- endif -%}
+    <div class="ecl-container ecl-splash-page__language-container">
+      {%- if title -%}<h1 class="ecl-splash-page__language-title">{{ title }}</h1>{%- endif -%}
+      <div class="ecl-splash-page__language-content">
+        <div class="ecl-splash-page__language-category">
+          <ul class="ecl-splash-page__language-list" translate="no">
+            {%- for item in languages|default([]) -%}
+              <li class="ecl-splash-page__language-item">
+                <a href="{{ item.path|default('#') }}" class="ecl-splash-page__language-link{{ item.active ? ' ecl-splash-page__language-link--active' }}">
+                  <span class="ecl-splash-page__language-link-code">{{ item.lang|default('') }}</span>
+                  <span class="ecl-splash-page__language-link-label" lang="{{ item.lang|default('') }}">{{ item.label }}</span>
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endapply -%}

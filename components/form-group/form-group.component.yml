@@ -1,0 +1,41 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Form group
+status: stable
+description: 'Wraps a form control with its label, helper text and validation feedback.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+    label:
+      type: string
+    helper_text:
+      type: string
+    invalid:
+      type: boolean
+    invalid_text:
+      type: string
+    required:
+      type: boolean
+    required_text:
+      type: string
+    optional_text:
+      type: string
+    hide_label:
+      type: boolean
+    disabled:
+      type: boolean
+    group_tag:
+      type: string
+      enum: [div, fieldset]
+      default: div
+      description: 'Use "fieldset" for grouped controls (radios/checkboxes); the label becomes a legend.'
+    for:
+      type: string
+      description: 'Target control id for the label "for" attribute (omitted for fieldsets).'
+    extra_classes:
+      type: string
+slots:
+  control:
+    title: Control
+    description: 'The form control markup (input, select, radio group, …).'

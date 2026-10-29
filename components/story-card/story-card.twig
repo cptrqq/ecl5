@@ -1,0 +1,31 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('story-card') -%}
+  {%- set classes = [
+    'ecl-story-card',
+    variant|default('') == 'testimonial' ? 'ecl-story-card--testimonial',
+    description ? 'ecl-story-card--has-description',
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+  <section class="{{ classes }}" id="{{ id }}"{{ items|default([])|length > 1 ? ' data-ecl-auto-init="StoryCard"' : '' }}>
+    {%- if title or description -%}
+      <div class="ecl-story-card__header">
+        {%- if title -%}<div class="ecl-story-card__title">{{ title }}</div>{%- endif -%}
+        {%- if description -%}<div class="ecl-story-card__description">{{ description }}</div>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="ecl-story-card__carousel">
+      <div class="ecl-story-card__carousel-viewport" data-ecl-story-card-viewport>
+        <ul class="ecl-story-card__carousel-container" data-ecl-story-card-container>
+          {%- for item in items|default([]) -%}
+            <li class="ecl-story-card__carousel-slide" data-ecl-story-card-slide>
+              <article class="ecl-story-card__card">
+                {{ include('ecl5:story-card-card', item|merge({ variant: variant|default(''), show_picture: true })) }}
+              </article>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </section>
+{%- endapply -%}

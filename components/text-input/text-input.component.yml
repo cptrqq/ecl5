@@ -1,0 +1,29 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Text field
+status: stable
+description: 'Single-line text input.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+    name:
+      type: string
+    type:
+      type: string
+      default: text
+    value:
+      type: string
+    placeholder:
+      type: string
+    width:
+      type: string
+      enum: ['', s, m, l]
+    disabled:
+      type: boolean
+    required:
+      type: boolean
+    invalid:
+      type: boolean
+    extra_classes:
+      type: string

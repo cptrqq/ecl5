@@ -1,0 +1,27 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Timeline
+status: stable
+description: 'Vertical timeline with optional headline and a collapse/expand toggle.'
+props:
+  type: object
+  properties:
+    headline:
+      type: object
+      description: '{ label, title, content }.'
+    items:
+      type: array
+      description: 'List of { id, label, title, content }.'
+      items:
+        type: object
+    display_amount:
+      type: integer
+      default: 0
+      description: 'Number of items shown before collapsing (0 = show all).'
+    toggle_collapsed:
+      type: string
+      default: 'Show more'
+    toggle_expanded:
+      type: string
+      default: 'Show less'
+    extra_classes:
+      type: string

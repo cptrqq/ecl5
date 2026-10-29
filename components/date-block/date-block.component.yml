@@ -1,0 +1,25 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Date block
+status: stable
+description: 'ECL date block showing day, month and year as a <time> element.'
+props:
+  type: object
+  properties:
+    day:
+      type: string
+    month:
+      type: string
+      description: 'Short month, e.g. "Jan".'
+    month_full:
+      type: string
+      description: 'Full month used as the abbreviation title.'
+    year:
+      type: string
+    date_time:
+      type: string
+      title: datetime attribute
+    variant:
+      type: string
+      enum: ['', ongoing, past, cancelled]
+    extra_classes:
+      type: string

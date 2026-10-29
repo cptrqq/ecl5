@@ -1,0 +1,35 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Card
+status: stable
+description: 'ECL card: optional image plus a content block (labels, title, description, meta, links).'
+props:
+  type: object
+  properties:
+    picture:
+      type: object
+      description: 'Picture props ({ img: { src, alt }, sources }).'
+    title:
+      type: object
+      description: 'Title text ({ label }) or link props.'
+    description:
+      type: string
+    labels:
+      type: array
+      items:
+        type: object
+    primary_meta:
+      type: array
+      items:
+        type: string
+    secondary_meta:
+      type: array
+      items:
+        type: object
+    secondary_meta_direction:
+      type: string
+    links:
+      type: array
+      items:
+        type: object
+    extra_classes:
+      type: string

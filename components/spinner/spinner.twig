@@ -1,0 +1,26 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set variant = variant|default('primary') -%}
+  {%- set size = size|default('m') -%}
+  {%- set visible = visible is defined ? visible : true -%}
+  {%- set classes = [
+    'ecl-spinner',
+    'ecl-spinner--' ~ variant,
+    'ecl-spinner--' ~ size,
+    centered ? 'ecl-spinner--centered',
+    visible ? 'ecl-spinner--visible',
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+  {%- if overlay -%}
+    <div class="ecl-spinner__overlay{{ visible ? ' ecl-spinner__overlay--visible' : '' }}"></div>
+  {%- endif -%}
+  <div class="{{ classes }}" role="alert">
+    <svg class="ecl-spinner__loader" viewBox="25 25 50 50">
+      <circle class="ecl-spinner__circle" cx="50" cy="50" r="20" fill="none"
+        stroke-width="4px" stroke-miterlimit="10" vector-effect="non-scaling-stroke" />
+    </svg>
+    {%- if text is not empty -%}
+      <div class="ecl-spinner__text">{{ text }}</div>
+    {%- endif -%}
+  </div>
+{%- endapply -%}

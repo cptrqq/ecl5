@@ -1,0 +1,49 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Site header
+status: stable
+description: 'European Commission standardised site header: logo, login, language selector, search, optional custom action, notification, site-name banner with CTA, and a menu / mega-menu.'
+props:
+  type: object
+  properties:
+    logged:
+      type: boolean
+      description: 'Whether the user is logged in.'
+    menu:
+      type: object
+      description: 'ECL menu props (rendered below the header).'
+    mega_menu:
+      type: object
+      description: 'ECL mega-menu props (rendered below the header).'
+    site_name:
+      type: string
+    site_name_mobile_only:
+      type: boolean
+    cta_link:
+      type: object
+      description: 'Call-to-action: { label, path } or { link: { label, path } }.'
+    logo:
+      type: object
+      description: '{ title, alt, breakpoint, path, src_desktop, src_mobile, size }.'
+    language_selector:
+      type: object
+      description: '{ href, label, aria_label, eu_category, non_eu_category, overlay }.'
+    custom_action:
+      type: object
+      description: '{ link, icon, overlay }.'
+    search_toggle:
+      type: object
+      description: '{ label, href }.'
+    search_form:
+      type: object
+      description: 'ECL search-form props.'
+    login_box:
+      type: object
+      description: '{ id, description, label, href }.'
+    login_toggle:
+      type: object
+      description: '{ label_not_logged, href_not_logged, label_logged, href_logged }.'
+    notification:
+      type: object
+      description: 'ECL notification props.'
+    extra_classes:
+      type: string

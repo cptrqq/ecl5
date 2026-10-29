@@ -1,0 +1,56 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('news-ticker-slides') -%}
+  {%- set classes = ['ecl-news-ticker', extra_classes]|filter(c => c)|join(' ') -%}
+  <div class="{{ classes }}" data-ecl-auto-init="NewsTicker">
+    <div class="ecl-news-ticker__wrapper">
+      {%- if items is not empty -%}
+        <div class="ecl-news-ticker__container">
+          <div class="ecl-news-ticker__content">
+            <ul class="ecl-news-ticker__slides" id="{{ id }}">
+              {%- for item in items -%}
+                <li class="ecl-news-ticker__slide">
+                  <div class="ecl-news-ticker__slide-icon">
+                    {{ include('ecl5:icon', (item.icon|default({ name: 'newspaper', family: 'phosphor' }))|merge({ size: 'l', extra_classes: 'ecl-news-ticker__icon' })) }}
+                  </div>
+                  <div class="ecl-news-ticker__slide-content">
+                    {%- if item.link is defined and item.link -%}
+                      {{ include('ecl5:link', {
+                        variant: 'standalone', label: item.content, path: item.link,
+                        external: item.external|default(false), icon_position: 'before',
+                        extra_classes: 'ecl-news-ticker__slide-text',
+                      }) }}
+                    {%- else -%}
+                      <span class="ecl-news-ticker__slide-text">{{ item.content }}</span>
+                    {%- endif -%}
+                  </div>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </div>
+      {%- endif -%}
+      <div class="ecl-news-ticker__controls">
+        <div class="ecl-news-ticker__actions">
+          <button type="button" class="ecl-button ecl-button--tertiary ecl-button--icon-only ecl-news-ticker__prev" data-ecl-news-ticker-prev>
+            <span class="ecl-button__label" aria-hidden="true">{{ sr_previous|default('Previous') }}</span>
+            {{ include('ecl5:icon', { name: 'caret-left', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+          </button>
+          <button type="button" class="ecl-button ecl-button--tertiary ecl-button--icon-only ecl-news-ticker__play" data-ecl-news-ticker-play>
+            <span class="ecl-button__label" aria-hidden="true">{{ sr_play|default('Play') }}</span>
+            {{ include('ecl5:icon', { name: 'play-circle', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+          </button>
+          <button type="button" class="ecl-button ecl-button--tertiary ecl-button--icon-only ecl-news-ticker__pause" data-ecl-news-ticker-pause>
+            <span class="ecl-button__label" aria-hidden="true">{{ sr_pause|default('Pause') }}</span>
+            {{ include('ecl5:icon', { name: 'pause-circle', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+          </button>
+          <button type="button" class="ecl-button ecl-button--tertiary ecl-button--icon-only ecl-news-ticker__next" data-ecl-news-ticker-next>
+            <span class="ecl-button__label" aria-hidden="true">{{ sr_next|default('Next') }}</span>
+            {{ include('ecl5:icon', { name: 'caret-right', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+          </button>
+        </div>
+        <div class="ecl-news-ticker__counter" dir="ltr"></div>
+      </div>
+    </div>
+  </div>
+{%- endapply -%}

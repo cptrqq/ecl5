@@ -1,0 +1,52 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Button
+status: stable
+description: 'ECL button (or link styled as a button), with optional icon.'
+props:
+  type: object
+  properties:
+    label:
+      type: string
+      title: Label
+    variant:
+      type: string
+      title: Variant
+      enum: [primary, secondary, tertiary, ghost, call]
+      default: primary
+    style:
+      type: string
+      title: Style
+      enum: ['', highlight, neutral, inverted]
+    size:
+      type: string
+      title: Size
+      enum: ['', s, m, l]
+    type:
+      type: string
+      title: HTML type
+      enum: [submit, reset, button]
+      default: submit
+    tag:
+      type: string
+      title: Tag
+      enum: [button, a]
+      default: button
+      description: 'Render as <button> or as an <a> styled as a button.'
+    path:
+      type: string
+      title: URL
+      description: 'Used when tag is "a".'
+    disabled:
+      type: boolean
+    hide_label:
+      type: boolean
+      title: Icon only
+    icon_position:
+      type: string
+      enum: [before, after]
+      default: after
+    icon:
+      type: object
+      title: Icon
+    extra_classes:
+      type: string

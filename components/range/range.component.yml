@@ -1,0 +1,34 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Range
+status: stable
+description: 'Range slider with a value bubble, enhanced by the ECL range JS.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: range
+    name:
+      type: string
+    min:
+      type: number
+    max:
+      type: number
+    step:
+      type: number
+    value:
+      type: number
+    width:
+      type: string
+      enum: [full, m]
+      default: full
+    value_text:
+      type: string
+    disabled:
+      type: boolean
+    required:
+      type: boolean
+    invalid:
+      type: boolean
+    extra_classes:
+      type: string

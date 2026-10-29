@@ -1,0 +1,38 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Animated numbers
+status: stable
+description: 'Grid of key figures whose numeric value animates (counts up) when scrolled into view.'
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      description: 'List of { category, icon, prefix, prefix_label, value, suffix, suffix_label, description, sources_label, sources }.'
+      items:
+        type: object
+    with_background:
+      type: boolean
+      description: 'Display with a colored background.'
+    full_width:
+      type: boolean
+      description: 'Full-width display with background (inside the grid).'
+    border:
+      type: boolean
+      description: 'Display with a border around each item.'
+    counter_color:
+      type: boolean
+      default: true
+      description: 'Apply the primary color to the counter value.'
+    no_header:
+      type: boolean
+      description: 'Hide all item headers (category + icon).'
+    sources_label:
+      type: string
+      description: 'Label displayed before the global sources list.'
+    sources:
+      type: array
+      description: 'Global source references: { link } (ECL link props) or { name } (plain text).'
+      items:
+        type: object
+    extra_classes:
+      type: string

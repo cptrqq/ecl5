@@ -1,0 +1,26 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Slogan ticker
+status: stable
+description: 'Horizontally scrolling slogans with play/pause control.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: slogan-ticker
+    items:
+      type: array
+      description: 'List of slogan strings.'
+      items:
+        type: string
+    autoplay:
+      type: boolean
+      default: true
+    sr_play:
+      type: string
+      default: Play
+    sr_pause:
+      type: string
+      default: Pause
+    extra_classes:
+      type: string

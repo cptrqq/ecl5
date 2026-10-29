@@ -1,0 +1,22 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Expandable
+status: stable
+description: 'Toggleable region controlled by a tertiary button (show/hide more).'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: expandable
+    label_collapsed:
+      type: string
+      default: 'Show more'
+    label_expanded:
+      type: string
+      default: 'Show less'
+    extra_classes:
+      type: string
+slots:
+  content:
+    title: Content
+    description: 'The expandable region content.'

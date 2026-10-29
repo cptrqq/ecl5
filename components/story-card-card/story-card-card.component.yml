@@ -1,0 +1,28 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Story card (single)
+status: stable
+description: 'A single story/testimonial card used inside the story-card component.'
+props:
+  type: object
+  properties:
+    variant:
+      type: string
+      enum: ['', testimonial]
+    show_picture:
+      type: boolean
+    picture:
+      type: object
+    title:
+      type: string
+    description:
+      type: string
+    author:
+      type: string
+    role:
+      type: string
+    source:
+      type: string
+    link:
+      type: object
+    extra_classes:
+      type: string

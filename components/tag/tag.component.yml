@@ -1,0 +1,25 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Tag
+status: stable
+description: 'ECL tag: a link tag, external tag, or removable tag.'
+props:
+  type: object
+  properties:
+    label:
+      type: string
+    type:
+      type: string
+      enum: [link, removable]
+      default: link
+    path:
+      type: string
+      default: '#'
+    external:
+      type: boolean
+    nowrap:
+      type: boolean
+    aria_label:
+      type: string
+      description: 'Accessible label for the remove button.'
+    extra_classes:
+      type: string

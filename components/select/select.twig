@@ -1,0 +1,22 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- macro option(o) -%}
+    <option value="{{ o.value|default('') }}"{{ o.selected ? ' selected' : '' }}{{ o.disabled ? ' disabled' : '' }}>{{ o.label|default(o.value) }}</option>
+  {%- endmacro -%}
+  {%- set classes = ['ecl-select', invalid ? 'ecl-select--invalid', extra_classes]|filter(c => c)|join(' ') -%}
+  <select class="{{ classes }}"
+    {{- id ? ' id="' ~ id|e('html_attr') ~ '"' -}}
+    {{- name ? ' name="' ~ name|e('html_attr') ~ '"' -}}
+    {{- required ? ' required' -}}
+    {{- disabled ? ' disabled' -}}>
+    {%- for opt in options|default([]) -%}
+      {%- if opt.optgroup is defined -%}
+        <optgroup label="{{ opt.optgroup.label }}">
+          {%- for o in opt.optgroup.options -%}{{ _self.option(o) }}{%- endfor -%}
+        </optgroup>
+      {%- else -%}
+        {{ _self.option(opt) }}
+      {%- endif -%}
+    {%- endfor -%}
+  </select>
+{%- endapply -%}

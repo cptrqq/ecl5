@@ -1,0 +1,34 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Gallery
+status: stable
+description: 'Responsive image gallery grid with a lightbox overlay (ECL JS enhanced). Grid variant.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: gallery
+    items:
+      type: array
+      description: 'List of { picture: { img: { src, alt } }, caption, media_href, is_video }.'
+      items:
+        type: object
+    columns:
+      type: integer
+      enum: [2, 3, 4]
+      default: 3
+    expandable:
+      type: boolean
+    view_all_label:
+      type: string
+      default: 'See all'
+    view_all_expanded_label:
+      type: string
+      default: 'See less'
+    counter_label:
+      type: string
+      default: 'images'
+    sr_gallery_label:
+      type: string
+    extra_classes:
+      type: string

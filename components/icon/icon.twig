@@ -1,0 +1,16 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set size = size|default('m') -%}
+  {%- set family = family|default('phosphor') -%}
+  {%- set classes = [
+    'ecl-icon',
+    size ? 'ecl-icon--' ~ size,
+    transform ? 'ecl-icon--' ~ transform,
+    color ? 'ecl-icon--' ~ color,
+    (family and name) ? 'ecl-icon-' ~ family ~ '--' ~ name,
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+  <span class="{{ classes }}" aria-hidden="{{ title ? 'false' : 'true' }}"
+    {{- title ? ' role="img" title="' ~ title|e('html_attr') ~ '"' : '' -}}
+  ></span>
+{%- endapply -%}

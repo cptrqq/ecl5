@@ -1,0 +1,19 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-blockquote', extra_classes]|filter(c => c)|join(' ') -%}
+  <figure class="{{ classes }}">
+    {%- if picture.img is defined and picture.img -%}
+      {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-blockquote__picture', extra_image_classes: 'ecl-blockquote__image' })) }}
+    {%- endif -%}
+    <div class="ecl-blockquote__body">
+      <blockquote class="ecl-blockquote__quote">
+        <p class="ecl-blockquote__citation"{{ lang ? ' lang="' ~ lang|e('html_attr') ~ '"' : '' }}>{{ citation }}</p>
+        {%- if author -%}
+          <footer class="ecl-blockquote__attribution">
+            <span class="ecl-blockquote__author">{{ author }}</span>
+          </footer>
+        {%- endif -%}
+      </blockquote>
+    </div>
+  </figure>
+{%- endapply -%}

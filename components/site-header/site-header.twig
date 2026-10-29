@@ -1,0 +1,247 @@
+{{ attach_library('ecl5/global') }}
+{%- import _self as sh -%}
+{%- apply spaceless -%}
+  {%- set logo = logo|default({}) -%}
+  {%- set language_selector = language_selector|default({}) -%}
+  {%- set custom_action = custom_action|default({}) -%}
+  {%- set logged = logged|default(false) -%}
+  {%- set login_box = login_box|default({}) -%}
+  {%- set login_toggle = login_toggle|default({}) -%}
+  {%- set search_toggle = search_toggle|default({}) -%}
+  {%- set menu = menu|default({}) -%}
+  {%- set mega_menu = mega_menu|default({}) -%}
+  {%- set site_name = site_name|default('') -%}
+  {%- set cta_link = cta_link|default({}) -%}
+  {%- set notification = notification|default({}) -%}
+  {%- set search_form = search_form|default({}) -%}
+
+  {%- set classes = [
+    'ecl-site-header',
+    menu is not empty ? 'ecl-site-header--has-menu',
+    mega_menu is not empty ? 'ecl-site-header--has-mega-menu',
+    'ecl-site-header-with-logo-' ~ logo.size|default('l'),
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+
+  <header class="{{ classes }}" data-ecl-auto-init="SiteHeader">
+    <div class="ecl-site-header__inner">
+      <div class="ecl-site-header__header">
+        <div class="ecl-site-header__container ecl-container">
+          <div class="ecl-site-header__top" data-ecl-site-header-top>
+            {# Logo #}
+            {%- if logo is not empty and logo.src_desktop is not empty -%}
+              {%- set image_classes = 'ecl-site-header__logo-image ecl-site-header__logo-image--' ~ logo.size|default('l') -%}
+              {%- set logo_label -%}
+                <picture class="ecl-picture ecl-site-header__picture"{% if logo.title is not empty %} title="{{ logo.title|e('html_attr') }}"{% endif %}>
+                  <source srcset="{{ logo.src_desktop }}" media="{{ { xs: '(min-width: 415px)', l: '(min-width: 996px)' }[logo.breakpoint|default('xs')]|default('(min-width: 415px)') }}">
+                  <img class="{{ image_classes }}" src="{{ logo.src_mobile|default(logo.src_desktop) }}" alt="{{ logo.alt|default('') }}">
+                </picture>
+              {%- endset -%}
+              <a href="{{ logo.path|default('#') }}" class="ecl-link ecl-link--standalone ecl-site-header__logo-link">{{ logo_label }}</a>
+            {%- endif -%}
+
+            <div class="ecl-site-header__action">
+              {# Custom action #}
+              {%- if custom_action is not empty -%}
+                {%- set is_overlay = custom_action.overlay is defined and custom_action.overlay is not empty -%}
+                {%- set ca_attrs = [{ name: 'data-ecl-custom-action', value: '' }] -%}
+                {%- if custom_action.link.aria_label is defined and custom_action.link.aria_label is not empty -%}
+                  {%- set ca_attrs = ca_attrs|merge([{ name: 'aria-label', value: custom_action.link.aria_label }]) -%}
+                {%- endif -%}
+                {%- if is_overlay -%}
+                  {%- set ca_attrs = ca_attrs|merge([
+                    { name: 'aria-haspopup', value: 'dialog' },
+                    { name: 'aria-controls', value: 'custom-action-overlay' },
+                    { name: 'aria-expanded', value: 'false' },
+                  ]) -%}
+                {%- endif -%}
+                {%- set ca_icon = (custom_action.icon is defined and custom_action.icon is not empty)
+                  ? custom_action.icon|merge({ extra_classes: (custom_action.icon.extra_classes|default('') ~ ' ecl-site-header__icon')|trim }) : null -%}
+                <div class="ecl-site-header__custom-action" aria-live="polite">
+                  {{ sh.toggle(custom_action.link.path|default(''), custom_action.link.label|default(''), ca_icon,
+                    'ecl-site-header__custom-action-toggle', ca_attrs, custom_action.link.hide_label|default(false),
+                    custom_action.link.icon_position|default('after')) }}
+                  {%- if is_overlay -%}
+                    <div class="ecl-site-header__custom-action-overlay" id="custom-action-overlay" hidden data-ecl-custom-action-overlay role="dialog" aria-labelledby="custom-action-overlay-title">
+                      <div class="ecl-site-header__custom-action-header">
+                        <div class="ecl-site-header__custom-action-title" id="custom-action-overlay-title">{{ custom_action.overlay.title|default('') }}</div>
+                        {%- if custom_action.overlay.close_label is defined and custom_action.overlay.close_label is not empty -%}
+                          <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-button--icon-only ecl-site-header__custom-action-close" data-ecl-custom-action-close>
+                            <span class="ecl-button__label" aria-hidden="true">{{ custom_action.overlay.close_label }}</span>
+                            {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+                          </button>
+                        {%- endif -%}
+                      </div>
+                      <div class="ecl-site-header__custom-action-content">{{ custom_action.overlay.content|default('')|raw }}</div>
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+              {# Login #}
+              {%- if login_toggle is not empty and login_box is not empty -%}
+                <div class="ecl-site-header__login-container">
+                  {%- if logged -%}
+                    {{ sh.toggle(login_toggle.href_logged|default(''), login_toggle.label_logged|default(''),
+                      { name: 'user-check', family: 'phosphor', size: 'm', title: login_toggle.label_logged|default(''), extra_classes: 'ecl-site-header__icon' },
+                      'ecl-site-header__login-toggle',
+                      [{ name: 'aria-controls', value: login_box.id }, { name: 'data-ecl-login-toggle', value: '' }, { name: 'aria-expanded', value: 'false' }, { name: 'aria-haspopup', value: 'dialog' }],
+                      false, 'before') }}
+                    <div id="{{ login_box.id }}" class="ecl-site-header__login-box" data-ecl-login-box role="dialog">
+                      <p class="ecl-site-header__login-description">{{- login_box.description -}}</p>
+                      <hr class="ecl-site-header__login-separator">
+                      <a href="{{ login_box.href|default('#') }}" class="ecl-link ecl-link--standalone">{{ login_box.label }}</a>
+                    </div>
+                  {%- else -%}
+                    {{ sh.toggle(login_toggle.href_not_logged|default(''), login_toggle.label_not_logged|default(''),
+                      { name: 'user', family: 'phosphor', size: 'm', title: login_toggle.label_not_logged|default(''), extra_classes: 'ecl-site-header__icon' },
+                      'ecl-site-header__login-toggle',
+                      [{ name: 'data-ecl-login-toggle', value: '' }],
+                      false, 'before') }}
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+              {# Language selector #}
+              {%- if language_selector is not empty -%}
+                {{ sh.lang_switcher(language_selector) }}
+              {%- endif -%}
+
+              {# Search #}
+              {%- if search_form is not empty -%}
+                <div class="ecl-site-header__search-container" role="search">
+                  {%- if search_toggle is not empty -%}
+                    {{ sh.toggle(search_toggle.href|default(''), search_toggle.label|default(''),
+                      { name: 'magnifying-glass', family: 'phosphor', size: 'm', extra_classes: 'ecl-site-header__icon' },
+                      'ecl-site-header__search-toggle',
+                      [{ name: 'data-ecl-search-toggle', value: 'true' }, { name: 'aria-controls', value: 'ecl-site-header-search-form-dialog' }, { name: 'aria-expanded', value: 'false' }, { name: 'aria-haspopup', value: 'dialog' }],
+                      true) }}
+                  {%- endif -%}
+                  <div class="ecl-site-header__search-dialog" role="dialog" aria-modal="true" id="ecl-site-header-search-form-dialog"
+                    {%- if search_form.input.id is defined and search_form.input.id %} aria-labelledby="{{ search_form.input.id }}-label"{% endif -%}>
+                    {{ include('ecl5:search-form', search_form|merge({ extra_classes: ('ecl-site-header__search ' ~ search_form.extra_classes|default(''))|trim })) }}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Notification #}
+      {%- if notification is not empty -%}
+        <div class="ecl-site-header__notification">
+          <div class="ecl-container">{{ include('ecl5:notification', notification) }}</div>
+        </div>
+      {%- endif -%}
+
+      {# Site name + CTA banner #}
+      {%- if site_name is not empty or cta_link is not empty -%}
+        <div class="ecl-site-header__banner{{ site_name_mobile_only ? ' ecl-site-header__site-name--mobile-only' }}">
+          <div class="ecl-container">
+            {%- if site_name is not empty -%}
+              <div class="ecl-site-header__site-name">{{- site_name -}}</div>
+            {%- endif -%}
+            {%- set cta = cta_link.link is defined ? cta_link.link : cta_link -%}
+            {%- if cta is not empty and cta.label is defined -%}
+              <a href="{{ cta.path|default('#') }}" class="ecl-link ecl-link--primary-highlight ecl-site-header__cta">{{ cta.label }}</a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {# Menu #}
+    {%- if menu is not empty -%}
+      {{ include('ecl5:menu', menu) }}
+    {%- endif -%}
+    {%- if mega_menu is not empty -%}
+      {{ include('ecl5:menu', mega_menu) }}
+    {%- endif -%}
+  </header>
+{%- endapply -%}
+
+{# ---- toggle: link styled as button when href given, otherwise a button ---- #}
+{%- macro toggle(href, label, icon, extra_classes, attrs, hide_label, icon_position) -%}
+  {%- apply spaceless -%}
+    {%- set hide_label = hide_label|default(false) -%}
+    {%- set icon_position = icon_position|default('after') -%}
+    {%- set has_icon = icon is not null and icon is not empty -%}
+    {%- set classes = ['ecl-button', 'ecl-button--tertiary', 'ecl-button--neutral', (hide_label and has_icon) ? 'ecl-button--icon-only', extra_classes]|filter(c => c)|join(' ') -%}
+    {%- set attr_str -%}{%- for a in attrs|default([]) %} {{ a.name }}{% if a.value is not null and a.value != '' %}="{{ a.value|e('html_attr') }}"{% endif %}{% endfor -%}{%- endset -%}
+    {%- set inner -%}
+      {%- if has_icon and icon_position == 'before' -%}{{ include('ecl5:icon', icon|merge({ extra_classes: (icon.extra_classes|default('') ~ ' ecl-button__icon')|trim })) }}{%- endif -%}
+      <span class="ecl-button__label"{{ hide_label ? ' aria-hidden="true"' : '' }}>{{ label }}</span>
+      {%- if has_icon and icon_position != 'before' -%}{{ include('ecl5:icon', icon|merge({ extra_classes: (icon.extra_classes|default('') ~ ' ecl-button__icon')|trim })) }}{%- endif -%}
+    {%- endset -%}
+    {%- if href is not empty -%}
+      <a href="{{ href }}" class="{{ classes }}" role="button"{{ attr_str }}>{{ inner }}</a>
+    {%- else -%}
+      <button type="button" class="{{ classes }}"{{ attr_str }}>{{ inner }}</button>
+    {%- endif -%}
+  {%- endapply -%}
+{%- endmacro -%}
+
+{# ---- language switcher ---- #}
+{%- macro lang_switcher(ls) -%}
+  {%- import _self as sh -%}
+  {%- apply spaceless -%}
+    {%- set label = ls.label|default('') -%}
+    {%- set has_overlay = ls.overlay is defined and ls.overlay is not empty -%}
+    {%- set selector_classes = 'ecl-button ecl-button--tertiary ecl-button--neutral ecl-site-header__language-selector' -%}
+    {%- set icon_markup -%}
+      <span class="ecl-site-header__language-icon">{{ include('ecl5:icon', { name: 'globe-simple', family: 'phosphor', size: 'm', title: label, extra_classes: 'ecl-site-header__icon' }) }}</span>
+    {%- endset -%}
+    <div class="ecl-site-header__language">
+      {%- if ls.href is defined and ls.href is not empty -%}
+        <a class="{{ selector_classes }}" href="{{ ls.href }}" data-ecl-language-selector role="button" aria-label="{{ ls.aria_label|default('') }} - {{ label }}"{% if has_overlay %} aria-controls="language-list-overlay"{% endif %}>{{ icon_markup }}{{- label -}}</a>
+      {%- else -%}
+        <button class="{{ selector_classes }}" type="button" data-ecl-language-selector aria-label="{{ ls.aria_label|default('') }} - {{ label }}"{% if has_overlay %} aria-controls="language-list-overlay" aria-haspopup="dialog"{% endif %}>{{ icon_markup }}{{- label -}}</button>
+      {%- endif -%}
+      {%- if has_overlay -%}
+        <div class="ecl-site-header__language-container" id="language-list-overlay" hidden data-ecl-language-list-overlay aria-labelledby="ecl-site-header__language-title" role="dialog">
+          <div class="ecl-site-header__language-header">
+            <div class="ecl-site-header__language-title" id="ecl-site-header__language-title">{{- ls.overlay.title|default('') -}}</div>
+            {%- if ls.overlay.close_label is defined and ls.overlay.close_label is not empty -%}
+              <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-button--icon-only ecl-site-header__language-close" data-ecl-language-list-close>
+                <span class="ecl-button__label" aria-hidden="true">{{ ls.overlay.close_label }}</span>
+                {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+              </button>
+            {%- endif -%}
+          </div>
+          <div class="ecl-site-header__language-content" data-ecl-language-list-content>
+            {%- if ls.overlay.items is defined and ls.overlay.items is not empty -%}
+              {{ sh.lang_list(ls.overlay.items, ls.eu_category|default(''), 'data-ecl-language-list-eu') }}
+            {%- endif -%}
+            {%- if ls.overlay.non_eu_items is defined and ls.overlay.non_eu_items is not empty -%}
+              {{ sh.lang_list(ls.overlay.non_eu_items, ls.non_eu_category|default(''), 'data-ecl-language-list-non-eu') }}
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endapply -%}
+{%- endmacro -%}
+
+{%- macro lang_list(items, category, data_attr) -%}
+  {%- apply spaceless -%}
+    {%- set list_tag = items|length == 1 ? 'div' : 'ul' -%}
+    {%- set item_tag = items|length == 1 ? 'div' : 'li' -%}
+    <div class="ecl-site-header__language-category" {{ data_attr }}>
+      {%- if category is not empty -%}
+        <div class="ecl-site-header__language-category-title">{{- category -}}</div>
+      {%- endif -%}
+      <{{ list_tag }} class="ecl-site-header__language-list" translate="no">
+        {%- for item in items -%}
+          {%- set link_classes = ['ecl-link', 'ecl-link--standalone', 'ecl-site-header__language-link', item.active ? 'ecl-site-header__language-link--active']|filter(c => c)|join(' ') -%}
+          <{{ item_tag }} class="ecl-site-header__language-item">
+            <a href="{{ item.path|default('#') }}" class="{{ link_classes }}" lang="{{ item.lang|default('') }}" hreflang="{{ item.lang|default('') }}">
+              <span class="ecl-site-header__language-link-code">{{ item.lang|default('') }}</span>
+              <span class="ecl-site-header__language-link-label" lang="{{ item.lang|default('') }}">{{ item.label|default('') }}</span>
+            </a>
+          </{{ item_tag }}>
+        {%- endfor -%}
+      </{{ list_tag }}>
+    </div>
+  {%- endapply -%}
+{%- endmacro -%}

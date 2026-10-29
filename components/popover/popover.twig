@@ -1,0 +1,26 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('popover-content') -%}
+  {%- set classes = ['ecl-popover', extra_classes]|filter(c => c)|join(' ') -%}
+  {%- set toggle = toggle|default({ label: 'More' }) -%}
+  <div class="{{ classes }}" data-ecl-auto-init="Popover">
+    <button type="button" class="ecl-button ecl-button--tertiary ecl-popover__toggle"
+      aria-controls="{{ id }}" aria-expanded="false" data-ecl-popover-toggle>
+      <span class="ecl-button__label">{{ toggle.label }}</span>
+      {%- if toggle.icon.name is defined and toggle.icon.name -%}
+        {{ include('ecl5:icon', toggle.icon|merge({ extra_classes: 'ecl-button__icon' })) }}
+      {%- endif -%}
+    </button>
+    <div id="{{ id }}" class="ecl-popover__container" hidden>
+      <div class="ecl-popover__scrollable">
+        <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-button--icon-only ecl-popover__close" data-ecl-popover-close>
+          <span class="ecl-button__label" aria-hidden="true">{{ close_label|default('Close') }}</span>
+          {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+        </button>
+        <div class="ecl-popover__content">
+          {%- block content %}{{ content }}{% endblock -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endapply -%}

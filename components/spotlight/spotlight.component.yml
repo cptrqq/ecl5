@@ -1,0 +1,23 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Spotlight
+status: stable
+description: 'Full-bleed image link with an overlaid title and optional credit.'
+props:
+  type: object
+  properties:
+    title:
+      type: string
+    path:
+      type: string
+      default: '#'
+    picture:
+      type: object
+    credit:
+      type: string
+    header:
+      type: string
+      description: 'Optional section header shown above the image.'
+    full_width:
+      type: boolean
+    extra_classes:
+      type: string

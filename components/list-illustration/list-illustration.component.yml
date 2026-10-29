@@ -1,0 +1,49 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: List with illustration
+status: stable
+description: 'List of items, each with an illustration (picture or icon), title, optional value and description. Supports icon lists, number lists and multi-column grids.'
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      description: 'List of { title, description, value, picture, square, icon, media_size }.'
+      items:
+        type: object
+    column:
+      type: integer
+      enum: [1, 2, 3, 4]
+      default: 1
+      description: '1 column means vertical display.'
+    zebra:
+      type: boolean
+      description: 'Alternate background for the vertical list.'
+    icon_inline:
+      type: boolean
+      description: 'Place the icon on the left of the item.'
+    icon_list:
+      type: boolean
+      description: 'Render as an icon list.'
+    number_list:
+      type: boolean
+      description: 'Render as a number list (ordered).'
+    divider:
+      type: boolean
+      description: 'Item separator (in the icon list).'
+    counter_reset:
+      type: boolean
+      default: true
+      description: 'In a number list, reset the counter so it starts from counter_start.'
+    counter_start:
+      type: integer
+      default: 0
+      description: 'Number to start the counter from when counter_reset is true.'
+    centered:
+      type: boolean
+      description: 'Center-align item content.'
+    font_size:
+      type: string
+      enum: [m, l]
+      default: l
+    extra_classes:
+      type: string

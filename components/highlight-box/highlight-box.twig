@@ -1,0 +1,29 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('highlight-box') -%}
+  {%- set classes = ['ecl-highlight-box', extra_classes]|filter(c => c)|join(' ') -%}
+  <article class="{{ classes }}" id="{{ id }}" aria-labelledby="{{ id }}-title">
+    {%- if title or (icon.name is defined and icon.name) -%}
+      <header class="ecl-highlight-box__header">
+        {%- if icon.name is defined and icon.name -%}
+          <div class="ecl-highlight-box__icon-wrapper">
+            {{ include('ecl5:icon', icon|merge({ extra_classes: 'ecl-highlight-box__icon' })) }}
+          </div>
+        {%- endif -%}
+        {%- if title -%}
+          <div class="ecl-highlight-box__title" id="{{ id }}-title">{{ title }}</div>
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+    {%- if description or (link.label is defined and link.label) -%}
+      <div class="ecl-highlight-box__body">
+        {%- if description -%}
+          <div class="ecl-highlight-box__description">{{ description }}</div>
+        {%- endif -%}
+        {%- if link.label is defined and link.label -%}
+          {{ include('ecl5:link', link|merge({ variant: 'secondary', extra_classes: 'ecl-highlight-box__link' })) }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </article>
+{%- endapply -%}

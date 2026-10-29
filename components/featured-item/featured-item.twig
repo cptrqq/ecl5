@@ -1,0 +1,32 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('featured-item') -%}
+  {%- set orientation = orientation|default('horizontal') -%}
+  {%- set classes = [
+    'ecl-featured-item',
+    'ecl-featured-item--' ~ (orientation == 'vertical' ? 'v' : 'h'),
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+  {%- set container_class = ['ecl-featured-item__container', position == 'right' ? 'ecl-featured-item__container--right']|filter(c => c)|join(' ') -%}
+  <article class="{{ classes }}">
+    <div class="{{ container_class }}">
+      <div class="ecl-featured-item__item">
+        <div class="ecl-featured-item__content">
+          <div class="ecl-featured-item__info">
+            {%- if micro_title -%}<div class="ecl-featured-item__micro-title">{{ micro_title }}</div>{%- endif -%}
+            {%- if title -%}<div class="ecl-featured-item__title" id="{{ id }}-title">{{ title }}</div>{%- endif -%}
+            {%- if description -%}<div class="ecl-featured-item__description">{{ description }}</div>{%- endif -%}
+          </div>
+          {%- if link.label is defined and link.label -%}
+            {{ include('ecl5:link', link|merge({ variant: 'standalone', extra_classes: 'ecl-featured-item__link' })) }}
+          {%- endif -%}
+        </div>
+      </div>
+      {%- if media_container is not empty -%}
+        <div class="ecl-featured-item__item">
+          {{ include('ecl5:media-container', media_container) }}
+        </div>
+      {%- endif -%}
+    </div>
+  </article>
+{%- endapply -%}

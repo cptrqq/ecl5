@@ -1,0 +1,33 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set has_icon = external or (icon.name is defined and icon.name) -%}
+  {%- set classes = [
+    'ecl-link',
+    variant ? 'ecl-link--' ~ variant,
+    inverted ? 'ecl-link--inverted',
+    has_icon ? 'ecl-link--icon',
+    (hide_label and has_icon) ? 'ecl-link--icon-only',
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+
+  {%- set icon_markup = '' -%}
+  {%- if has_icon -%}
+    {%- set icon_props = external
+      ? { name: 'arrow-square-out', family: 'phosphor', size: 'xs' }
+      : icon -%}
+    {%- set icon_markup -%}
+      {{ include('ecl5:icon', icon_props|merge({ extra_classes: 'ecl-link__icon' })) }}
+    {%- endset -%}
+  {%- endif -%}
+
+  <a href="{{ path|default('#') }}" class="{{ classes }}"
+    {{- aria_label ? ' aria-label="' ~ aria_label|e('html_attr') ~ '"' : '' -}}>
+    {%- if has_icon and icon_position == 'before' %}{{ icon_markup }}{% endif -%}
+    {%- if has_icon -%}
+      <span class="ecl-link__label">{{ label }}</span>
+    {%- else -%}
+      {{ label }}
+    {%- endif -%}
+    {%- if has_icon and icon_position != 'before' %}{{ icon_markup }}{% endif -%}
+  </a>
+{%- endapply -%}

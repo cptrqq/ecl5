@@ -1,0 +1,26 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set classes = ['ecl-content-item', variant ? 'ecl-content-item--' ~ variant, extra_classes]|filter(c => c)|join(' ') -%}
+  <article class="{{ classes }}">
+    {%- if picture.img is defined and picture.img.src is defined and picture.img.src -%}
+      {%- set pic_classes = [
+        'ecl-content-item__picture',
+        picture.size is defined and picture.size ? 'ecl-content-item__picture--' ~ picture.size,
+        picture.position is defined and picture.position ? 'ecl-content-item__picture--' ~ picture.position,
+      ]|filter(c => c)|join(' ') -%}
+      {{ include('ecl5:picture', picture|merge({ extra_classes: pic_classes, extra_image_classes: 'ecl-content-item__image' })) }}
+    {%- endif -%}
+    {%- if date is not empty -%}
+      {{ include('ecl5:date-block', date|merge({ extra_classes: 'ecl-content-item__date' })) }}
+    {%- endif -%}
+    {{ include('ecl5:content-block', {
+      title: title|default(null),
+      description: description|default(null),
+      labels: labels|default([]),
+      primary_meta: primary_meta|default([]),
+      secondary_meta: secondary_meta|default([]),
+      links: links|default([]),
+      extra_classes: 'ecl-content-item__content-block',
+    }) }}
+  </article>
+{%- endapply -%}

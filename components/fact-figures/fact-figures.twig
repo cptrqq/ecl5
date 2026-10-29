@@ -1,0 +1,50 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set columns = columns|default(3) -%}
+  {%- set font_size = font_size|default('l') -%}
+  {%- set display_icons = display_icons is defined ? display_icons : true -%}
+  {%- set classes = [
+    'ecl-fact-figures',
+    'ecl-fact-figures--col-' ~ columns,
+    centered ? 'ecl-fact-figures--centered',
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+  <div class="{{ classes }}">
+    <div class="ecl-fact-figures__container">
+      {%- if items is not empty -%}
+        <div class="ecl-fact-figures__items">
+          {%- for item in items -%}
+            {%- set item_class = ['ecl-fact-figures__item', font_size != 'l' ? 'ecl-fact-figures__item--font-m', loop.first ? 'is-first']|filter(c => c)|join(' ') -%}
+            <div class="{{ item_class }}">
+              {%- if item.icon is defined and item.icon and display_icons -%}
+                {{ include('ecl5:icon', item.icon|merge({ size: icon_size|default('xl'), extra_classes: 'ecl-fact-figures__icon' })) }}
+              {%- endif -%}
+              {%- if item.value is defined and item.value -%}
+                <div class="ecl-fact-figures__value">
+                  {{- item.value -}}
+                  {%- if item.title is defined and item.title -%}
+                    <span class="ecl-fact-figures__title">{{ item.title }}</span>
+                  {%- endif -%}
+                </div>
+              {%- elseif item.title is defined and item.title -%}
+                <div class="ecl-fact-figures__title">{{ item.title }}</div>
+              {%- endif -%}
+              {%- if item.description is defined and item.description -%}
+                <div class="ecl-fact-figures__description">{{ item.description }}</div>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+      {%- if view_all.label is defined and view_all.label -%}
+        <div class="ecl-fact-figures__view-all">
+          {{ include('ecl5:link', view_all|merge({
+            variant: 'standalone',
+            icon: view_all.icon|default({ name: 'arrow-right', family: 'phosphor', size: 'xs' }),
+            extra_classes: 'ecl-fact-figures__view-all-link',
+          })) }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endapply -%}

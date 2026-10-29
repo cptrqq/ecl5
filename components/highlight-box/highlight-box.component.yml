@@ -1,0 +1,21 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Highlight box
+status: stable
+description: 'Highlight box with icon, title, description and a call-to-action link.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: highlight-box
+    title:
+      type: string
+    description:
+      type: string
+    icon:
+      type: object
+    link:
+      type: object
+      description: 'Link props ({ label, path, ... }).'
+    extra_classes:
+      type: string

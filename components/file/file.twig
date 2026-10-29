@@ -1,0 +1,152 @@
+{{ attach_library('ecl5/global') }}
+{%- import _self as file -%}
+{%- apply spaceless -%}
+  {%- set id = id|default('ecl-file-' ~ random()) -%}
+  {%- set icon = icon|default({}) -%}
+  {%- set meta = meta|default('') -%}
+  {%- set primary_meta = primary_meta|default([]) -%}
+  {%- set lists = lists|default([]) -%}
+  {%- set download = download|default({}) -%}
+  {%- set download_attribute = download_attribute|default(false) -%}
+  {%- set translation = translation|default({}) -%}
+  {%- set picture = picture|default({}) -%}
+
+  {# Normalize labels: accept array, or single label object #}
+  {%- set labels = labels|default([]) -%}
+  {%- if labels.label is defined -%}{%- set labels = [labels] -%}{%- endif -%}
+
+  {%- set has_translations = translation.items is defined and translation.items is not empty -%}
+  {%- set lang_id = id ~ '-lang' -%}
+  {%- set title_id = id ~ '-title' -%}
+  {%- set meta_id = id ~ '-meta' -%}
+  {%- set download_id = id ~ '-link' -%}
+  {%- set download_text_id = id ~ '-link-label-text' -%}
+  {%- set translation_list_id = id ~ '-translations' -%}
+  {%- set classes = ['ecl-file', extra_classes]|filter(c => c)|join(' ') -%}
+
+  <div class="{{ classes }}" data-ecl-file id="{{ id }}"{% if has_translations %} data-ecl-auto-init="FileDownload"{% endif %}>
+    <article class="ecl-file__container">
+      <div class="ecl-file__info">
+        {%- if picture.img is defined and picture.img -%}
+          {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-file__picture', extra_image_classes: 'ecl-file__image' })) }}
+        {%- elseif icon is not empty -%}
+          <div class="ecl-file__icon-box">
+            {{ include('ecl5:icon', icon|merge({ size: icon.size|default('l'), extra_classes: 'ecl-file__icon' })) }}
+          </div>
+        {%- endif -%}
+
+        {%- if title is not empty or primary_meta is not empty -%}
+          <div class="ecl-file__content">
+            {%- if labels is not empty -%}
+              {%- set labels_list_tag = labels|length == 1 ? 'div' : 'ul' -%}
+              {%- set labels_item_tag = labels|length == 1 ? 'div' : 'li' -%}
+              <{{ labels_list_tag }} class="ecl-file__labels"{% if labels_aria is defined and labels_aria is not empty %} aria-label="{{ labels_aria }}"{% endif %}>
+                {%- for label in labels -%}
+                  <{{ labels_item_tag }} class="ecl-file__label">{{ include('ecl5:label', label) }}</{{ labels_item_tag }}>
+                {%- endfor -%}
+              </{{ labels_list_tag }}>
+            {%- endif -%}
+
+            {%- if title is not empty -%}
+              <div class="ecl-file__title" id="{{ title_id }}">
+                {%- if title.link is defined -%}
+                  {{ include('ecl5:link', title.link|merge({ variant: 'standalone' })) }}
+                {%- else -%}
+                  {{ title }}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- if description is defined and description is not empty -%}
+              <div class="ecl-file__description">{{ description }}</div>
+            {%- endif -%}
+
+            {%- if primary_meta is not empty -%}
+              {%- set meta_list_tag = primary_meta|length == 1 ? 'div' : 'ul' -%}
+              {%- set meta_item_tag = primary_meta|length == 1 ? 'div' : 'li' -%}
+              <{{ meta_list_tag }} class="ecl-file__primary-meta">
+                {%- for meta_item in primary_meta -%}
+                  <{{ meta_item_tag }} class="ecl-file__primary-meta-item">{{ meta_item }}</{{ meta_item_tag }}>
+                {%- endfor -%}
+              </{{ meta_list_tag }}>
+            {%- endif -%}
+
+            {%- if lists is not empty -%}
+              <div class="ecl-file__lists">
+                {%- for list in lists -%}
+                  {{ include('ecl5:description-list', list) }}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <footer class="ecl-file__footer">
+        {%- if language is defined and language is not empty -%}
+          {%- set language_class = ['ecl-file__language', has_translations ? '' : 'ecl-file__language--no-toggle']|filter(c => c)|join(' ') -%}
+          {%- set toggle_label -%}<span class="{{ language_class }}" id="{{ lang_id }}">{{ language }}</span>{%- endset -%}
+          {%- if has_translations -%}
+            <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-button--l ecl-file__translation-toggle"
+              data-ecl-file-translation-toggle aria-expanded="false" aria-controls="{{ translation_list_id }}"
+              aria-label="{{ translation.sr_toggle|default('') }} - {{ language }}">
+              <span class="ecl-button__label">{{ toggle_label }}</span>
+              {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'fluid', extra_classes: 'ecl-button__icon' }) }}
+            </button>
+          {%- else -%}
+            {{- toggle_label -}}
+          {%- endif -%}
+        {%- endif -%}
+
+        <div class="ecl-file__action">
+          {%- set download_label -%}
+            <span id="{{ download_text_id }}">{{- download.link.label|default('') -}}</span>
+            {%- if meta is not empty -%}<span class="ecl-file__meta" id="{{ meta_id }}"> {{ meta }}</span>{%- endif -%}
+          {%- endset -%}
+          {{ file.download_link(download.link|default({}), download_label, download_id,
+            download_text_id ~ ' ' ~ title_id ~ ' ' ~ lang_id ~ ' ' ~ meta_id, 'ecl-file__download', download_attribute, '') }}
+        </div>
+      </footer>
+    </article>
+
+    {%- if has_translations -%}
+      <ul class="ecl-file__translation-list" id="{{ translation_list_id }}" hidden>
+        {%- for key, item in translation.items -%}
+          {%- set translation_id = id ~ '-translation-' ~ key -%}
+          {%- set translation_title_id = translation_id ~ '-title' -%}
+          {%- set translation_meta_id = translation_id ~ '-meta' -%}
+          {%- set translation_link_id = translation_id ~ '-link' -%}
+          {%- set item_download = item.download is not empty ? item.download : download -%}
+          {%- set item_download_attribute = item.download_attribute is defined ? item.download_attribute : translation.download_attribute|default(false) -%}
+          <li class="ecl-file__translation-item">
+            <div class="ecl-file__translation-info">
+              {%- if item.title is not empty -%}
+                <div class="ecl-file__translation-title" id="{{ translation_title_id }}"{% if item.lang is not empty %} lang="{{ item.lang }}"{% endif %}>{{- item.title -}}</div>
+              {%- endif -%}
+              {%- if item.meta is not empty -%}
+                <div class="ecl-file__translation-meta" id="{{ translation_meta_id }}">{{- item.meta -}}</div>
+              {%- endif -%}
+            </div>
+            <div class="ecl-file__translation-action">
+              {{ file.download_link(item_download.link|default({}), item_download.link.label|default(''), translation_link_id,
+                translation_link_id ~ '-label ' ~ translation_title_id ~ ' ' ~ title_id ~ ' ' ~ translation_meta_id,
+                'ecl-file__translation-download', item_download_attribute, item.lang|default('')) }}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+{%- endapply -%}
+
+{%- macro download_link(link, label, link_id, labelledby, base_class, add_download_attr, hreflang) -%}
+  {%- apply spaceless -%}
+    {%- set classes = ['ecl-link', 'ecl-link--standalone', 'ecl-link--icon', base_class]|filter(c => c)|join(' ') -%}
+    <a href="{{ link.path|default('#') }}" class="{{ classes }}" id="{{ link_id }}" aria-labelledby="{{ labelledby }}"
+      {{- hreflang is not empty ? ' hreflang="' ~ hreflang|e('html_attr') ~ '"' : '' -}}
+      {{- add_download_attr ? ' download' : '' -}}>
+      <span class="ecl-link__label">{{ label }}</span>
+      {{ include('ecl5:icon', { name: 'download-simple', family: 'phosphor', size: 'fluid', extra_classes: 'ecl-link__icon' }) }}
+    </a>
+  {%- endapply -%}
+{%- endmacro -%}

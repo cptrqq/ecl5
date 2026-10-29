@@ -1,0 +1,29 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set position = position|default('left') -%}
+  {%- set classes = [
+    'ecl-social-media-follow',
+    variant ? 'ecl-social-media-follow--' ~ variant,
+    'ecl-social-media-follow--' ~ position,
+    description_inline ? 'ecl-social-media-follow--description_inline',
+    extra_classes,
+  ]|filter(c => c)|join(' ') -%}
+  <div class="{{ classes }}">
+    {%- if title -%}<h2 class="ecl-social-media-follow__title">{{ title }}</h2>{%- endif -%}
+    {%- if description -%}<p class="ecl-social-media-follow__description">{{ description }}</p>{%- endif -%}
+    {%- set tag_list = links|default([])|length == 1 ? 'div' : 'ul' -%}
+    {%- set tag_item = links|default([])|length == 1 ? 'div' : 'li' -%}
+    <{{ tag_list }} class="ecl-social-media-follow__list">
+      {%- for link in links|default([]) -%}
+        <{{ tag_item }} class="ecl-social-media-follow__item">
+          {{ include('ecl5:link', {
+            label: link.label, path: link.path|default('#'), variant: 'standalone',
+            icon: (link.icon|default({}))|merge({ size: link.icon.size|default('m'), extra_classes: 'ecl-social-media-follow__icon' }),
+            icon_position: 'before',
+            extra_classes: 'ecl-social-media-follow__link',
+          }) }}
+        </{{ tag_item }}>
+      {%- endfor -%}
+    </{{ tag_list }}>
+  </div>
+{%- endapply -%}

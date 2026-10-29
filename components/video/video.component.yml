@@ -1,0 +1,30 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Video
+status: stable
+description: 'HTML5 video with sources and text tracks.'
+props:
+  type: object
+  properties:
+    sources:
+      type: array
+      description: 'List of { src, type }.'
+      items:
+        type: object
+    tracks:
+      type: array
+      description: 'List of { kind, label, src, src_lang, default }.'
+      items:
+        type: object
+    poster:
+      type: string
+    controls:
+      type: boolean
+      default: true
+    autoplay:
+      type: boolean
+    muted:
+      type: boolean
+    loop:
+      type: boolean
+    extra_classes:
+      type: string

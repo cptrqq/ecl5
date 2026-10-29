@@ -1,0 +1,28 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set group_tag = group_tag|default('div') -%}
+  {%- set label_tag = group_tag == 'fieldset' ? 'legend' : 'label' -%}
+  {%- set classes = ['ecl-form-group', extra_classes]|filter(c => c)|join(' ') -%}
+  <{{ group_tag }} class="{{ classes }}">
+    {%- if label -%}
+      <{{ label_tag }}{% if label_tag == 'label' and for %} for="{{ for }}"{% endif %}{% if id %} id="{{ id }}-label"{% endif %} class="ecl-form-group__label">
+        <span class="ecl-form-label{{ hide_label ? ' ecl-form-label--hidden' }}{{ invalid ? ' ecl-form-label--invalid' }}{{ disabled ? ' ecl-form-label--disabled' }}">{{ label }}</span>
+        {%- if required and required_text -%}
+          <span class="ecl-form-label__required">{{ required_text }}</span>
+        {%- elseif not required and optional_text -%}
+          <span class="ecl-form-label__optional">{{ optional_text }}</span>
+        {%- endif -%}
+      </{{ label_tag }}>
+    {%- endif -%}
+    {%- if helper_text -%}
+      <div class="ecl-help-block{{ disabled ? ' ecl-help-block--disabled' }}"{% if id %} id="{{ id }}-helper"{% endif %}>{{ helper_text }}</div>
+    {%- endif -%}
+    {%- block control %}{{ control }}{% endblock -%}
+    {%- if invalid and invalid_text -%}
+      <div class="ecl-feedback-message"{% if id %} id="{{ id }}-feedback"{% endif %}>
+        {{ include('ecl5:icon', { name: 'warning-circle', family: 'phosphor', size: 's', extra_classes: 'ecl-feedback-message__icon' }) }}
+        {{ invalid_text }}
+      </div>
+    {%- endif -%}
+  </{{ group_tag }}>
+{%- endapply -%}

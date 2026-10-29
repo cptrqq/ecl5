@@ -1,0 +1,71 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('ecl-highlighted-search-' ~ random()) -%}
+  {%- set search_input = search_input|default({}) -%}
+  {%- set search_button = search_button|default({}) -%}
+  {%- set suggestions = suggestions|default([]) -%}
+  {%- set title_id = id ~ '-title' -%}
+  {%- set helper_id = id ~ '-helper' -%}
+  {%- set suggestion_label_id = id ~ '-suggestion-label' -%}
+  {%- set input_id = search_input.id|default(id ~ '-input') -%}
+  {%- set classes = ['ecl-highlighted-search', extra_classes]|filter(c => c)|join(' ') -%}
+  <div class="{{ classes }}">
+    <div class="ecl-highlighted-search__content">
+      {%- if title is defined and title is not empty -%}
+        <div class="ecl-highlighted-search__title" id="{{ title_id }}">{{- title -}}</div>
+      {%- endif -%}
+      {%- if description is defined and description is not empty -%}
+        <div class="ecl-highlighted-search__description ecl-content-color">{{- description -}}</div>
+      {%- endif -%}
+      {%- if search_input is not empty -%}
+        <form class="ecl-highlighted-search__form" role="search"
+          {%- if title is defined and title is not empty %} aria-labelledby="{{ title_id }}"{% endif -%}
+          {{- action ? ' action="' ~ action|e('html_attr') ~ '"' : '' }} method="{{ method|default('get') }}">
+          <div class="ecl-highlighted-search__form-content">
+            {{ include('ecl5:icon', { name: 'magnifying-glass', family: 'phosphor', size: 'm', extra_classes: 'ecl-highlighted-search__form-icon' }) }}
+            {%- set control -%}
+              {{ include('ecl5:text-input', search_input|merge({
+                id: input_id,
+                type: 'search',
+                width: 'l',
+                extra_classes: ('ecl-highlighted-search__form-input ' ~ search_input.extra_classes|default(''))|trim,
+              })) }}
+            {%- endset -%}
+            {{ include('ecl5:form-group', {
+              label: search_input.placeholder|default(search_button.label)|default(''),
+              hide_label: true,
+              for: input_id,
+              extra_classes: 'ecl-highlighted-search__form-group',
+              control: control,
+            }) }}
+            {{ include('ecl5:button', search_button|merge({
+              label: search_button.label|default('Search'),
+              variant: 'primary',
+              style: 'highlight',
+              size: 'm',
+              type: 'submit',
+              extra_classes: ('ecl-highlighted-search__form-button ' ~ search_button.extra_classes|default(''))|trim,
+            })) }}
+          </div>
+          {%- if search_helper is defined and search_helper is not empty -%}
+            <div class="ecl-highlighted-search__form-helper" id="{{ helper_id }}">{{- search_helper -}}</div>
+          {%- endif -%}
+        </form>
+      {%- endif -%}
+      {%- if suggestions is not empty -%}
+        <div class="ecl-highlighted-search__suggestion">
+          {%- if suggestion_label is defined and suggestion_label is not empty -%}
+            <span class="ecl-highlighted-search__suggestion-label" id="{{ suggestion_label_id }}">{{- suggestion_label -}}</span>
+          {%- endif -%}
+          <ul class="ecl-tag-set ecl-highlighted-search__suggestion-list"
+            {%- if suggestion_label is defined and suggestion_label is not empty %} aria-labelledby="{{ suggestion_label_id }}"{% endif -%}
+          >
+            {%- for tag in suggestions -%}
+              <li class="ecl-tag-set__item">{{ include('ecl5:tag', tag) }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endapply -%}

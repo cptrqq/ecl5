@@ -1,0 +1,27 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Picture
+status: stable
+description: 'Responsive <picture> with breakpoint-keyed sources and a fallback image.'
+props:
+  type: object
+  properties:
+    img:
+      type: object
+      title: Fallback image
+      description: '{ src, alt }'
+    sources:
+      type: array
+      title: Sources
+      description: 'List of { src, media, type }. media may be a breakpoint key (xs,s,m,l,xl,xxl) or a raw media query.'
+      items:
+        type: object
+    image_anchor:
+      type: string
+      title: Focal point
+    lazy:
+      type: boolean
+      default: true
+    extra_classes:
+      type: string
+    extra_image_classes:
+      type: string

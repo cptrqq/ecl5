@@ -1,0 +1,47 @@
+$schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Banner
+status: stable
+description: 'Hero banner with background image or video, title, description and a call-to-action.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      default: banner
+    title:
+      type: string
+    description:
+      type: string
+    credit:
+      type: string
+    picture:
+      type: object
+    video:
+      type: object
+    cta:
+      type: object
+      description: 'Call-to-action link props ({ label, path }).'
+    size:
+      type: string
+      enum: [xs, s, m, l]
+      default: m
+    variant:
+      type: string
+      enum: ['', overlay, plain-background, image-overlay]
+    box:
+      type: string
+      enum: ['', grey, dark, none]
+      description: 'Content box background.'
+    color:
+      type: string
+      enum: ['', light, dark]
+    horizontal:
+      type: string
+      enum: ['', left, center, right]
+    vertical:
+      type: string
+      enum: ['', top, center, bottom]
+    full_width:
+      type: boolean
+    extra_classes:
+      type: string

@@ -1,0 +1,16 @@
+{{ attach_library('ecl5/global') }}
+{%- apply spaceless -%}
+  {%- set id = id|default('ecl-datepicker') -%}
+  {%- set width = width|default('m') -%}
+  {%- set autoinit = autoinit is defined ? autoinit : true -%}
+  {%- set classes = ['ecl-datepicker', 'ecl-datepicker--' ~ width, invalid ? 'ecl-datepicker--invalid', extra_classes]|filter(c => c)|join(' ') -%}
+  <div class="{{ classes }}"
+    {{- autoinit ? ' data-ecl-auto-init="Datepicker"' -}}
+    {{- default_value ? ' data-value="' ~ default_value|e('html_attr') ~ '"' -}}
+    {{- placeholder ? ' data-placeholder="' ~ placeholder|e('html_attr') ~ '"' -}}
+    data-ecl-datepicker-toggle>
+    <duet-date-picker identifier="{{ id }}" name="{{ name|default(id) }}" first-day-of-week="{{ first_day_of_week|default(1) }}"
+      {{- min ? ' min="' ~ min|e('html_attr') ~ '"' -}}
+      {{- max ? ' max="' ~ max|e('html_attr') ~ '"' -}}></duet-date-picker>
+  </div>
+{%- endapply -%}
