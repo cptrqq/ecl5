@@ -11,7 +11,7 @@
       data-ecl-label-expanded="{{ label_expanded|e('html_attr') }}"
       data-ecl-label-collapsed="{{ label_collapsed|e('html_attr') }}">
       <span class="ecl-button__label">{{ label_collapsed }}</span>
-      {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'fluid', extra_classes: 'ecl-button__icon' }) }}
+      {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'fluid', extra_classes: 'ecl-button__icon' }, false) }}
     </button>
     <div id="{{ id }}-content" class="ecl-expandable__content" hidden>
       {%- block content %}{{ content|render }}{% endblock -%}

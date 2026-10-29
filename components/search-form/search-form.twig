@@ -9,10 +9,10 @@
       id: input_id,
       type: 'search',
       extra_classes: ('ecl-search-form__text-input ' ~ input.extra_classes|default(''))|trim,
-    })) }}
+    }), false) }}
     <button type="submit" class="ecl-button ecl-button--primary ecl-button--icon-only ecl-search-form__button">
       <span class="ecl-button__label" aria-hidden="true">{{ button_label|default('Search') }}</span>
-      {{ include('ecl5:icon', { name: 'magnifying-glass', family: 'phosphor', size: 'm', extra_classes: 'ecl-button__icon' }) }}
+      {{ include('ecl5:icon', { name: 'magnifying-glass', family: 'phosphor', size: 'm', extra_classes: 'ecl-button__icon' }, false) }}
     </button>
   </form>
 {%- endapply -%}

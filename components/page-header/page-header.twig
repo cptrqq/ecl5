@@ -23,13 +23,13 @@
   {# --- reusable markup fragments --- #}
   {%- set breadcrumb_markup -%}
     {%- if breadcrumb is not empty -%}
-      {{ include('ecl5:breadcrumb', breadcrumb|merge({ extra_classes: 'ecl-page-header__breadcrumb' })) }}
+      {{ include('ecl5:breadcrumb', breadcrumb|merge({ extra_classes: 'ecl-page-header__breadcrumb' }), false) }}
     {%- endif -%}
   {%- endset -%}
 
   {%- set picture_markup -%}
     {%- if has_background_img -%}
-      {{ include('ecl5:picture', picture_background|merge({ extra_classes: 'ecl-page-header__picture-background', extra_image_classes: 'ecl-page-header__background' })) }}
+      {{ include('ecl5:picture', picture_background|merge({ extra_classes: 'ecl-page-header__picture-background', extra_image_classes: 'ecl-page-header__background' }), false) }}
     {%- endif -%}
   {%- endset -%}
 
@@ -43,7 +43,7 @@
     {%- if description is not empty or has_thumbnail -%}
       <div class="ecl-page-header__description-container">
         {%- if has_thumbnail -%}
-          {{ include('ecl5:picture', picture_thumbnail|merge({ extra_classes: 'ecl-page-header__picture-thumbnail', extra_image_classes: 'ecl-page-header__description-thumbnail' })) }}
+          {{ include('ecl5:picture', picture_thumbnail|merge({ extra_classes: 'ecl-page-header__picture-thumbnail', extra_image_classes: 'ecl-page-header__description-thumbnail' }), false) }}
         {%- endif -%}
         {%- if description is not empty -%}
           <p class="ecl-page-header__description">{{ description }}</p>
@@ -61,7 +61,7 @@
           {%- if item.label is defined -%}
             <{{ meta_item_tag }} class="ecl-page-header__meta-item">
               {%- if item.icon is defined -%}
-                {{ include('ecl5:icon', item.icon|merge({ size: '2xs', extra_classes: 'ecl-page-header__meta-icon' })) }}
+                {{ include('ecl5:icon', item.icon|merge({ size: '2xs', extra_classes: 'ecl-page-header__meta-icon' }), false) }}
               {%- endif -%}
               {{- item.label -}}
             </{{ meta_item_tag }}>
@@ -85,7 +85,7 @@
               <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-button--l ecl-button--icon-only ecl-page-header-expandable__toggle"
                 aria-controls="{{ panel_id }}" aria-expanded="false" data-ecl-page-header-expandable-toggle>
                 <span class="ecl-button__label" aria-hidden="true">{{ expandable.toggle_label|default('') }}</span>
-                {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'm', extra_classes: 'ecl-button__icon' }) }}
+                {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'm', extra_classes: 'ecl-button__icon' }, false) }}
               </button>
             {%- endif -%}
           </div>

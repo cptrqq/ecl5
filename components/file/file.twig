@@ -28,10 +28,10 @@
     <article class="ecl-file__container">
       <div class="ecl-file__info">
         {%- if picture.img is defined and picture.img -%}
-          {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-file__picture', extra_image_classes: 'ecl-file__image' })) }}
+          {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-file__picture', extra_image_classes: 'ecl-file__image' }), false) }}
         {%- elseif icon is not empty -%}
           <div class="ecl-file__icon-box">
-            {{ include('ecl5:icon', icon|merge({ size: icon.size|default('l'), extra_classes: 'ecl-file__icon' })) }}
+            {{ include('ecl5:icon', icon|merge({ size: icon.size|default('l'), extra_classes: 'ecl-file__icon' }), false) }}
           </div>
         {%- endif -%}
 
@@ -42,7 +42,7 @@
               {%- set labels_item_tag = labels|length == 1 ? 'div' : 'li' -%}
               <{{ labels_list_tag }} class="ecl-file__labels"{% if labels_aria is defined and labels_aria is not empty %} aria-label="{{ labels_aria }}"{% endif %}>
                 {%- for label in labels -%}
-                  <{{ labels_item_tag }} class="ecl-file__label">{{ include('ecl5:label', label) }}</{{ labels_item_tag }}>
+                  <{{ labels_item_tag }} class="ecl-file__label">{{ include('ecl5:label', label, false) }}</{{ labels_item_tag }}>
                 {%- endfor -%}
               </{{ labels_list_tag }}>
             {%- endif -%}
@@ -50,9 +50,9 @@
             {%- if title is not empty -%}
               <div class="ecl-file__title" id="{{ title_id }}">
                 {%- if title.link is defined -%}
-                  {{ include('ecl5:link', title.link|merge({ variant: 'standalone' })) }}
+                  {{ include('ecl5:link', title.link|merge({ variant: 'standalone' }), false) }}
                 {%- elseif title.path is defined -%}
-                  {{ include('ecl5:link', title|merge({ variant: 'standalone' })) }}
+                  {{ include('ecl5:link', title|merge({ variant: 'standalone' }), false) }}
                 {%- else -%}
                   {{ title.label|default(title) }}
                 {%- endif -%}
@@ -76,7 +76,7 @@
             {%- if lists is not empty -%}
               <div class="ecl-file__lists">
                 {%- for list in lists -%}
-                  {{ include('ecl5:description-list', list) }}
+                  {{ include('ecl5:description-list', list, false) }}
                 {%- endfor -%}
               </div>
             {%- endif -%}
@@ -93,7 +93,7 @@
               data-ecl-file-translation-toggle aria-expanded="false" aria-controls="{{ translation_list_id }}"
               aria-label="{{ translation.sr_toggle|default('') }} - {{ language }}">
               <span class="ecl-button__label">{{ toggle_label }}</span>
-              {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'fluid', extra_classes: 'ecl-button__icon' }) }}
+              {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'fluid', extra_classes: 'ecl-button__icon' }, false) }}
             </button>
           {%- else -%}
             {{- toggle_label -}}
@@ -153,6 +153,6 @@
       icon: { name: 'download-simple', family: 'phosphor', size: 'fluid' },
       extra_classes: base_class,
       extra_attributes: attrs,
-    }) }}
+    }, false) }}
   {%- endapply -%}
 {%- endmacro -%}

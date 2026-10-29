@@ -41,7 +41,7 @@
                         size: 'xl',
                         color: counter_color ? 'primary' : null,
                         extra_classes: 'ecl-animated-number__icon',
-                      })) }}
+                      }), false) }}
                     {%- endif -%}
                   </div>
                 {%- endif -%}
@@ -102,7 +102,7 @@
         {{ include('ecl5:link', source.link|merge({
           inverted: with_background,
           extra_classes: 'ecl-animated-numbers__source',
-        })) }}
+        }), false) }}
       {%- else -%}
         <span class="ecl-animated-numbers__source">{{ source.name }}</span>
       {%- endif -%}
@@ -114,7 +114,7 @@
               {{ include('ecl5:link', source.link|merge({
                 inverted: with_background,
                 extra_classes: 'ecl-animated-numbers__source',
-              })) }}
+              }), false) }}
             {%- else -%}
               <span class="ecl-animated-numbers__source">{{- source.name -}}</span>
             {%- endif -%}

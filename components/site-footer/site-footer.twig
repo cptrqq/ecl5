@@ -26,7 +26,7 @@
             <{{ list_tag }} class="ecl-site-footer__co-owner-list">
               {%- for item in co_owner.links -%}
                 <{{ item_tag }} class="ecl-site-footer__co-owner-item{{ loop.first ? ' is-first' }}">
-                  {{ include('ecl5:link', item|merge({ variant: 'standalone', extra_classes: 'ecl-site-footer__co-owner-link' })) }}
+                  {{ include('ecl5:link', item|merge({ variant: 'standalone', extra_classes: 'ecl-site-footer__co-owner-link' }), false) }}
                 </{{ item_tag }}>
               {%- endfor -%}
             </{{ list_tag }}>
@@ -90,7 +90,7 @@
       {%- if section.title is not empty -%}
         <div class="ecl-site-footer__title">
           {%- if section.title.link is defined and section.title.link is not empty -%}
-            {{ include('ecl5:link', section.title.link|merge({ variant: 'standalone', inverted: true, icon: section.title.icon|default({}), extra_classes: 'ecl-site-footer__title-link' })) }}
+            {{ include('ecl5:link', section.title.link|merge({ variant: 'standalone', inverted: true, icon: section.title.icon|default({}), extra_classes: 'ecl-site-footer__title-link' }), false) }}
           {%- else -%}
             {{- section.title -}}
           {%- endif -%}
@@ -99,9 +99,9 @@
 
       {%- if section.logo is not empty and section.logo.picture is not empty -%}
         {%- set logo_label -%}
-          {{ include('ecl5:picture', section.logo.picture|merge({ extra_classes: 'ecl-site-footer__picture', extra_image_classes: 'ecl-site-footer__logo-image' })) }}
+          {{ include('ecl5:picture', section.logo.picture|merge({ extra_classes: 'ecl-site-footer__picture', extra_image_classes: 'ecl-site-footer__logo-image' }), false) }}
         {%- endset -%}
-        {{ include('ecl5:link', { path: section.logo.path, label: logo_label, variant: 'standalone', inverted: true, extra_classes: 'ecl-site-footer__logo-link' }) }}
+        {{ include('ecl5:link', { path: section.logo.path, label: logo_label, variant: 'standalone', inverted: true, extra_classes: 'ecl-site-footer__logo-link' }, false) }}
       {%- endif -%}
 
       {%- if section.description is not empty -%}
@@ -111,13 +111,13 @@
       {%- if section.action_button is not empty -%}
         {%- set btn_size = section.action_button.size|default('m') -%}
         {%- set btn_classes = ['ecl-site-footer__action-button', btn_size != 'l' ? 'ecl-button--' ~ btn_size]|filter(c => c)|join(' ') -%}
-        {{ include('ecl5:link', section.action_button|merge({ variant: section.action_button.variant|default('secondary'), inverted: true, extra_classes: btn_classes })) }}
+        {{ include('ecl5:link', section.action_button|merge({ variant: section.action_button.variant|default('secondary'), inverted: true, extra_classes: btn_classes }), false) }}
       {%- endif -%}
 
       {%- if section.social_media is not empty or section.extra_links is not empty -%}
         {%- if section.extra_links is not empty -%}<div class="ecl-site-footer__extra-links-container">{%- endif -%}
         {%- if section.social_media is not empty -%}
-          {{ include('ecl5:social-media-follow', section.social_media|merge({ extra_classes: 'ecl-site-footer__social-media' })) }}
+          {{ include('ecl5:social-media-follow', section.social_media|merge({ extra_classes: 'ecl-site-footer__social-media' }), false) }}
         {%- endif -%}
         {%- if section.extra_links is not empty -%}
           {%- set list_tag = section.extra_links|length == 1 ? 'div' : 'ul' -%}
@@ -125,7 +125,7 @@
           <{{ list_tag }} class="ecl-site-footer__list ecl-site-footer__list--inline">
             {%- for item in section.extra_links -%}
               <{{ item_tag }} class="ecl-site-footer__list-item">
-                {{ include('ecl5:link', item|merge({ variant: 'standalone', inverted: true, extra_classes: 'ecl-site-footer__link' })) }}
+                {{ include('ecl5:link', item|merge({ variant: 'standalone', inverted: true, extra_classes: 'ecl-site-footer__link' }), false) }}
               </{{ item_tag }}>
             {%- endfor -%}
           </{{ list_tag }}>
@@ -140,7 +140,7 @@
         <{{ list_tag }} class="{{ list_class }}">
           {%- for item in section.links -%}
             <{{ item_tag }} class="ecl-site-footer__list-item">
-              {{ include('ecl5:link', item|merge({ variant: 'standalone', inverted: true, extra_classes: 'ecl-site-footer__link' })) }}
+              {{ include('ecl5:link', item|merge({ variant: 'standalone', inverted: true, extra_classes: 'ecl-site-footer__link' }), false) }}
             </{{ item_tag }}>
           {%- endfor -%}
         </{{ list_tag }}>

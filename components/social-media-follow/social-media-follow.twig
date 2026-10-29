@@ -21,7 +21,7 @@
             icon: (link.icon|default({}))|merge({ size: link.icon.size|default('m'), extra_classes: 'ecl-social-media-follow__icon' }),
             icon_position: 'before',
             extra_classes: 'ecl-social-media-follow__link',
-          }) }}
+          }, false) }}
         </{{ tag_item }}>
       {%- endfor -%}
     </{{ tag_list }}>

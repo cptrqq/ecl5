@@ -37,14 +37,14 @@
           label: prev_label|default(''), hide_label: true,
           icon: { name: 'caret-left', family: 'phosphor' },
           extra_classes: 'ecl-slider-pager__prev ecl-quiz__prev',
-        }) }}
+        }, false) }}
         <div class="ecl-slider-pager__dots ecl-quiz__dots"></div>
         {{ include('ecl5:button', {
           type: 'button', variant: 'tertiary', style: 'neutral', size: 's',
           label: next_label|default(''), hide_label: true,
           icon: { name: 'caret-right', family: 'phosphor' },
           extra_classes: 'ecl-slider-pager__next ecl-quiz__next',
-        }) }}
+        }, false) }}
         <script type="text/template" data-ecl-slider-dot-template data-ecl-quiz-dot-template>
           <button class="ecl-slider-pager__dot ecl-quiz__dot"></button>
         </script>
@@ -67,7 +67,7 @@
     {%- set has_picture = picture.img is defined and picture.img.src is defined and picture.img.src -%}
     {%- set picture_markup -%}
       {%- if has_picture -%}
-        {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-quiz-card__picture', extra_image_classes: 'ecl-quiz-card__image' })) }}
+        {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-quiz-card__picture', extra_image_classes: 'ecl-quiz-card__image' }), false) }}
       {%- endif -%}
     {%- endset -%}
     {%- set card_attrs = [] -%}
@@ -101,7 +101,7 @@
           <div class="ecl-quiz-card__padded">
             <div class="ecl-quiz-card__header">
               {%- if icon is not empty and not (variant == 'poll' and image_display == 'reveal') -%}
-                <div class="ecl-quiz-card__icon">{{ include('ecl5:icon', icon) }}</div>
+                <div class="ecl-quiz-card__icon">{{ include('ecl5:icon', icon, false) }}</div>
               {%- endif -%}
             </div>
             {%- if variant == 'reveal' -%}
@@ -126,7 +126,7 @@
               </fieldset>
             {%- endif -%}
             {%- if item.flip_text is defined and item.flip_text is not empty -%}
-              <div class="ecl-quiz-card__flip">{{- item.flip_text -}}{{ include('ecl5:icon', flip_icon) }}</div>
+              <div class="ecl-quiz-card__flip">{{- item.flip_text -}}{{ include('ecl5:icon', flip_icon, false) }}</div>
             {%- endif -%}
           </div>
         </div>
@@ -137,10 +137,10 @@
               {%- if icon is not empty or back_icon is not empty -%}
                 <div class="ecl-quiz-card__icon">
                   {%- if back_icon is not empty -%}
-                    {{ include('ecl5:icon', back_icon.success|merge({ extra_classes: 'ecl-quiz-card__icon--success' })) }}
+                    {{ include('ecl5:icon', back_icon.success|merge({ extra_classes: 'ecl-quiz-card__icon--success' }), false) }}
                     {%- set icon = back_icon.error -%}
                   {%- endif -%}
-                  {%- if icon is not empty -%}{{ include('ecl5:icon', icon) }}{%- endif -%}
+                  {%- if icon is not empty -%}{{ include('ecl5:icon', icon, false) }}{%- endif -%}
                 </div>
               {%- endif -%}
             </div>
@@ -160,9 +160,9 @@
                     {{- option.name -}}
                     <span class="ecl-quiz-card__option-icon">
                       {%- if option.correct -%}
-                        {{ include('ecl5:icon', back_icon.success|merge({ size: 's', extra_classes: 'ecl-quiz-card__option-icon--success' })) }}
+                        {{ include('ecl5:icon', back_icon.success|merge({ size: 's', extra_classes: 'ecl-quiz-card__option-icon--success' }), false) }}
                       {%- else -%}
-                        {{ include('ecl5:icon', back_icon.error|merge({ size: 's', extra_classes: 'ecl-quiz-card__option-icon--error' })) }}
+                        {{ include('ecl5:icon', back_icon.error|merge({ size: 's', extra_classes: 'ecl-quiz-card__option-icon--error' }), false) }}
                       {%- endif -%}
                     </span>
                   </li>
@@ -170,7 +170,7 @@
               </ol>
             {%- endif -%}
             {%- if (item.back_text is defined and item.back_text is not empty) or flip_icon is not empty -%}
-              <div class="ecl-quiz-card__flip">{{- item.back_text|default('') -}}{{ include('ecl5:icon', flip_icon) }}</div>
+              <div class="ecl-quiz-card__flip">{{- item.back_text|default('') -}}{{ include('ecl5:icon', flip_icon, false) }}</div>
             {%- endif -%}
           </div>
         </div>

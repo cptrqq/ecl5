@@ -7,7 +7,7 @@
       <header class="ecl-highlight-box__header">
         {%- if icon.name is defined and icon.name -%}
           <div class="ecl-highlight-box__icon-wrapper">
-            {{ include('ecl5:icon', icon|merge({ extra_classes: 'ecl-highlight-box__icon' })) }}
+            {{ include('ecl5:icon', icon|merge({ extra_classes: 'ecl-highlight-box__icon' }), false) }}
           </div>
         {%- endif -%}
         {%- if title -%}
@@ -21,7 +21,7 @@
           <div class="ecl-highlight-box__description">{{ description }}</div>
         {%- endif -%}
         {%- if link.label is defined and link.label -%}
-          {{ include('ecl5:link', link|merge({ variant: 'secondary', extra_classes: 'ecl-highlight-box__link' })) }}
+          {{ include('ecl5:link', link|merge({ variant: 'secondary', extra_classes: 'ecl-highlight-box__link' }), false) }}
         {%- endif -%}
       </div>
     {%- endif -%}

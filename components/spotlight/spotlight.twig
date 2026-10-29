@@ -8,7 +8,7 @@
     <a href="{{ path|default('#') }}" class="ecl-spotlight__link">
       {%- if picture.img is defined and picture.img -%}
         <figure class="ecl-spotlight__picture-container">
-          {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-spotlight__picture', extra_image_classes: 'ecl-spotlight__image' })) }}
+          {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-spotlight__picture', extra_image_classes: 'ecl-spotlight__image' }), false) }}
         </figure>
       {%- endif -%}
       {%- if title or credit -%}

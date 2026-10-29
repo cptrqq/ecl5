@@ -6,7 +6,7 @@
     <div class="{{ classes }}">
       <div class="ecl-navigation-list__items">
         {%- for item in items -%}
-          {{ include('ecl5:navigation-list-item', item|merge({ border: border|default(false) })) }}
+          {{ include('ecl5:navigation-list-item', item|merge({ border: border|default(false) }), false) }}
         {%- endfor -%}
       </div>
     </div>

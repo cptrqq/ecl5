@@ -67,10 +67,10 @@
     <li class="{{ item_classes }}">
       <div class="{{ content_classes }}">
         {%- if picture.img is defined and picture.img -%}
-          {{ include('ecl5:picture', picture|merge({ extra_classes: picture_classes, extra_image_classes: image_classes })) }}
+          {{ include('ecl5:picture', picture|merge({ extra_classes: picture_classes, extra_image_classes: image_classes }), false) }}
         {%- endif -%}
         {%- if icon is not empty -%}
-          {{ include('ecl5:icon', icon|merge({ size: icon_size, extra_classes: 'ecl-list-illustration__icon' })) }}
+          {{ include('ecl5:icon', icon|merge({ size: icon_size, extra_classes: 'ecl-list-illustration__icon' }), false) }}
         {%- endif -%}
         <div class="ecl-list-illustration__detail">
           {%- if item.title is not empty or item.value is not empty -%}

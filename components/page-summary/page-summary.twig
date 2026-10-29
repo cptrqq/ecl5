@@ -6,7 +6,7 @@
     {%- if title or (icon.name is defined and icon.name) -%}
       <div class="ecl-page-summary__header">
         {%- if icon.name is defined and icon.name -%}
-          {{ include('ecl5:icon', icon|merge({ extra_classes: 'ecl-page-summary__icon' })) }}
+          {{ include('ecl5:icon', icon|merge({ extra_classes: 'ecl-page-summary__icon' }), false) }}
         {%- endif -%}
         {%- if title -%}
           <h2 class="ecl-page-summary__title" id="{{ id }}-title">{{ title }}</h2>

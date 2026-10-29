@@ -17,7 +17,7 @@
             {%- set item_class = ['ecl-fact-figures__item', font_size != 'l' ? 'ecl-fact-figures__item--font-m', loop.first ? 'is-first']|filter(c => c)|join(' ') -%}
             <div class="{{ item_class }}">
               {%- if item.icon is defined and item.icon and display_icons -%}
-                {{ include('ecl5:icon', item.icon|merge({ size: icon_size|default('xl'), extra_classes: 'ecl-fact-figures__icon' })) }}
+                {{ include('ecl5:icon', item.icon|merge({ size: icon_size|default('xl'), extra_classes: 'ecl-fact-figures__icon' }), false) }}
               {%- endif -%}
               {%- if item.value is defined and item.value -%}
                 <div class="ecl-fact-figures__value">
@@ -42,7 +42,7 @@
             variant: 'standalone',
             icon: view_all.icon|default({ name: 'arrow-right', family: 'phosphor', size: 'xs' }),
             extra_classes: 'ecl-fact-figures__view-all-link',
-          })) }}
+          }), false) }}
         </div>
       {%- endif -%}
     </div>

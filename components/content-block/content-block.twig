@@ -7,7 +7,7 @@
       {%- set li = labels|length == 1 ? 'div' : 'li' -%}
       <{{ lt }} class="ecl-content-block__label-container"{{ labels_aria ? ' aria-label="' ~ labels_aria|e('html_attr') ~ '"' : '' }}>
         {%- for label in labels -%}
-          <{{ li }} class="ecl-content-block__label-item">{{ include('ecl5:label', label) }}</{{ li }}>
+          <{{ li }} class="ecl-content-block__label-item">{{ include('ecl5:label', label, false) }}</{{ li }}>
         {%- endfor -%}
       </{{ lt }}>
     {%- endif -%}
@@ -20,7 +20,7 @@
           <{{ mi }} class="ecl-content-block__primary-meta-item">
             {%- if meta is mapping -%}
               {%- if meta.icon is defined and meta.icon -%}
-                {{ include('ecl5:icon', meta.icon|merge({ size: 's', extra_classes: 'ecl-content-block__primary-meta-icon' })) }}
+                {{ include('ecl5:icon', meta.icon|merge({ size: 's', extra_classes: 'ecl-content-block__primary-meta-icon' }), false) }}
               {%- endif -%}
               <span class="ecl-content-block__primary-meta-label">{{ meta.label|default('') }}</span>
             {%- else -%}
@@ -34,7 +34,7 @@
     {%- if title is not empty -%}
       <div class="ecl-content-block__title">
         {%- if title.path is defined -%}
-          {{ include('ecl5:link', title) }}
+          {{ include('ecl5:link', title, false) }}
         {%- else -%}
           {{ title.label|default(title) }}
         {%- endif -%}
@@ -53,7 +53,7 @@
         {%- for meta in secondary_meta -%}
           <{{ si }} class="ecl-content-block__secondary-meta-item">
             {%- if meta.icon is defined and meta.icon -%}
-              {{ include('ecl5:icon', meta.icon|merge({ size: 's', extra_classes: 'ecl-content-block__secondary-meta-icon' })) }}
+              {{ include('ecl5:icon', meta.icon|merge({ size: 's', extra_classes: 'ecl-content-block__secondary-meta-icon' }), false) }}
             {%- endif -%}
             <span class="ecl-content-block__secondary-meta-label">{{ meta.label }}</span>
           </{{ si }}>
@@ -67,7 +67,7 @@
         {%- set cli = links|length == 1 ? 'div' : 'li' -%}
         <{{ clt }} class="ecl-content-block__link-list">
           {%- for link in links -%}
-            <{{ cli }} class="ecl-content-block__link-item">{{ include('ecl5:link', link|merge({ variant: 'standalone' })) }}</{{ cli }}>
+            <{{ cli }} class="ecl-content-block__link-item">{{ include('ecl5:link', link|merge({ variant: 'standalone' }), false) }}</{{ cli }}>
           {%- endfor -%}
         </{{ clt }}>
       </div>

@@ -11,19 +11,19 @@
     <div class="ecl-container ecl-menu__container">
       <button type="button" class="ecl-button ecl-button--tertiary ecl-menu__open" data-ecl-menu-open>
         <span class="ecl-button__label">{{ toggle_label|default('Menu') }}</span>
-        {{ include('ecl5:icon', { name: 'list', family: 'phosphor', size: 's', extra_classes: 'ecl-button__icon' }) }}
+        {{ include('ecl5:icon', { name: 'list', family: 'phosphor', size: 's', extra_classes: 'ecl-button__icon' }, false) }}
       </button>
       <section class="ecl-menu__inner" data-ecl-menu-inner aria-label="{{ title }}">
         <header class="ecl-menu__inner-header">
           <button type="button" class="ecl-button ecl-button--tertiary ecl-menu__close ecl-button--icon-only" data-ecl-menu-close>
             <span class="ecl-button__label" aria-hidden="true">{{ close_label|default('Close') }}</span>
-            {{ include('ecl5:icon', { name: 'x', family: 'phosphor', size: 's', extra_classes: 'ecl-button__icon' }) }}
+            {{ include('ecl5:icon', { name: 'x', family: 'phosphor', size: 's', extra_classes: 'ecl-button__icon' }, false) }}
           </button>
           <div class="ecl-menu__title">{{ title }}</div>
         </header>
         <ul class="ecl-menu__list" data-ecl-menu-list>
           {%- for key, item in items|default([]) -%}
-            {{ include('ecl5:menu-item', item|merge({ id: 'ecl-menu-item-' ~ id ~ '-' ~ key, see_all_label: see_all_label|default('See all') })) }}
+            {{ include('ecl5:menu-item', item|merge({ id: 'ecl-menu-item-' ~ id ~ '-' ~ key, see_all_label: see_all_label|default('See all') }), false) }}
           {%- endfor -%}
         </ul>
       </section>

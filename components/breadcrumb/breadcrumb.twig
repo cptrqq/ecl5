@@ -8,7 +8,7 @@
           <li class="ecl-breadcrumb__segment ecl-breadcrumb__current-page" data-ecl-breadcrumb-item="static" aria-current="page">{{ link.label }}</li>
         {%- else -%}
           <li class="ecl-breadcrumb__segment" data-ecl-breadcrumb-item="static">
-            {{ include('ecl5:link', { label: link.label, path: link.path|default('#'), variant: 'standalone', extra_classes: 'ecl-breadcrumb__link' }) }}
+            {{ include('ecl5:link', { label: link.label, path: link.path|default('#'), variant: 'standalone', extra_classes: 'ecl-breadcrumb__link' }, false) }}
           </li>
         {%- endif -%}
       {%- endfor -%}

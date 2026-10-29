@@ -17,7 +17,7 @@
                 <ul class="ecl-description-list__definition-list">
                   {%- for def in item.definition -%}
                     <li class="ecl-description-list__definition-item">
-                      {%- if def.label is defined -%}{{ include('ecl5:link', def) }}{%- else -%}{{ def }}{%- endif -%}
+                      {%- if def.label is defined -%}{{ include('ecl5:link', def, false) }}{%- else -%}{{ def }}{%- endif -%}
                     </li>
                   {%- endfor -%}
                 </ul>
@@ -27,7 +27,7 @@
               {%- for def in defs -%}
                 <dd class="ecl-description-list__definition">
                   {%- if def is mapping and def.label is defined -%}
-                    {{ include('ecl5:link', def) }}
+                    {{ include('ecl5:link', def, false) }}
                   {%- elseif def is mapping -%}
                     {{ def.label|default('') }}
                   {%- else -%}

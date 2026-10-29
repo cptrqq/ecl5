@@ -22,7 +22,7 @@
           {%- if title is defined and title is not empty %} aria-labelledby="{{ title_id }}"{% endif -%}
           {{- action ? ' action="' ~ action|e('html_attr') ~ '"' : '' }} method="{{ method|default('get') }}">
           <div class="ecl-highlighted-search__form-content">
-            {{ include('ecl5:icon', { name: 'magnifying-glass', family: 'phosphor', size: 'm', extra_classes: 'ecl-highlighted-search__form-icon' }) }}
+            {{ include('ecl5:icon', { name: 'magnifying-glass', family: 'phosphor', size: 'm', extra_classes: 'ecl-highlighted-search__form-icon' }, false) }}
             {%- set control -%}
               {{ include('ecl5:text-input', search_input|merge({
                 id: input_id,
@@ -32,7 +32,7 @@
                 extra_attributes: (search_input.extra_attributes|default([]))|merge(
                   (search_helper is defined and search_helper is not empty) ? [{ name: 'aria-describedby', value: helper_id }] : []
                 ),
-              })) }}
+              }), false) }}
             {%- endset -%}
             {{ include('ecl5:form-group', {
               label: search_input.placeholder|default(search_button.label)|default(''),
@@ -40,7 +40,7 @@
               for: input_id,
               extra_classes: 'ecl-highlighted-search__form-group',
               control: control,
-            }) }}
+            }, false) }}
             {{ include('ecl5:button', search_button|merge({
               label: search_button.label|default('Search'),
               variant: 'primary',
@@ -48,7 +48,7 @@
               size: 'm',
               type: 'submit',
               extra_classes: ('ecl-highlighted-search__form-button ' ~ search_button.extra_classes|default(''))|trim,
-            })) }}
+            }), false) }}
           </div>
           {%- if search_helper is defined and search_helper is not empty -%}
             <div class="ecl-highlighted-search__form-helper" id="{{ helper_id }}">{{- search_helper -}}</div>
@@ -64,7 +64,7 @@
             {%- if suggestion_label is defined and suggestion_label is not empty %} aria-labelledby="{{ suggestion_label_id }}"{% endif -%}
           >
             {%- for tag in suggestions -%}
-              <li class="ecl-tag-set__item">{{ include('ecl5:tag', tag) }}</li>
+              <li class="ecl-tag-set__item">{{ include('ecl5:tag', tag, false) }}</li>
             {%- endfor -%}
           </ul>
         </div>

@@ -14,11 +14,11 @@
     <div class="ecl-slogan-ticker__controls">
       <button type="button" class="ecl-button ecl-button--tertiary ecl-button--icon-only ecl-slogan-ticker__button ecl-slogan-ticker__play" data-ecl-slogan-ticker-play>
         <span class="ecl-button__label" aria-hidden="true">{{ sr_play|default('Play') }}</span>
-        {{ include('ecl5:icon', { name: 'play-circle', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+        {{ include('ecl5:icon', { name: 'play-circle', family: 'phosphor', extra_classes: 'ecl-button__icon' }, false) }}
       </button>
       <button type="button" class="ecl-button ecl-button--tertiary ecl-button--icon-only ecl-slogan-ticker__button ecl-slogan-ticker__pause" data-ecl-slogan-ticker-pause>
         <span class="ecl-button__label" aria-hidden="true">{{ sr_pause|default('Pause') }}</span>
-        {{ include('ecl5:icon', { name: 'pause-circle', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+        {{ include('ecl5:icon', { name: 'pause-circle', family: 'phosphor', extra_classes: 'ecl-button__icon' }, false) }}
       </button>
     </div>
   </div>

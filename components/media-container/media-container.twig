@@ -11,10 +11,10 @@
         </div>
       {%- elseif media_type == 'video' -%}
         <div class="ecl-media-container__video-wrapper">
-          {{ include('ecl5:video', video|default({})|merge({ extra_classes: 'ecl-media-container__media' })) }}
+          {{ include('ecl5:video', video|default({})|merge({ extra_classes: 'ecl-media-container__media' }), false) }}
         </div>
       {%- else -%}
-        {{ include('ecl5:picture', picture|default({})|merge({ extra_classes: 'ecl-media-container__picture', extra_image_classes: 'ecl-media-container__media' })) }}
+        {{ include('ecl5:picture', picture|default({})|merge({ extra_classes: 'ecl-media-container__picture', extra_image_classes: 'ecl-media-container__media' }), false) }}
       {%- endif -%}
       {%- if description -%}
         <figcaption class="ecl-media-container__caption">{{ description }}</figcaption>

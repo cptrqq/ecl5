@@ -9,8 +9,8 @@
         {%- set item_id = id ~ '-' ~ item.value -%}
         <label class="ecl-rating-field__label" for="{{ item_id }}">
           {%- if item.label -%}<span class="ecl-rating-field__sr-label">{{ item.label }}</span>{%- endif -%}
-          {{ include('ecl5:icon', { name: 'star-fill', family: 'phosphor', extra_classes: 'ecl-rating-field__icon-filled' }) }}
-          {{ include('ecl5:icon', { name: 'star', family: 'phosphor', extra_classes: 'ecl-rating-field__icon-outline' }) }}
+          {{ include('ecl5:icon', { name: 'star-fill', family: 'phosphor', extra_classes: 'ecl-rating-field__icon-filled' }, false) }}
+          {{ include('ecl5:icon', { name: 'star', family: 'phosphor', extra_classes: 'ecl-rating-field__icon-outline' }, false) }}
         </label>
         <input id="{{ item_id }}" name="{{ name }}" class="ecl-rating-field__input" type="radio" value="{{ item.value }}"
           {{- item.checked ? ' checked' -}}{{- required ? ' required' -}}{{- disabled ? ' disabled' -}}>

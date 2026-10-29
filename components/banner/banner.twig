@@ -18,12 +18,12 @@
   <section class="{{ classes }}" id="{{ id }}">
     {%- if picture.img is defined and picture.img -%}
       <figure class="ecl-banner__picture-container">
-        {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-banner__picture', extra_image_classes: 'ecl-banner__image' })) }}
+        {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-banner__picture', extra_image_classes: 'ecl-banner__image' }), false) }}
         {%- if credit -%}<footer class="ecl-banner__credit" data-ecl-banner-footer><div class="ecl-container">{{ credit }}</div></footer>{%- endif -%}
       </figure>
     {%- elseif video is defined and video -%}
       <div class="ecl-banner__video-container">
-        {{ include('ecl5:video', video|merge({ extra_classes: 'ecl-banner__video' })) }}
+        {{ include('ecl5:video', video|merge({ extra_classes: 'ecl-banner__video' }), false) }}
         {%- if credit -%}<div class="ecl-banner__credit" data-ecl-banner-footer><div class="ecl-container">{{ credit }}</div></div>{%- endif -%}
       </div>
     {%- endif -%}
@@ -38,7 +38,7 @@
           {%- endif -%}
           {%- if cta.label is defined and cta.label -%}
             <div class="ecl-banner__cta">
-              {{ include('ecl5:link', cta|merge({ variant: 'standalone', extra_classes: 'ecl-banner__link-cta', icon: cta.icon|default({ name: 'arrow-right', family: 'phosphor', size: 'xs' }) })) }}
+              {{ include('ecl5:link', cta|merge({ variant: 'standalone', extra_classes: 'ecl-banner__link-cta', icon: cta.icon|default({ name: 'arrow-right', family: 'phosphor', size: 'xs' }) }), false) }}
             </div>
           {%- endif -%}
         </div>

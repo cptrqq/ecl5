@@ -16,7 +16,7 @@
           name: 'x-circle', family: 'phosphor', size: 'xs',
           title: aria_label|default('Remove'),
           extra_classes: 'ecl-tag__icon-close',
-        }) }}
+        }, false) }}
       </span>
     </button>
   {%- else -%}
@@ -26,7 +26,7 @@
         {{ include('ecl5:icon', {
           name: 'arrow-square-out', family: 'phosphor', size: '2xs',
           extra_classes: 'ecl-tag__icon ecl-tag__icon--external',
-        }) }}
+        }, false) }}
       {%- endif -%}
     </a>
   {%- endif -%}

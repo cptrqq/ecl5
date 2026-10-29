@@ -10,7 +10,7 @@
         {{- item.open ? ' open' : '' -}}>
         <summary class="ecl-accordion__toggle">
           {{- item.label -}}
-          {{ include('ecl5:icon', (icon|default({ name: 'caret-down', family: 'phosphor' }))|merge({ size: 's', extra_classes: 'ecl-accordion__toggle-icon' })) }}
+          {{ include('ecl5:icon', (icon|default({ name: 'caret-down', family: 'phosphor' }))|merge({ size: 's', extra_classes: 'ecl-accordion__toggle-icon' }), false) }}
         </summary>
         <div class="ecl-accordion__content">{{ item.content }}</div>
       </details>

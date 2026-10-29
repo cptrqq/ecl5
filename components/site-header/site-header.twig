@@ -68,7 +68,7 @@
                         {%- if custom_action.overlay.close_label is defined and custom_action.overlay.close_label is not empty -%}
                           <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-button--icon-only ecl-site-header__custom-action-close" data-ecl-custom-action-close>
                             <span class="ecl-button__label" aria-hidden="true">{{ custom_action.overlay.close_label }}</span>
-                            {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+                            {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }, false) }}
                           </button>
                         {%- endif -%}
                       </div>
@@ -119,7 +119,7 @@
                   {%- endif -%}
                   <div class="ecl-site-header__search-dialog" role="dialog" aria-modal="true" id="ecl-site-header-search-form-dialog"
                     {%- if search_form.input.id is defined and search_form.input.id %} aria-labelledby="{{ search_form.input.id }}-label"{% endif -%}>
-                    {{ include('ecl5:search-form', search_form|merge({ extra_classes: ('ecl-site-header__search ' ~ search_form.extra_classes|default(''))|trim })) }}
+                    {{ include('ecl5:search-form', search_form|merge({ extra_classes: ('ecl-site-header__search ' ~ search_form.extra_classes|default(''))|trim }), false) }}
                   </div>
                 </div>
               {%- endif -%}
@@ -131,7 +131,7 @@
       {# Notification #}
       {%- if notification is not empty -%}
         <div class="ecl-site-header__notification">
-          <div class="ecl-container">{{ include('ecl5:notification', notification) }}</div>
+          <div class="ecl-container">{{ include('ecl5:notification', notification, false) }}</div>
         </div>
       {%- endif -%}
 
@@ -153,10 +153,10 @@
 
     {# Menu #}
     {%- if menu is not empty -%}
-      {{ include('ecl5:menu', menu) }}
+      {{ include('ecl5:menu', menu, false) }}
     {%- endif -%}
     {%- if mega_menu is not empty -%}
-      {{ include('ecl5:menu', mega_menu) }}
+      {{ include('ecl5:menu', mega_menu, false) }}
     {%- endif -%}
   </header>
 {%- endapply -%}
@@ -170,9 +170,9 @@
     {%- set classes = ['ecl-button', 'ecl-button--tertiary', 'ecl-button--neutral', (hide_label and has_icon) ? 'ecl-button--icon-only', extra_classes]|filter(c => c)|join(' ') -%}
     {%- set attr_str -%}{%- for a in attrs|default([]) %} {{ a.name }}{% if a.value is not null and a.value != '' %}="{{ a.value|e('html_attr') }}"{% endif %}{% endfor -%}{%- endset -%}
     {%- set inner -%}
-      {%- if has_icon and icon_position == 'before' -%}{{ include('ecl5:icon', icon|merge({ extra_classes: (icon.extra_classes|default('') ~ ' ecl-button__icon')|trim })) }}{%- endif -%}
+      {%- if has_icon and icon_position == 'before' -%}{{ include('ecl5:icon', icon|merge({ extra_classes: (icon.extra_classes|default('') ~ ' ecl-button__icon')|trim }), false) }}{%- endif -%}
       <span class="ecl-button__label"{{ hide_label ? ' aria-hidden="true"' : '' }}>{{ label }}</span>
-      {%- if has_icon and icon_position != 'before' -%}{{ include('ecl5:icon', icon|merge({ extra_classes: (icon.extra_classes|default('') ~ ' ecl-button__icon')|trim })) }}{%- endif -%}
+      {%- if has_icon and icon_position != 'before' -%}{{ include('ecl5:icon', icon|merge({ extra_classes: (icon.extra_classes|default('') ~ ' ecl-button__icon')|trim }), false) }}{%- endif -%}
     {%- endset -%}
     {%- if href is not empty -%}
       <a href="{{ href }}" class="{{ classes }}" role="button"{{ attr_str }}>{{ inner }}</a>
@@ -190,7 +190,7 @@
     {%- set has_overlay = ls.overlay is defined and ls.overlay is not empty -%}
     {%- set selector_classes = 'ecl-button ecl-button--tertiary ecl-button--neutral ecl-site-header__language-selector' -%}
     {%- set icon_markup -%}
-      <span class="ecl-site-header__language-icon">{{ include('ecl5:icon', { name: 'globe-simple', family: 'phosphor', size: 'm', title: label, extra_classes: 'ecl-site-header__icon' }) }}</span>
+      <span class="ecl-site-header__language-icon">{{ include('ecl5:icon', { name: 'globe-simple', family: 'phosphor', size: 'm', title: label, extra_classes: 'ecl-site-header__icon' }, false) }}</span>
     {%- endset -%}
     <div class="ecl-site-header__language">
       {%- if ls.href is defined and ls.href is not empty -%}
@@ -205,7 +205,7 @@
             {%- if ls.overlay.close_label is defined and ls.overlay.close_label is not empty -%}
               <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-button--icon-only ecl-site-header__language-close" data-ecl-language-list-close>
                 <span class="ecl-button__label" aria-hidden="true">{{ ls.overlay.close_label }}</span>
-                {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+                {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }, false) }}
               </button>
             {%- endif -%}
           </div>

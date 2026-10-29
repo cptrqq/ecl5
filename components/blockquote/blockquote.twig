@@ -3,7 +3,7 @@
   {%- set classes = ['ecl-blockquote', extra_classes]|filter(c => c)|join(' ') -%}
   <figure class="{{ classes }}">
     {%- if picture.img is defined and picture.img -%}
-      {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-blockquote__picture', extra_image_classes: 'ecl-blockquote__image' })) }}
+      {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-blockquote__picture', extra_image_classes: 'ecl-blockquote__image' }), false) }}
     {%- endif -%}
     <div class="ecl-blockquote__body">
       <blockquote class="ecl-blockquote__quote">

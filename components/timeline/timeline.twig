@@ -34,7 +34,7 @@
             data-ecl-label-collapsed="{{ toggle_collapsed|e('html_attr') }}"
             data-ecl-label-expanded="{{ toggle_expanded|e('html_attr') }}">
             <span class="ecl-button__label">{{ toggle_collapsed }}</span>
-            {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'xs', extra_classes: 'ecl-button__icon' }) }}
+            {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'xs', extra_classes: 'ecl-button__icon' }, false) }}
           </button>
         </li>
       {%- endif -%}

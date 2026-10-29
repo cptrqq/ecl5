@@ -5,7 +5,7 @@
   <div class="{{ classes }}">
     {%- if show_picture and picture is not empty -%}
       <div class="ecl-story-card__image-wrapper">
-        {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-story-card__picture' })) }}
+        {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-story-card__picture' }), false) }}
       </div>
     {%- endif -%}
     <div class="ecl-story-card__content">
@@ -24,7 +24,7 @@
         {%- if title -%}<div class="ecl-story-card__card-title">{{ title }}</div>{%- endif -%}
         {%- if description -%}<div class="ecl-story-card__card-description">{{ description }}</div>{%- endif -%}
         {%- if link.label is defined and link.label -%}
-          {{ include('ecl5:link', link|merge({ variant: 'standalone', extra_classes: 'ecl-story-card__link' })) }}
+          {{ include('ecl5:link', link|merge({ variant: 'standalone', extra_classes: 'ecl-story-card__link' }), false) }}
         {%- endif -%}
       {%- endif -%}
     </div>

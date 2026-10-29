@@ -10,19 +10,19 @@
   {%- set closeable = closeable is defined ? closeable : true -%}
   {%- set classes = ['ecl-notification', 'ecl-notification--' ~ variant, extra_classes]|filter(c => c)|join(' ') -%}
   <div class="{{ classes }}" data-ecl-notification role="alert">
-    {{ include('ecl5:icon', icon_props|merge({ title: sr_icon|default('') })) }}
+    {{ include('ecl5:icon', icon_props|merge({ title: sr_icon|default('') }), false) }}
     <div class="ecl-notification__content">
       {%- if closeable -%}
         <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-notification__close" data-ecl-notification-close>
           <span class="ecl-button__label" aria-hidden="true">{{ close_label|default('Close') }}</span>
-          {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+          {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }, false) }}
         </button>
       {%- endif -%}
       {%- if title -%}<div class="ecl-notification__title">{{ title }}</div>{%- endif -%}
       {%- if description -%}<div class="ecl-notification__description">{{ description }}</div>{%- endif -%}
       {%- for link in links|default([]) -%}
         <div class="ecl-notification__link">
-          {{ include('ecl5:link', link|merge({ extra_classes: (link.extra_classes|default('')) ~ ' ecl-notification__link-item' })) }}
+          {{ include('ecl5:link', link|merge({ extra_classes: (link.extra_classes|default('')) ~ ' ecl-notification__link-item' }), false) }}
         </div>
       {%- endfor -%}
     </div>

@@ -15,14 +15,14 @@
             <a href="{{ item.media_href|default(item.picture.img.src) }}" data-ecl-gallery-item class="ecl-gallery__item-link" id="ecl-gallery-item-{{ id }}-{{ key }}"{{ item.picture.img.alt is defined and item.picture.img.alt ? ' aria-label="' ~ item.picture.img.alt|e('html_attr') ~ '"' : '' }}>
               <figure class="ecl-gallery__image-container">
                 <div class="ecl-gallery__icon-zoom-wrapper">
-                  {{ include('ecl5:icon', { name: 'arrows-out-simple', family: 'phosphor', size: 's', extra_classes: 'ecl-gallery__icon-zoom' }) }}
+                  {{ include('ecl5:icon', { name: 'arrows-out-simple', family: 'phosphor', size: 's', extra_classes: 'ecl-gallery__icon-zoom' }, false) }}
                 </div>
                 {%- if item.is_video -%}
                   <div class="ecl-gallery__item-icon-wrapper">
-                    {{ include('ecl5:icon', { name: 'play-fill', family: 'phosphor', size: 's', extra_classes: 'ecl-gallery__item-icon' }) }}
+                    {{ include('ecl5:icon', { name: 'play-fill', family: 'phosphor', size: 's', extra_classes: 'ecl-gallery__item-icon' }, false) }}
                   </div>
                 {%- endif -%}
-                {{ include('ecl5:picture', item.picture|default({})|merge({ extra_classes: 'ecl-gallery__picture', extra_image_classes: 'ecl-gallery__image' })) }}
+                {{ include('ecl5:picture', item.picture|default({})|merge({ extra_classes: 'ecl-gallery__picture', extra_image_classes: 'ecl-gallery__image' }), false) }}
                 {%- if item.caption -%}
                   <figcaption class="ecl-gallery__description">{{ item.caption }}</figcaption>
                 {%- endif -%}

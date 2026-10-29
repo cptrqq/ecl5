@@ -18,13 +18,13 @@
             {%- if description -%}<div class="ecl-featured-item__description">{{ description }}</div>{%- endif -%}
           </div>
           {%- if link.label is defined and link.label -%}
-            {{ include('ecl5:link', link|merge({ variant: 'standalone', extra_classes: 'ecl-featured-item__link' })) }}
+            {{ include('ecl5:link', link|merge({ variant: 'standalone', extra_classes: 'ecl-featured-item__link' }), false) }}
           {%- endif -%}
         </div>
       </div>
       {%- if media_container is not empty -%}
         <div class="ecl-featured-item__item">
-          {{ include('ecl5:media-container', media_container) }}
+          {{ include('ecl5:media-container', media_container, false) }}
         </div>
       {%- endif -%}
     </div>

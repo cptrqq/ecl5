@@ -13,7 +13,7 @@
               {%- for item in meta -%}
                 <{{ tag_item }} class="ecl-add-to-calendar__meta-item">
                   {%- if item.icon is defined and item.icon -%}
-                    {{ include('ecl5:icon', item.icon|merge({ size: 's', extra_classes: 'ecl-add-to-calendar__meta-icon' })) }}
+                    {{ include('ecl5:icon', item.icon|merge({ size: 's', extra_classes: 'ecl-add-to-calendar__meta-icon' }), false) }}
                   {%- endif -%}
                   <span class="ecl-add-to-calendar__meta-label">{{ item.label }}</span>
                 </{{ tag_item }}>
@@ -21,7 +21,7 @@
             </{{ tag_list }}>
           {%- endif -%}
           {%- if button is not empty -%}
-            <div class="ecl-add-to-calendar__action">{{ include('ecl5:button', button) }}</div>
+            <div class="ecl-add-to-calendar__action">{{ include('ecl5:button', button, false) }}</div>
           {%- endif -%}
         </div>
       {%- endif -%}

@@ -20,7 +20,7 @@
           {%- for item in items|default([]) -%}
             <li class="ecl-story-card__carousel-slide" data-ecl-story-card-slide>
               <article class="ecl-story-card__card">
-                {{ include('ecl5:story-card-card', item|merge({ variant: variant|default(''), show_picture: true })) }}
+                {{ include('ecl5:story-card-card', item|merge({ variant: variant|default(''), show_picture: true }), false) }}
               </article>
             </li>
           {%- endfor -%}

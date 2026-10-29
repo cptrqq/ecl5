@@ -3,7 +3,7 @@
   {%- set classes = ['ecl-card', extra_classes]|filter(c => c)|join(' ') -%}
   <article class="{{ classes }}">
     {%- if picture.img is defined and picture.img -%}
-      {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-card__picture', extra_image_classes: 'ecl-card__image' })) }}
+      {{ include('ecl5:picture', picture|merge({ extra_classes: 'ecl-card__picture', extra_image_classes: 'ecl-card__image' }), false) }}
     {%- endif -%}
     <div class="ecl-card__body">
       {{ include('ecl5:content-block', {
@@ -15,7 +15,7 @@
         secondary_meta_direction: secondary_meta_direction|default(''),
         links: links|default([]),
         extra_classes: 'ecl-card__content-block',
-      }) }}
+      }, false) }}
     </div>
   </article>
 {%- endapply -%}

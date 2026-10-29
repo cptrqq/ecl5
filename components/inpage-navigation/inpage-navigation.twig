@@ -10,13 +10,13 @@
         <button type="button" class="ecl-inpage-navigation__trigger" id="{{ id }}-trigger"
           data-ecl-inpage-navigation-trigger="true" aria-controls="{{ id }}-list" aria-expanded="false">
           <span class="ecl-inpage-navigation__trigger-current" data-ecl-inpage-navigation-trigger-current="true">{{ title }}</span>
-          {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'xs', extra_classes: 'ecl-inpage-navigation__trigger-icon' }) }}
+          {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'xs', extra_classes: 'ecl-inpage-navigation__trigger-icon' }, false) }}
         </button>
       </div>
       <ul class="ecl-inpage-navigation__list" data-ecl-inpage-navigation-list="true" id="{{ id }}-list">
         {%- for link in links|default([]) -%}
           <li class="ecl-inpage-navigation__item">
-            {{ include('ecl5:link', { label: link.label, path: link.path|default('#'), extra_classes: 'ecl-inpage-navigation__link' }) }}
+            {{ include('ecl5:link', { label: link.label, path: link.path|default('#'), extra_classes: 'ecl-inpage-navigation__link' }, false) }}
           </li>
         {%- endfor -%}
       </ul>

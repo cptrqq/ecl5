@@ -8,10 +8,10 @@
         picture.size is defined and picture.size ? 'ecl-content-item__picture--' ~ picture.size,
         picture.position is defined and picture.position ? 'ecl-content-item__picture--' ~ picture.position,
       ]|filter(c => c)|join(' ') -%}
-      {{ include('ecl5:picture', picture|merge({ extra_classes: pic_classes, extra_image_classes: 'ecl-content-item__image' })) }}
+      {{ include('ecl5:picture', picture|merge({ extra_classes: pic_classes, extra_image_classes: 'ecl-content-item__image' }), false) }}
     {%- endif -%}
     {%- if date is not empty -%}
-      {{ include('ecl5:date-block', date|merge({ extra_classes: 'ecl-content-item__date' })) }}
+      {{ include('ecl5:date-block', date|merge({ extra_classes: 'ecl-content-item__date' }), false) }}
     {%- endif -%}
     {{ include('ecl5:content-block', {
       title: title|default(null),
@@ -21,6 +21,6 @@
       secondary_meta: secondary_meta|default([]),
       links: links|default([]),
       extra_classes: 'ecl-content-item__content-block',
-    }) }}
+    }, false) }}
   </article>
 {%- endapply -%}

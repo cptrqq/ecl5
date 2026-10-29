@@ -10,7 +10,7 @@
         {{- item.required ? ' required' -}}>
       <label{{ item.id ? ' for="' ~ item.id|e('html_attr') ~ '"' : '' }} class="ecl-checkbox__label">
         <span class="ecl-checkbox__box">
-          {{ include('ecl5:icon', { name: 'check', family: 'phosphor', size: 'xs', extra_classes: 'ecl-checkbox__icon' }) }}
+          {{ include('ecl5:icon', { name: 'check', family: 'phosphor', size: 'xs', extra_classes: 'ecl-checkbox__icon' }, false) }}
         </span>
         {%- if item.label -%}<span class="ecl-checkbox__text">{{ item.label }}</span>{%- endif -%}
       </label>

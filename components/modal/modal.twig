@@ -9,14 +9,14 @@
           {%- if header or (header_icon.name is defined and header_icon.name) -%}
             <div class="ecl-modal__header-content" id="{{ id }}-header">
               {%- if header_icon.name is defined and header_icon.name -%}
-                {{ include('ecl5:icon', header_icon|merge({ extra_classes: 'ecl-modal__icon' })) }}
+                {{ include('ecl5:icon', header_icon|merge({ extra_classes: 'ecl-modal__icon' }), false) }}
               {%- endif -%}
               {{ header }}
             </div>
           {%- endif -%}
           <button type="button" class="ecl-button ecl-button--tertiary ecl-button--icon-only ecl-modal__close" data-ecl-modal-close>
             <span class="ecl-button__label" aria-hidden="true">{{ close_label|default('Close') }}</span>
-            {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
+            {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }, false) }}
           </button>
         </header>
         <div class="ecl-modal__body">
@@ -29,7 +29,7 @@
           <footer class="ecl-modal__footer">
             <div class="ecl-modal__footer-content">
               {%- for button in buttons -%}
-                {{ include('ecl5:button', button|merge({ extra_classes: ('ecl-modal__button ' ~ button.extra_classes|default(''))|trim })) }}
+                {{ include('ecl5:button', button|merge({ extra_classes: ('ecl-modal__button ' ~ button.extra_classes|default(''))|trim }), false) }}
               {%- endfor -%}
             </div>
           </footer>

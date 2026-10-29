@@ -14,7 +14,7 @@
 
   {%- set icon_markup -%}
     {%- if has_icon -%}
-      {{ include('ecl5:icon', icon|merge({ extra_classes: 'ecl-button__icon' })) }}
+      {{ include('ecl5:icon', icon|merge({ extra_classes: 'ecl-button__icon' }), false) }}
     {%- endif -%}
   {%- endset -%}
 

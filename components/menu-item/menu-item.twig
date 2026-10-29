@@ -15,7 +15,7 @@
     {%- if has_children -%}
       <button type="button" class="ecl-button ecl-button--tertiary ecl-menu__caret-button ecl-button--icon-only" data-ecl-menu-caret aria-expanded="false">
         <span class="ecl-button__label" aria-hidden="true">{{ label }}</span>
-        {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 's', extra_classes: 'ecl-button__icon' }) }}
+        {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 's', extra_classes: 'ecl-button__icon' }, false) }}
       </button>
       <div class="ecl-menu__mega" data-ecl-menu-mega>
         <ul class="ecl-menu__sublist">

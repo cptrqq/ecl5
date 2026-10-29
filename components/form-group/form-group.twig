@@ -20,7 +20,7 @@
     {%- block control %}{{ control|render }}{% endblock -%}
     {%- if invalid and invalid_text -%}
       <div class="ecl-feedback-message"{% if id %} id="{{ id }}-feedback"{% endif %}>
-        {{ include('ecl5:icon', { name: 'warning-circle', family: 'phosphor', size: 's', extra_classes: 'ecl-feedback-message__icon' }) }}
+        {{ include('ecl5:icon', { name: 'warning-circle', family: 'phosphor', size: 's', extra_classes: 'ecl-feedback-message__icon' }, false) }}
         {{ invalid_text }}
       </div>
     {%- endif -%}

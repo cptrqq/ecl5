@@ -7,7 +7,7 @@
         <div class="ecl-container">
           <a href="{{ logo.path|default('#') }}" class="ecl-splash-page__logo-link" aria-label="{{ logo.alt|default('Home') }}">
             {%- if logo.picture is defined and logo.picture -%}
-              {{ include('ecl5:picture', logo.picture|merge({ extra_classes: 'ecl-splash-page__picture', extra_image_classes: 'ecl-splash-page__logo-image' })) }}
+              {{ include('ecl5:picture', logo.picture|merge({ extra_classes: 'ecl-splash-page__picture', extra_image_classes: 'ecl-splash-page__logo-image' }), false) }}
             {%- endif -%}
           </a>
         </div>

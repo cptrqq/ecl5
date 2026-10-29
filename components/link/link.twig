@@ -16,7 +16,7 @@
       ? { name: 'arrow-square-out', family: 'phosphor', size: 'xs' }
       : icon -%}
     {%- set icon_markup -%}
-      {{ include('ecl5:icon', icon_props|merge({ extra_classes: 'ecl-link__icon' })) }}
+      {{ include('ecl5:icon', icon_props|merge({ extra_classes: 'ecl-link__icon' }), false) }}
     {%- endset -%}
   {%- endif -%}
 

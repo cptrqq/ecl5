@@ -27,11 +27,11 @@
             {%- if item.current %} aria-current="true"{% endif -%}
           >
             {%- if level != 1 -%}
-              {{ include('ecl5:icon', { name: 'caret-right', family: 'phosphor', size: 'xs', extra_classes: 'ecl-category-filter__item-icon' }) }}
+              {{ include('ecl5:icon', { name: 'caret-right', family: 'phosphor', size: 'xs', extra_classes: 'ecl-category-filter__item-icon' }, false) }}
             {%- endif -%}
             {{- item.label -}}
             {%- if level == 1 -%}
-              {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'xs', extra_classes: 'ecl-category-filter__item-icon' }) }}
+              {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'xs', extra_classes: 'ecl-category-filter__item-icon' }, false) }}
             {%- endif -%}
           </button>
           <ul class="ecl-category-filter__list" id="{{ item_id }}">
