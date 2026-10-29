@@ -1,0 +1,21 @@
+{% stories page_header with { title: 'ECL/Site-wide/Page Header' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:page-header', {
+      title: 'Funding & tenders',
+      description: 'Find calls for proposals and tenders.',
+      breadcrumb: { links: [ { label: 'Home', path: '#' }, { label: 'Funding', path: '#' }, { label: 'Tenders' } ] },
+      meta: ['News', '12 March 2026']
+    }) }}
+  {% endstory %}
+
+  {% story with_background with { name: 'With background' } %}
+    {{ include('ecl5:page-header', {
+      has_background: true,
+      title: 'Horizon Europe',
+      description: 'The EU research and innovation programme.',
+      breadcrumb: { links: [ { label: 'Home', path: '#' }, { label: 'Horizon Europe' } ] }
+    }) }}
+  {% endstory %}
+
+{% endstories %}

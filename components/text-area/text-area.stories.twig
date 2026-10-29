@@ -1,0 +1,7 @@
+{% stories text_area with { title: 'ECL/Forms/Text Area' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:text-area', { id: 'ta', name: 'message', placeholder: 'Your message…', rows: 5 }) }}
+  {% endstory %}
+
+{% endstories %}

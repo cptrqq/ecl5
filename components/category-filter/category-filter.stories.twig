@@ -1,0 +1,11 @@
+{% stories category_filter with { title: 'ECL/Content/Category Filter' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:category-filter', { label: 'Filter by category', items: [
+      { label: 'All topics', path: '#', current: true },
+      { label: 'Policy', path: '#', children: [ { label: 'Energy', path: '#' }, { label: 'Climate', path: '#' } ] },
+      { label: 'Research', path: '#', children: [ { label: 'Health', path: '#' }, { label: 'Space', path: '#' } ] }
+    ] }) }}
+  {% endstory %}
+
+{% endstories %}

@@ -1,0 +1,11 @@
+{% stories unordered_list with { title: 'ECL/Content/Unordered List' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:unordered-list', { items: [
+      { label: 'First point' },
+      { label: 'Second point', nested: [ { label: 'Nested point' } ] },
+      { label: 'Third point' }
+    ] }) }}
+  {% endstory %}
+
+{% endstories %}

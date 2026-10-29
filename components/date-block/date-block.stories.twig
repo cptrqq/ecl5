@@ -1,0 +1,7 @@
+{% stories date_block with { title: 'ECL/Content/Date Block' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:date-block', { day: '12', month: 'MAR', month_full: 'March', year: '2026' }) }}
+  {% endstory %}
+
+{% endstories %}

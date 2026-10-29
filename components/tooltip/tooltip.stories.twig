@@ -1,0 +1,9 @@
+{% stories tooltip with { title: 'ECL/Content/Tooltip' } %}
+
+  {% story default with { name: 'Default' } %}
+    {% embed 'ecl5:tooltip' with { id: 'tt', label: 'Hover for more info' } %}
+      {% block content %}Additional details shown in a tooltip.{% endblock %}
+    {% endembed %}
+  {% endstory %}
+
+{% endstories %}

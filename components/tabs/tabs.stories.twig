@@ -1,0 +1,11 @@
+{% stories tabs with { title: 'ECL/Navigation/Tabs' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:tabs', { items: [
+      { id: 't1', label: 'Overview', path: '#', is_current: true },
+      { id: 't2', label: 'Details', path: '#' },
+      { id: 't3', label: 'Documents', path: '#' }
+    ] }) }}
+  {% endstory %}
+
+{% endstories %}

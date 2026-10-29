@@ -1,0 +1,7 @@
+{% stories spotlight with { title: 'ECL/Content/Spotlight' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:spotlight', { title: 'Spotlight on innovation', path: '#', picture: { img: { src: 'https://placehold.co/640x360', alt: 'Example image' } }, header: 'Featured', credit: '© European Union, 2026' }) }}
+  {% endstory %}
+
+{% endstories %}

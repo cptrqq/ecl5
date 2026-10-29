@@ -1,0 +1,11 @@
+{% stories icon with { title: 'ECL/Foundational/Icon' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:icon', { name: 'home', family: 'phosphor', size: 'l' }) }}
+  {% endstory %}
+
+  {% story colored with { name: 'Colored' } %}
+    {{ include('ecl5:icon', { name: 'check-circle', family: 'phosphor', size: 'xl', color: 'success' }) }}
+  {% endstory %}
+
+{% endstories %}

@@ -105,6 +105,23 @@ navigation-list / navigation-list-item · pagination · tabs
 
 **Site-wide** — site-header · page-header · site-footer
 
+## Stories
+
+Every component ships a [Drupal Storybook](https://www.drupal.org/project/storybook)
+story at `components/<name>/<name>.stories.twig`, using the module's
+`{% stories %}` / `{% story %}` tags with realistic example data. Components that
+expose slots demonstrate them with `{% embed %}` + `{% block %}`.
+
+Higher-level composition demos (components used inside components) live in
+`examples/*.stories.twig` — an article grid, a news listing, an event page, a
+contact form and a full page (header + content + footer).
+
+With the Storybook module enabled, compile them with:
+
+```bash
+drush storybook:generate-all-stories
+```
+
 ## Project layout
 
 ```
@@ -116,6 +133,9 @@ assets/
 components/
   <name>/<name>.component.yml   SDC metadata + prop schema
   <name>/<name>.twig            self-contained markup
+  <name>/<name>.stories.twig    Storybook story
+examples/
+  *.stories.twig                composition demos
 ecl5.info.yml
 ecl5.libraries.yml              global + print libraries
 ```

@@ -1,0 +1,18 @@
+{% stories ex_contact_form with { title: 'ECL/Examples/Contact form' } %}
+
+  {% story form_with_fields with { name: 'Form with fields' } %}
+    <form class="ecl-container">
+      {% embed 'ecl5:form-group' with { label: 'Full name', for: 'cf-name', required: true, required_text: '*' } %}
+        {% block control %}{{ include('ecl5:text-input', { id: 'cf-name', name: 'name', placeholder: 'Your name' }) }}{% endblock %}
+      {% endembed %}
+      {% embed 'ecl5:form-group' with { label: 'Country', for: 'cf-country' } %}
+        {% block control %}{{ include('ecl5:select', { id: 'cf-country', name: 'country', options: [ { value: '', label: 'Choose…' }, { value: 'be', label: 'Belgium' }, { value: 'fr', label: 'France' } ] }) }}{% endblock %}
+      {% endembed %}
+      {% embed 'ecl5:form-group' with { label: 'Message', for: 'cf-msg' } %}
+        {% block control %}{{ include('ecl5:text-area', { id: 'cf-msg', name: 'message', rows: 5, placeholder: 'Your message…' }) }}{% endblock %}
+      {% endembed %}
+      {{ include('ecl5:button', { label: 'Send message', variant: 'primary', type: 'submit' }) }}
+    </form>
+  {% endstory %}
+
+{% endstories %}

@@ -1,0 +1,11 @@
+{% stories tag with { title: 'ECL/Foundational/Tag' } %}
+
+  {% story link with { name: 'Link' } %}
+    {{ include('ecl5:tag', { label: 'Topic', path: '#' }) }}
+  {% endstory %}
+
+  {% story removable with { name: 'Removable' } %}
+    {{ include('ecl5:tag', { label: 'Active filter', type: 'removable' }) }}
+  {% endstory %}
+
+{% endstories %}

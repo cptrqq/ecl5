@@ -1,0 +1,9 @@
+{% stories page_information with { title: 'ECL/Content/Page Information' } %}
+
+  {% story default with { name: 'Default' } %}
+    {% embed 'ecl5:page-information' %}
+      {% block content %}<p>Last updated: 12 March 2026</p>{% endblock %}
+    {% endembed %}
+  {% endstory %}
+
+{% endstories %}

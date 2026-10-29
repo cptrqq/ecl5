@@ -1,0 +1,11 @@
+{% stories splash_page with { title: 'ECL/Content/Splash Page' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:splash-page', {
+      title: 'Choose your language',
+      logo: { path: '#', alt: 'Logo', picture: { img: { src: 'https://placehold.co/160x80?text=Logo', alt: 'Logo' } } },
+      languages: [ { lang: 'en', label: 'English', path: '#', active: true }, { lang: 'fr', label: 'Français', path: '#' }, { lang: 'de', label: 'Deutsch', path: '#' } ]
+    }) }}
+  {% endstory %}
+
+{% endstories %}

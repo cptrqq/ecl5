@@ -1,0 +1,15 @@
+{% stories pagination with { title: 'ECL/Navigation/Pagination' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:pagination', { label: 'Pagination', items: [
+      { type: 'previous', path: '#' },
+      { label: '1', path: '#' },
+      { label: '2', path: '#', type: 'current' },
+      { label: '3', path: '#' },
+      { type: 'ellipsis' },
+      { label: '10', path: '#' },
+      { type: 'next', path: '#' }
+    ] }) }}
+  {% endstory %}
+
+{% endstories %}

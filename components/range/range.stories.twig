@@ -1,0 +1,7 @@
+{% stories range with { title: 'ECL/Forms/Range' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:range', { id: 'rng', name: 'amount', min: 0, max: 100, value: 50, step: 1 }) }}
+  {% endstory %}
+
+{% endstories %}

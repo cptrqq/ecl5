@@ -1,0 +1,11 @@
+{% stories news_ticker with { title: 'ECL/Content/News Ticker' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:news-ticker', { items: [
+      { content: 'Breaking: new climate policy adopted', link: '#' },
+      { content: 'Registration for the summit now open', link: '#' },
+      { content: 'Call for proposals closes next week' }
+    ] }) }}
+  {% endstory %}
+
+{% endstories %}

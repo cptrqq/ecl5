@@ -1,0 +1,12 @@
+{% stories text_media with { title: 'ECL/Media/Text Media' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:text-media', {
+      title: 'Text and media',
+      description: 'A section pairing body text with a media container.',
+      link: { label: 'Learn more', path: '#' },
+      media_container: { picture: { img: { src: 'https://placehold.co/640x360', alt: 'Example image' } } }
+    }) }}
+  {% endstory %}
+
+{% endstories %}

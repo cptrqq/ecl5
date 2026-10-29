@@ -1,0 +1,7 @@
+{% stories spinner with { title: 'ECL/Foundational/Spinner' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:spinner', { size: 'l', text: 'Loading…', visible: true, centered: true }) }}
+  {% endstory %}
+
+{% endstories %}

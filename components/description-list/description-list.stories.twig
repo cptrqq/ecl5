@@ -1,0 +1,11 @@
+{% stories description_list with { title: 'ECL/Content/Description List' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:description-list', { items: [
+      { term: 'Status', definition: 'Open' },
+      { term: 'Deadline', definition: '30 June 2026' },
+      { term: 'Budget', definition: '€1.5 billion' }
+    ] }) }}
+  {% endstory %}
+
+{% endstories %}

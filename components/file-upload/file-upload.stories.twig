@@ -1,0 +1,7 @@
+{% stories file_upload with { title: 'ECL/Forms/File Upload' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:file-upload', { id: 'fu', name: 'files', multiple: true }) }}
+  {% endstory %}
+
+{% endstories %}

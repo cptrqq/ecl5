@@ -1,0 +1,9 @@
+{% stories form_group with { title: 'ECL/Forms/Form Group' } %}
+
+  {% story default with { name: 'Default' } %}
+    {% embed 'ecl5:form-group' with { label: 'Email address', for: 'email', helper_text: 'We will never share it.', required: true, required_text: '*' } %}
+      {% block control %}{{ include('ecl5:text-input', { id: 'email', name: 'email', type: 'email', placeholder: 'name@example.com' }) }}{% endblock %}
+    {% endembed %}
+  {% endstory %}
+
+{% endstories %}

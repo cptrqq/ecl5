@@ -1,0 +1,9 @@
+{% stories popover with { title: 'ECL/Content/Popover' } %}
+
+  {% story default with { name: 'Default' } %}
+    {% embed 'ecl5:popover' with { id: 'pop', toggle: { label: 'More info', icon: { name: 'info', family: 'phosphor' } }, close_label: 'Close' } %}
+      {% block content %}<p>Additional contextual information shown in a popover.</p>{% endblock %}
+    {% endembed %}
+  {% endstory %}
+
+{% endstories %}

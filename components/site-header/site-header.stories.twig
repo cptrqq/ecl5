@@ -1,0 +1,15 @@
+{% stories site_header with { title: 'ECL/Site-wide/Site Header' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:site-header', {
+      site_name: 'Example site',
+      logo: { src_desktop: 'https://placehold.co/160x80?text=Logo', alt: 'European Commission', path: '#' },
+      cta_link: { label: 'Subscribe', path: '#' },
+      language_selector: { href: '#', label: 'English', aria_label: 'Change language' },
+      search_form: { input: { name: 'q', placeholder: 'Search…', id: 'sh-search' }, button_label: 'Search' },
+      search_toggle: { label: 'Search' },
+      menu: { items: [ { label: 'Home', path: '#', is_current: true }, { label: 'Policies', path: '#', children: [ { label: 'Energy', path: '#' }, { label: 'Climate', path: '#' } ] }, { label: 'News', path: '#' }, { label: 'Contact', path: '#' } ] }
+    }) }}
+  {% endstory %}
+
+{% endstories %}

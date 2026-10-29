@@ -1,0 +1,14 @@
+{% stories card with { title: 'ECL/Content/Card' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:card', {
+      picture: { img: { src: 'https://placehold.co/640x360', alt: 'Example image' } },
+      title: { label: 'New funding opportunities', path: '#' },
+      description: 'Calls for proposals are now open across several programmes.',
+      labels: [ { label: 'News', variant: 'high' } ],
+      primary_meta: ['12 March 2026'],
+      links: [ { label: 'Read more', path: '#' } ]
+    }) }}
+  {% endstory %}
+
+{% endstories %}

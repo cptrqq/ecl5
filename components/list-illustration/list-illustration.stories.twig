@@ -1,0 +1,11 @@
+{% stories list_illustration with { title: 'ECL/Content/List Illustration' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:list-illustration', { column: 3, items: [
+      { icon: { name: 'leaf', family: 'phosphor' }, title: 'Sustainable', description: 'Greener policies for all.' },
+      { icon: { name: 'shield-check', family: 'phosphor' }, title: 'Safe', description: 'Protecting citizens.' },
+      { icon: { name: 'handshake', family: 'phosphor' }, title: 'United', description: 'Working together.' }
+    ] }) }}
+  {% endstory %}
+
+{% endstories %}

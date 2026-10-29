@@ -1,0 +1,11 @@
+{% stories link with { title: 'ECL/Foundational/Link' } %}
+
+  {% story standalone with { name: 'Standalone' } %}
+    {{ include('ecl5:link', { label: 'Read more', path: '#', variant: 'standalone', icon: { name: 'arrow-right', family: 'phosphor', size: 'xs' } }) }}
+  {% endstory %}
+
+  {% story external with { name: 'External' } %}
+    {{ include('ecl5:link', { label: 'External website', path: 'https://example.com', external: true }) }}
+  {% endstory %}
+
+{% endstories %}

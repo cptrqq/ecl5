@@ -1,0 +1,7 @@
+{% stories ordered_list with { title: 'ECL/Content/Ordered List' } %}
+
+  {% story default with { name: 'Default' } %}
+    {{ include('ecl5:ordered-list', { items: [ { label: 'Prepare your documents' }, { label: 'Fill in the form' }, { label: 'Submit your application' } ] }) }}
+  {% endstory %}
+
+{% endstories %}

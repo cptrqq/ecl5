@@ -1,0 +1,13 @@
+{% stories media_container with { title: 'ECL/Media/Media Container' } %}
+
+  {% story picture with { name: 'Picture' } %}
+    {{ include('ecl5:media-container', { picture: { img: { src: 'https://placehold.co/640x360', alt: 'Example image' } }, description: 'A descriptive caption.', credit: '© European Union, 2026' }) }}
+  {% endstory %}
+
+  {% story embedded with { name: 'Embedded' } %}
+    {% embed 'ecl5:media-container' with { media_type: 'embedded', description: 'Embedded video.' } %}
+      {% block embedded_media %}<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video" allowfullscreen></iframe>{% endblock %}
+    {% endembed %}
+  {% endstory %}
+
+{% endstories %}

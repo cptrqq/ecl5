@@ -1,0 +1,24 @@
+{% stories ex_event_page with { title: 'ECL/Examples/Event page' } %}
+
+  {% story event_detail with { name: 'Event detail' } %}
+    {{ include('ecl5:page-header', {
+      title: 'Annual conference 2026',
+      description: 'Join us for a day of talks and workshops.',
+      breadcrumb: { links: [ { label: 'Home', path: '#' }, { label: 'Events', path: '#' }, { label: 'Annual conference' } ] },
+      meta: ['Event', '12 March 2026']
+    }) }}
+    <div class="ecl-container ecl-u-mv-l">
+      {{ include('ecl5:add-to-calendar', {
+        title: 'Save the date',
+        meta: [ { icon: { name: 'calendar', family: 'phosphor' }, label: '12 March 2026' }, { icon: { name: 'map-pin', family: 'phosphor' }, label: 'Brussels' } ],
+        button: { label: 'Add to calendar', variant: 'primary', icon: { name: 'calendar-plus', family: 'phosphor' } }
+      }) }}
+      {{ include('ecl5:fact-figures', { columns: 3, items: [
+        { icon: { name: 'microphone-stage', family: 'phosphor' }, value: '40', description: 'Speakers' },
+        { icon: { name: 'users', family: 'phosphor' }, value: '1 200', description: 'Attendees' },
+        { icon: { name: 'presentation', family: 'phosphor' }, value: '25', description: 'Sessions' }
+      ] }) }}
+    </div>
+  {% endstory %}
+
+{% endstories %}

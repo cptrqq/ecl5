@@ -1,0 +1,9 @@
+{% stories expandable with { title: 'ECL/Content/Expandable' } %}
+
+  {% story default with { name: 'Default' } %}
+    {% embed 'ecl5:expandable' with { id: 'exp', label_collapsed: 'Show more', label_expanded: 'Show less' } %}
+      {% block content %}<p>This content is revealed when the toggle is activated.</p>{% endblock %}
+    {% endembed %}
+  {% endstory %}
+
+{% endstories %}

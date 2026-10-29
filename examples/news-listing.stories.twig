@@ -1,0 +1,13 @@
+{% stories ex_news_listing with { title: 'ECL/Examples/News listing' } %}
+
+  {% story list_with_pagination with { name: 'List with pagination' } %}
+    <div class="ecl-container">
+      {{ include('ecl5:content-item', { date: { day: '12', month: 'MAR', year: '2026' }, title: 'First news item', description: 'A teaser for the first news item.', primary_meta: ['News'], links: [ { label: 'Read more', path: '#' } ] }) }}
+      {{ include('ecl5:separator', {}) }}
+      {{ include('ecl5:content-item', { date: { day: '08', month: 'MAR', year: '2026' }, title: 'Second news item', description: 'A teaser for the second news item.', primary_meta: ['Press release'], links: [ { label: 'Read more', path: '#' } ] }) }}
+      {{ include('ecl5:separator', {}) }}
+      {{ include('ecl5:pagination', { label: 'Pagination', items: [ { type: 'previous', path: '#' }, { label: '1', path: '#', type: 'current' }, { label: '2', path: '#' }, { label: '3', path: '#' }, { type: 'next', path: '#' } ] }) }}
+    </div>
+  {% endstory %}
+
+{% endstories %}

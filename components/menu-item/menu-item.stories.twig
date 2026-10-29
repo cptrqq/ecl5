@@ -1,0 +1,9 @@
+{% stories menu_item with { title: 'ECL/Navigation/Menu Item' } %}
+
+  {% story default with { name: 'Default' } %}
+    <ul class="ecl-menu__list">
+      {{ include('ecl5:menu-item', { id: 'mi', label: 'Policies', path: '#', children: [ { label: 'Energy', path: '#' }, { label: 'Climate', path: '#' } ] }) }}
+    </ul>
+  {% endstory %}
+
+{% endstories %}

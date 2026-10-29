@@ -1,0 +1,9 @@
+{% stories navigation_list_item with { title: 'ECL/Navigation/Navigation List Item' } %}
+
+  {% story default with { name: 'Default' } %}
+    <div class="ecl-navigation-list"><div class="ecl-navigation-list__items">
+      {{ include('ecl5:navigation-list-item', { title: { label: 'Destination title', path: '#' }, description: 'A single navigation list item.', links: [ { label: 'Related link', path: '#' } ] }) }}
+    </div></div>
+  {% endstory %}
+
+{% endstories %}

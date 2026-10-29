@@ -1,0 +1,20 @@
+{% stories ex_article_grid with { title: 'ECL/Examples/Article grid' } %}
+
+  {% story three_cards with { name: 'Three cards' } %}
+    <div class="ecl-row">
+      {% for i in 1..3 %}
+        <div class="ecl-col-12 ecl-col-m-4">
+          {{ include('ecl5:card', {
+            picture: { img: { src: 'https://placehold.co/640x360', alt: 'Example image' } },
+            title: { label: 'Article number ' ~ i, path: '#' },
+            description: 'A short teaser describing the article content.',
+            labels: [ { label: 'News', variant: 'high' } ],
+            primary_meta: ['12 March 2026'],
+            links: [ { label: 'Read more', path: '#' } ]
+          }) }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endstory %}
+
+{% endstories %}
