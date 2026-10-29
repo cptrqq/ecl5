@@ -141,12 +141,16 @@
 
 {%- macro download_link(link, label, link_id, labelledby, base_class, add_download_attr, hreflang) -%}
   {%- apply spaceless -%}
-    {%- set classes = ['ecl-link', 'ecl-link--standalone', 'ecl-link--icon', base_class]|filter(c => c)|join(' ') -%}
-    <a href="{{ link.path|default('#') }}" class="{{ classes }}" id="{{ link_id }}" aria-labelledby="{{ labelledby }}"
-      {{- hreflang is not empty ? ' hreflang="' ~ hreflang|e('html_attr') ~ '"' : '' -}}
-      {{- add_download_attr ? ' download' : '' -}}>
-      <span class="ecl-link__label">{{ label }}</span>
-      {{ include('ecl5:icon', { name: 'download-simple', family: 'phosphor', size: 'fluid', extra_classes: 'ecl-link__icon' }) }}
-    </a>
+    {%- set attrs = [{ name: 'id', value: link_id }, { name: 'aria-labelledby', value: labelledby }] -%}
+    {%- if hreflang is not empty -%}{%- set attrs = attrs|merge([{ name: 'hreflang', value: hreflang }]) -%}{%- endif -%}
+    {%- if add_download_attr -%}{%- set attrs = attrs|merge([{ name: 'download' }]) -%}{%- endif -%}
+    {{ include('ecl5:link', {
+      label: label,
+      path: link.path|default('#'),
+      variant: 'standalone',
+      icon: { name: 'download-simple', family: 'phosphor', size: 'fluid' },
+      extra_classes: base_class,
+      extra_attributes: attrs,
+    }) }}
   {%- endapply -%}
 {%- endmacro -%}

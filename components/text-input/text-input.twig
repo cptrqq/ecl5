@@ -13,5 +13,8 @@
     {{- placeholder ? ' placeholder="' ~ placeholder|e('html_attr') ~ '"' -}}
     {{- disabled ? ' disabled' -}}
     {{- required ? ' required' -}}
-    {{- invalid ? ' aria-invalid="true"' -}}>
+    {{- invalid ? ' aria-invalid="true"' -}}
+    {%- for attr in extra_attributes|default([]) -%}
+      {{- ' ' ~ attr.name }}{% if attr.value is defined and attr.value is not null %}="{{ attr.value|e('html_attr') }}"{% endif %}
+    {%- endfor -%}>
 {%- endapply -%}

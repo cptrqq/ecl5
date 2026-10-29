@@ -29,6 +29,9 @@
                 type: 'search',
                 width: 'l',
                 extra_classes: ('ecl-highlighted-search__form-input ' ~ search_input.extra_classes|default(''))|trim,
+                extra_attributes: (search_input.extra_attributes|default([]))|merge(
+                  (search_helper is defined and search_helper is not empty) ? [{ name: 'aria-describedby', value: helper_id }] : []
+                ),
               })) }}
             {%- endset -%}
             {{ include('ecl5:form-group', {

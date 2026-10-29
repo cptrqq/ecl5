@@ -40,3 +40,8 @@ props:
       type: string
     extra_classes:
       type: string
+    extra_attributes:
+      type: array
+      description: 'Additional HTML attributes: list of { name, value }. Value may be omitted for boolean attributes.'
+      items:
+        type: object

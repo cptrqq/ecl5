@@ -21,7 +21,10 @@
   {%- endif -%}
 
   <a href="{{ path|default('#') }}" class="{{ classes }}"
-    {{- aria_label ? ' aria-label="' ~ aria_label|e('html_attr') ~ '"' : '' -}}>
+    {{- aria_label ? ' aria-label="' ~ aria_label|e('html_attr') ~ '"' : '' -}}
+    {%- for attr in extra_attributes|default([]) -%}
+      {{- ' ' ~ attr.name }}{% if attr.value is defined and attr.value is not null %}="{{ attr.value|e('html_attr') }}"{% endif %}
+    {%- endfor -%}>
     {%- if has_icon and icon_position == 'before' %}{{ icon_markup }}{% endif -%}
     {%- if has_icon -%}
       <span class="ecl-link__label">{{ label }}</span>
