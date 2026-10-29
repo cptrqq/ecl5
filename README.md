@@ -70,9 +70,11 @@ the print stylesheet.
 - One component per directory: `components/<name>/<name>.component.yml` +
   `components/<name>/<name>.twig`.
 - Composition uses `{{ include('ecl5:<name>', {...}) }}` — never `@ecl/...`.
-- Icons render as CSS glyphs:
-  `<span class="ecl-icon ecl-icon-phosphor--<name> …">` (see the `icon`
-  component).
+- Icons render as inline `<svg>` that reference the bundled Phosphor sprite
+  (`assets/icons/phosphor.svg`, full regular + fill weights) via `<use>`. The
+  sprite URL is resolved by the `ecl5_icon_sprite()` Twig function
+  (`src/Twig/IconExtension.php`); pass `icon_path` to override it. Run
+  `drush cr` after enabling so the Twig extension registers.
 - Interactive components set `data-ecl-auto-init` + the relevant `data-ecl-*`
   hooks so the bundled `ecl-ec.js` autoinit picks them up.
 - Props objects accepted by components use flat keys (e.g. `link` props take

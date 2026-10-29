@@ -1,0 +1,6 @@
+services:
+  ecl5.twig.icon:
+    class: Drupal\ecl5\Twig\IconExtension
+    arguments: ['@extension.list.module']
+    tags:
+      - { name: twig.extension }

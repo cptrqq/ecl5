@@ -1,7 +1,7 @@
 $schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
 name: Icon
 status: stable
-description: 'ECL icon rendered as a CSS-glyph span (Phosphor family by default).'
+description: 'ECL icon rendered as an inline SVG that references the bundled Phosphor sprite via <use> (Phosphor family by default).'
 props:
   type: object
   properties:
@@ -30,6 +30,10 @@ props:
       type: string
       title: Accessible title
       description: 'If set, the icon is exposed as an image with role="img".'
+    icon_path:
+      type: string
+      title: Sprite path
+      description: 'Override the sprite URL. Defaults to the bundled sprite resolved by ecl5_icon_sprite().'
     extra_classes:
       type: string
       title: Extra classes
