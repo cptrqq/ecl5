@@ -51,8 +51,10 @@
               <div class="ecl-file__title" id="{{ title_id }}">
                 {%- if title.link is defined -%}
                   {{ include('ecl5:link', title.link|merge({ variant: 'standalone' })) }}
+                {%- elseif title.path is defined -%}
+                  {{ include('ecl5:link', title|merge({ variant: 'standalone' })) }}
                 {%- else -%}
-                  {{ title }}
+                  {{ title.label|default(title) }}
                 {%- endif -%}
               </div>
             {%- endif -%}

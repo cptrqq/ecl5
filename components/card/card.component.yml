@@ -9,8 +9,8 @@ props:
       type: object
       description: 'Picture props ({ img: { src, alt }, sources }).'
     title:
-      type: object
-      description: 'Title text ({ label }) or link props.'
+      type: [string, object]
+      description: 'Plain text, { label }, or link props ({ label, path }).'
     description:
       type: string
     labels:

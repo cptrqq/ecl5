@@ -6,8 +6,8 @@ props:
   type: object
   properties:
     title:
-      type: object
-      description: 'Either { label } for plain text, or link props ({ label, path }) to render a title link.'
+      type: [string, object]
+      description: 'Plain text string, { label }, or link props ({ label, path }) to render a title link.'
     description:
       type: string
     labels:
@@ -19,9 +19,9 @@ props:
       type: string
     primary_meta:
       type: array
-      description: 'List of plain strings shown above the title.'
+      description: 'List of meta items shown above the title: plain strings, or { label, icon }.'
       items:
-        type: string
+        type: [string, object]
     secondary_meta:
       type: array
       description: 'List of { icon, label } shown below the content.'

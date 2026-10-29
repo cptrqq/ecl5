@@ -15,7 +15,8 @@ props:
       type: object
       description: 'Date-block props.'
     title:
-      type: object
+      type: [string, object]
+      description: 'Plain text, { label }, or link props ({ label, path }).'
     description:
       type: string
     labels:

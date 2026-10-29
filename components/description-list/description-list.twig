@@ -25,7 +25,15 @@
             {%- else -%}
               {%- set defs = item.definition is iterable ? item.definition : [item.definition] -%}
               {%- for def in defs -%}
-                <dd class="ecl-description-list__definition">{{ def }}</dd>
+                <dd class="ecl-description-list__definition">
+                  {%- if def is map and def.label is defined -%}
+                    {{ include('ecl5:link', def) }}
+                  {%- elseif def is map -%}
+                    {{ def.label|default('') }}
+                  {%- else -%}
+                    {{ def }}
+                  {%- endif -%}
+                </dd>
               {%- endfor -%}
             {%- endif -%}
           {%- endif -%}

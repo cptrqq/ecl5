@@ -8,7 +8,8 @@ props:
     picture:
       type: object
     title:
-      type: object
+      type: [string, object]
+      description: 'Plain text, { label }, or link props ({ label, path }).'
     description:
       type: string
     primary_meta:

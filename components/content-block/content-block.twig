@@ -17,7 +17,16 @@
       {%- set mi = primary_meta|length == 1 ? 'div' : 'li' -%}
       <{{ mt }} class="ecl-content-block__primary-meta-container">
         {%- for meta in primary_meta -%}
-          <{{ mi }} class="ecl-content-block__primary-meta-item">{{ meta }}</{{ mi }}>
+          <{{ mi }} class="ecl-content-block__primary-meta-item">
+            {%- if meta is map -%}
+              {%- if meta.icon is defined and meta.icon -%}
+                {{ include('ecl5:icon', meta.icon|merge({ size: 's', extra_classes: 'ecl-content-block__primary-meta-icon' })) }}
+              {%- endif -%}
+              <span class="ecl-content-block__primary-meta-label">{{ meta.label|default('') }}</span>
+            {%- else -%}
+              {{ meta }}
+            {%- endif -%}
+          </{{ mi }}>
         {%- endfor -%}
       </{{ mt }}>
     {%- endif -%}

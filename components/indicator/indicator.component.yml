@@ -6,7 +6,7 @@ props:
   type: object
   properties:
     value:
-      type: string
+      type: [string, integer]
     sr_label:
       type: string
       title: Screen-reader label
