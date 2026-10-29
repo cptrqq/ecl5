@@ -1,0 +1,8 @@
+name: Default
+props:
+  items:
+    - content: 'Breaking: new climate policy adopted'
+      link: '#'
+    - content: Registration for the summit now open
+      link: '#'
+    - content: Call for proposals closes next week

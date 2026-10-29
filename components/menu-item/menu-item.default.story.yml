@@ -1,0 +1,10 @@
+name: Default
+props:
+  id: mi
+  label: Policies
+  path: '#'
+  children:
+    - label: Energy
+      path: '#'
+    - label: Climate
+      path: '#'

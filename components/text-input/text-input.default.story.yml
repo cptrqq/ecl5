@@ -1,0 +1,5 @@
+name: Default
+props:
+  id: ti
+  name: fullname
+  placeholder: Your name

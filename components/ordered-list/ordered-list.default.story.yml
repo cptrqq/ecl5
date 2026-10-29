@@ -1,0 +1,6 @@
+name: Default
+props:
+  items:
+    - label: Prepare your documents
+    - label: Fill in the form
+    - label: Submit your application

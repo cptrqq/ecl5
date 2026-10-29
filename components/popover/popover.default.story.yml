@@ -1,0 +1,11 @@
+name: Default
+props:
+  id: pop
+  toggle:
+    label: More info
+    icon:
+      name: info
+      family: phosphor
+  close_label: Close
+slots:
+  content: <p>Additional contextual information shown in a popover.</p>

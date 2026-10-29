@@ -1,0 +1,18 @@
+name: Default
+props:
+  items:
+    - picture:
+        img:
+          src: https://placehold.co/640x360
+          alt: Example image
+      caption: Image one
+    - picture:
+        img:
+          src: https://placehold.co/640x360
+          alt: Example image
+      caption: Image two
+    - picture:
+        img:
+          src: https://placehold.co/640x360
+          alt: Example image
+      caption: Image three

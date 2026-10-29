@@ -107,20 +107,23 @@ navigation-list / navigation-list-item · pagination · tabs
 
 ## Stories
 
-Every component ships a [Drupal Storybook](https://www.drupal.org/project/storybook)
-story at `components/<name>/<name>.stories.twig`, using the module's
-`{% stories %}` / `{% story %}` tags with realistic example data. Components that
-expose slots demonstrate them with `{% embed %}` + `{% block %}`.
+Stories target the [Storybook SDC addon](https://github.com/iberdinsky-skilld/sdc-addon)
+(`storybook-addon-sdc`), which loads Drupal Single Directory Components directly
+into Storybook.
 
-Higher-level composition demos (components used inside components) live in
-`examples/*.stories.twig` — an article grid, a news listing, an event page, a
-contact form and a full page (header + content + footer).
+- **Per component:** standalone **`*.story.yml`** files (singular `story`) named
+  `components/<name>/<name>.<story-id>.story.yml`, with `name`, `props` and —
+  for the slot-based components — `slots` (render-array nodes). Slots that embed
+  another component use `type: component` + `component: 'ecl5:<name>'`, which is
+  the native component-in-component mechanism.
+- **Composition examples:** free-form, multi-component layouts live in
+  `stories/compositions.stories.js` (standard CSF using the addon's
+  `<component>.component(args)` runtime) — an article grid, news listing, event
+  page, contact form and a full page (header + content + footer).
 
-With the Storybook module enabled, compile them with:
-
-```bash
-drush storybook:generate-all-stories
-```
+> Note: this is **not** the `.stories.twig` format of the separate
+> [`storybook`](https://www.drupal.org/project/storybook) contrib module, nor
+> the obsolete plural `*.stories.yml` of the SDC Story Generator.
 
 ## Project layout
 
@@ -131,13 +134,13 @@ assets/
   scripts/    ecl-ec.js (autoinit bundle)
   styles/     ecl-ec.css, ecl-ec-color-modes.css, ecl-ec-print.css
 components/
-  <name>/<name>.component.yml   SDC metadata + prop schema
-  <name>/<name>.twig            self-contained markup
-  <name>/<name>.stories.twig    Storybook story
-examples/
-  *.stories.twig                composition demos
+  <name>/<name>.component.yml       SDC metadata + prop schema
+  <name>/<name>.twig                self-contained markup
+  <name>/<name>.<story>.story.yml   Storybook SDC story/-ies
+stories/
+  compositions.stories.js           composition demos (CSF)
 ecl5.info.yml
-ecl5.libraries.yml              global + print libraries
+ecl5.libraries.yml                  global + print libraries
 ```
 
 ## Credits & licensing

@@ -1,0 +1,18 @@
+name: Default
+props:
+  title: Search Europa
+  description: Find documents, pages and policies.
+  search_input:
+    name: q
+    placeholder: Search…
+  search_button:
+    label: Search
+  search_helper: 'Example: climate policy'
+  suggestion_label: 'Popular searches:'
+  suggestions:
+    - label: Climate
+      path: '#'
+    - label: Energy
+      path: '#'
+    - label: Funding
+      path: '#'

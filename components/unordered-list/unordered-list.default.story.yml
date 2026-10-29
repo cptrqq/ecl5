@@ -1,0 +1,8 @@
+name: Default
+props:
+  items:
+    - label: First point
+    - label: Second point
+      nested:
+        - label: Nested point
+    - label: Third point

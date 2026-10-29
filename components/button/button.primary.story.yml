@@ -1,0 +1,4 @@
+name: Primary
+props:
+  label: Read more
+  variant: primary

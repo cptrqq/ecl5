@@ -1,0 +1,10 @@
+name: With background
+props:
+  has_background: true
+  title: Horizon Europe
+  description: The EU research and innovation programme.
+  breadcrumb:
+    links:
+      - label: Home
+        path: '#'
+      - label: Horizon Europe

@@ -1,0 +1,14 @@
+name: Default
+props:
+  title: Funding & tenders
+  description: Find calls for proposals and tenders.
+  breadcrumb:
+    links:
+      - label: Home
+        path: '#'
+      - label: Funding
+        path: '#'
+      - label: Tenders
+  meta:
+    - News
+    - 12 March 2026

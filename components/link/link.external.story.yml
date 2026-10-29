@@ -1,0 +1,5 @@
+name: External
+props:
+  label: External website
+  path: https://example.com
+  external: true

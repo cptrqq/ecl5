@@ -1,0 +1,6 @@
+name: Default
+props:
+  input:
+    name: q
+    placeholder: Search…
+  button_label: Search

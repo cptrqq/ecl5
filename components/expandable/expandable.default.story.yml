@@ -1,0 +1,7 @@
+name: Default
+props:
+  id: exp
+  label_collapsed: Show more
+  label_expanded: Show less
+slots:
+  content: <p>This content is revealed when the toggle is activated.</p>

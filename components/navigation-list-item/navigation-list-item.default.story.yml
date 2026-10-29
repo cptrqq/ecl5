@@ -1,0 +1,9 @@
+name: Default
+props:
+  title:
+    label: Destination title
+    path: '#'
+  description: A single navigation list item.
+  links:
+    - label: Related link
+      path: '#'

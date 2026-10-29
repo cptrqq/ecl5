@@ -1,0 +1,19 @@
+name: Default
+props:
+  title: Follow us
+  links:
+    - label: Facebook
+      path: '#'
+      icon:
+        name: facebook-logo
+        family: phosphor
+    - label: X
+      path: '#'
+      icon:
+        name: x-logo
+        family: phosphor
+    - label: LinkedIn
+      path: '#'
+      icon:
+        name: linkedin-logo
+        family: phosphor

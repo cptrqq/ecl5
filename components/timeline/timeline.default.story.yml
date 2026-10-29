@@ -1,0 +1,15 @@
+name: Default
+props:
+  items:
+    - id: tl1
+      label: '2024'
+      title: Project launch
+      content: The initiative was launched across the Union.
+    - id: tl2
+      label: '2025'
+      title: Expansion
+      content: The programme scaled up to all Member States.
+    - id: tl3
+      label: '2026'
+      title: Evaluation
+      content: First results are published.

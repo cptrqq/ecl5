@@ -1,0 +1,10 @@
+name: Default
+props:
+  title: Did you know?
+  description: The European Union has 24 official languages.
+  icon:
+    name: info
+    family: phosphor
+  link:
+    label: Learn more
+    path: '#'

@@ -1,0 +1,38 @@
+name: Default
+props:
+  section_contact:
+    title: Contact
+    links:
+      - label: Contact us
+        path: '#'
+      - label: Help
+        path: '#'
+  section_about:
+    title: About
+    links:
+      - label: About the Commission
+        path: '#'
+      - label: Departments
+        path: '#'
+  section_common:
+    social_media:
+      title: Follow us
+      links:
+        - label: Facebook
+          path: '#'
+          icon:
+            name: facebook-logo
+            family: phosphor
+        - label: X
+          path: '#'
+          icon:
+            name: x-logo
+            family: phosphor
+    links:
+      - label: Legal notice
+        path: '#'
+      - label: Cookies
+        path: '#'
+      - label: Privacy
+        path: '#'
+    links_inline: true

@@ -1,0 +1,14 @@
+name: Image overlay
+props:
+  title: Horizon Europe
+  description: Funding research and innovation across the Union.
+  picture:
+    img:
+      src: https://placehold.co/640x360
+      alt: Example image
+  cta:
+    label: Discover
+    path: '#'
+  variant: image-overlay
+  size: l
+  box: dark

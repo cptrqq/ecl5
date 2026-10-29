@@ -1,0 +1,9 @@
+name: Standalone
+props:
+  label: Read more
+  path: '#'
+  variant: standalone
+  icon:
+    name: arrow-right
+    family: phosphor
+    size: xs

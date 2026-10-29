@@ -1,0 +1,6 @@
+name: Default
+props:
+  day: '12'
+  month: MAR
+  month_full: March
+  year: '2026'

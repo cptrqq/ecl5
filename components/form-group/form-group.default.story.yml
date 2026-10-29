@@ -1,0 +1,16 @@
+name: Default
+props:
+  label: Email address
+  for: email
+  helper_text: We will never share it.
+  required: true
+  required_text: '*'
+slots:
+  control:
+    type: component
+    component: ecl5:text-input
+    props:
+      id: email
+      name: email
+      type: email
+      placeholder: name@example.com

@@ -1,0 +1,7 @@
+name: With icon
+props:
+  label: Download
+  variant: secondary
+  icon:
+    name: download-simple
+    family: phosphor

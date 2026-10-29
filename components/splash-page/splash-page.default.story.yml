@@ -1,0 +1,21 @@
+name: Default
+props:
+  title: Choose your language
+  logo:
+    path: '#'
+    alt: Logo
+    picture:
+      img:
+        src: https://placehold.co/160x80?text=Logo
+        alt: Logo
+  languages:
+    - lang: en
+      label: English
+      path: '#'
+      active: true
+    - lang: fr
+      label: Français
+      path: '#'
+    - lang: de
+      label: Deutsch
+      path: '#'

@@ -1,7 +1,0 @@
-{% stories story_card_card with { title: 'ECL/Media/Story Card Card' } %}
-
-  {% story default with { name: 'Default' } %}
-    {{ include('ecl5:story-card-card', { show_picture: true, picture: { img: { src: 'https://placehold.co/300x300', alt: 'Portrait' } }, title: 'A single story card', description: 'The individual card used inside a story card carousel.', author: 'Jane Doe', role: 'Project lead', link: { label: 'Read the story', path: '#' } }) }}
-  {% endstory %}
-
-{% endstories %}

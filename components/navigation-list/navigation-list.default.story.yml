@@ -1,0 +1,11 @@
+name: Default
+props:
+  items:
+    - title:
+        label: First destination
+        path: '#'
+      description: Short description of the first link.
+    - title:
+        label: Second destination
+        path: '#'
+      description: Short description of the second link.

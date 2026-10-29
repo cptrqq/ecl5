@@ -1,0 +1,26 @@
+name: Default
+props:
+  title: Success stories
+  items:
+    - picture:
+        img:
+          src: https://placehold.co/300x300
+          alt: Portrait
+      title: A greener city
+      description: How EU funding transformed a neighbourhood.
+      author: Jane Doe
+      role: Project lead
+      link:
+        label: Read the story
+        path: '#'
+    - picture:
+        img:
+          src: https://placehold.co/300x300
+          alt: Portrait
+      title: Research breakthrough
+      description: Scientists share their discovery.
+      author: John Smith
+      role: Researcher
+      link:
+        label: Read the story
+        path: '#'

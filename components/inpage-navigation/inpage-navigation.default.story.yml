@@ -1,0 +1,10 @@
+name: Default
+props:
+  title: Page contents
+  links:
+    - label: Introduction
+      path: '#introduction'
+    - label: Background
+      path: '#background'
+    - label: Conclusions
+      path: '#conclusions'

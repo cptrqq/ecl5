@@ -1,0 +1,13 @@
+name: Default
+props:
+  items:
+    - id: t1
+      label: Overview
+      path: '#'
+      is_current: true
+    - id: t2
+      label: Details
+      path: '#'
+    - id: t3
+      label: Documents
+      path: '#'

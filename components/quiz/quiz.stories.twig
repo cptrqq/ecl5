@@ -1,9 +1,0 @@
-{% stories quiz with { title: 'ECL/Content/Quiz' } %}
-
-  {% story reveal with { name: 'Reveal' } %}
-    {{ include('ecl5:quiz', { title: 'Test your knowledge', items: [
-      { question: 'How many Member States does the EU have?', answer: '27 Member States.', answer_title: 'Correct answer', flip_text: 'Reveal the answer', flip_icon: { name: 'arrow-right', family: 'phosphor' } }
-    ] }) }}
-  {% endstory %}
-
-{% endstories %}

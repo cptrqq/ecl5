@@ -1,0 +1,6 @@
+name: Default
+props:
+  id: ta
+  name: message
+  placeholder: Your message…
+  rows: 5

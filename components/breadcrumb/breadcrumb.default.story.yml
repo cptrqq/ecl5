@@ -1,0 +1,10 @@
+name: Default
+props:
+  links:
+    - label: Home
+      path: '#'
+    - label: Policies
+      path: '#'
+    - label: Energy
+      path: '#'
+    - label: Current page

@@ -1,0 +1,4 @@
+name: Medium
+props:
+  label: Updated
+  variant: medium

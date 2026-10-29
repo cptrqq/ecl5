@@ -1,0 +1,22 @@
+name: Default
+props:
+  columns: 3
+  items:
+    - icon:
+        name: users
+        family: phosphor
+      value: 1M+
+      title: Citizens
+      description: reached each year
+    - icon:
+        name: buildings
+        family: phosphor
+      value: '500'
+      title: Organisations
+      description: involved
+    - icon:
+        name: globe
+        family: phosphor
+      value: '27'
+      title: Countries
+      description: participating

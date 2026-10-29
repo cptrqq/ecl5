@@ -1,0 +1,6 @@
+name: Default
+props:
+  id: tt
+  label: Hover for more info
+slots:
+  content: Additional details shown in a tooltip.
