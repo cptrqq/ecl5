@@ -1,0 +1,28 @@
+{#
+  Link component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/link/link.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+<h2 class="ecl-u-type-heading-2">External</h2>
+
+{{ include('ecl5:link', {
+  'label': 'External website',
+  'path': 'https://example.com',
+  'external': true
+}) }}
+
+<h2 class="ecl-u-type-heading-2">Standalone</h2>
+
+{{ include('ecl5:link', {
+  'label': 'Read more',
+  'path': '#',
+  'variant': 'standalone',
+  'icon': {
+    'name': 'arrow-right',
+    'family': 'phosphor',
+    'size': 'xs'
+  }
+}) }}

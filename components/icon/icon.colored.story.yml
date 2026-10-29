@@ -1,6 +1,0 @@
-name: Colored
-props:
-  name: check-circle
-  family: phosphor
-  size: xl
-  color: success

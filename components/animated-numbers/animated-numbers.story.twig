@@ -1,0 +1,37 @@
+{#
+  Animated Numbers component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/animated-numbers/animated-numbers.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:animated-numbers', {
+  'items': [
+    {
+      'value': '1 500',
+      'description': 'Projects funded',
+      'icon': {
+        'name': 'rocket-launch',
+        'family': 'phosphor'
+      }
+    },
+    {
+      'value': '27',
+      'description': 'Member States',
+      'icon': {
+        'name': 'flag',
+        'family': 'phosphor'
+      }
+    },
+    {
+      'value': '95',
+      'suffix': '%',
+      'description': 'Satisfaction rate',
+      'icon': {
+        'name': 'smiley',
+        'family': 'phosphor'
+      }
+    }
+  ]
+}) }}

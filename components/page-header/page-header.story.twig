@@ -1,0 +1,147 @@
+{#
+  Page Header component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/page-header/page-header.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+<h2 class="ecl-u-type-heading-2">Default</h2>
+
+{{ include('ecl5:page-header', {
+  'title': 'Funding & tenders',
+  'description': 'Find calls for proposals and tenders.',
+  'breadcrumb': {
+    'links': [
+      {
+        'label': 'Home',
+        'path': '#'
+      },
+      {
+        'label': 'Funding',
+        'path': '#'
+      },
+      {
+        'label': 'Tenders'
+      }
+    ]
+  },
+  'meta': [
+    'News',
+    '12 March 2026'
+  ]
+}) }}
+
+<h2 class="ecl-u-type-heading-2">With background</h2>
+
+{{ include('ecl5:page-header', {
+  'has_background': true,
+  'title': 'Horizon Europe',
+  'description': 'The EU research and innovation programme.',
+  'breadcrumb': {
+    'links': [
+      {
+        'label': 'Home',
+        'path': '#'
+      },
+      {
+        'label': 'Horizon Europe'
+      }
+    ]
+  }
+}) }}
+
+<h2 class="ecl-u-type-heading-2">Composition: event page</h2>
+<p class="ecl-u-type-text-3">A <code>page-header</code> with <code>add-to-calendar</code> and <code>fact-figures</code> below it.</p>
+
+{{ include('ecl5:page-header', {
+  'title': 'Innovation week 2026',
+  'description': 'A European event on research and innovation policy.',
+  'breadcrumb': {
+    'links': [
+      {
+        'label': 'Home',
+        'path': '#'
+      },
+      {
+        'label': 'Funding',
+        'path': '#'
+      },
+      {
+        'label': 'Tenders'
+      }
+    ]
+  },
+  'meta': [
+    'News',
+    '12 March 2026'
+  ]
+}) }}
+
+{{ include('ecl5:add-to-calendar', {
+  'title': 'Annual conference 2026',
+  'meta': [
+    {
+      'icon': {
+        'name': 'calendar',
+        'family': 'phosphor'
+      },
+      'label': '12 March 2026'
+    },
+    {
+      'icon': {
+        'name': 'clock',
+        'family': 'phosphor'
+      },
+      'label': '09:00 – 17:00'
+    },
+    {
+      'icon': {
+        'name': 'map-pin',
+        'family': 'phosphor'
+      },
+      'label': 'Brussels, Belgium'
+    }
+  ],
+  'button': {
+    'label': 'Add to calendar',
+    'variant': 'primary',
+    'icon': {
+      'name': 'calendar-plus',
+      'family': 'phosphor'
+    }
+  }
+}) }}
+
+{{ include('ecl5:fact-figures', {
+  'columns': 3,
+  'items': [
+    {
+      'icon': {
+        'name': 'users',
+        'family': 'phosphor'
+      },
+      'value': '1M+',
+      'title': 'Citizens',
+      'description': 'reached each year'
+    },
+    {
+      'icon': {
+        'name': 'buildings',
+        'family': 'phosphor'
+      },
+      'value': '500',
+      'title': 'Organisations',
+      'description': 'involved'
+    },
+    {
+      'icon': {
+        'name': 'globe',
+        'family': 'phosphor'
+      },
+      'value': '27',
+      'title': 'Countries',
+      'description': 'participating'
+    }
+  ]
+}) }}

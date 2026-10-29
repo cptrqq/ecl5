@@ -1,4 +1,0 @@
-name: Removable
-props:
-  label: Active filter
-  type: removable

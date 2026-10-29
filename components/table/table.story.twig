@@ -1,0 +1,53 @@
+{#
+  Table component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/table/table.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:table', {
+  'caption': 'Annual budget',
+  'headers': [
+    {
+      'label': 'Year'
+    },
+    {
+      'label': 'Programme'
+    },
+    {
+      'label': 'Amount',
+      'sortable': true
+    }
+  ],
+  'rows': [
+    [
+      {
+        'label': '2025',
+        'header': 'Year'
+      },
+      {
+        'label': 'Horizon',
+        'header': 'Programme'
+      },
+      {
+        'label': '€1.2B',
+        'header': 'Amount'
+      }
+    ],
+    [
+      {
+        'label': '2026',
+        'header': 'Year'
+      },
+      {
+        'label': 'Horizon',
+        'header': 'Programme'
+      },
+      {
+        'label': '€1.5B',
+        'header': 'Amount'
+      }
+    ]
+  ]
+}) }}

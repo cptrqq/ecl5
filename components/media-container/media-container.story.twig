@@ -1,0 +1,28 @@
+{#
+  Media Container component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/media-container/media-container.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+<h2 class="ecl-u-type-heading-2">Embedded</h2>
+
+{{ include('ecl5:media-container', {
+  'media_type': 'embedded',
+  'description': 'Embedded video.',
+  'embedded_media': {'#markup': '<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video" allowfullscreen></iframe>'}
+}) }}
+
+<h2 class="ecl-u-type-heading-2">Picture</h2>
+
+{{ include('ecl5:media-container', {
+  'picture': {
+    'img': {
+      'src': 'https://placehold.co/640x360',
+      'alt': 'Example image'
+    }
+  },
+  'description': 'A descriptive caption.',
+  'credit': '© European Union, 2026'
+}) }}

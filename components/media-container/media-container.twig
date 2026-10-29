@@ -7,7 +7,7 @@
     <figure class="{{ figure_class }}">
       {%- if media_type == 'embedded' -%}
         <div class="ecl-media-container__embed">
-          {%- block embedded_media %}{{ embedded_media }}{% endblock -%}
+          {%- block embedded_media %}{{ embedded_media|render }}{% endblock -%}
         </div>
       {%- elseif media_type == 'video' -%}
         <div class="ecl-media-container__video-wrapper">

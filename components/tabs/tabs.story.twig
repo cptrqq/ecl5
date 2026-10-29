@@ -1,0 +1,28 @@
+{#
+  Tabs component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/tabs/tabs.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:tabs', {
+  'items': [
+    {
+      'id': 't1',
+      'label': 'Overview',
+      'path': '#',
+      'is_current': true
+    },
+    {
+      'id': 't2',
+      'label': 'Details',
+      'path': '#'
+    },
+    {
+      'id': 't3',
+      'label': 'Documents',
+      'path': '#'
+    }
+  ]
+}) }}

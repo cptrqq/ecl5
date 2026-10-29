@@ -1,0 +1,25 @@
+{#
+  Story Card Card component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/story-card-card/story-card-card.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:story-card-card', {
+  'show_picture': true,
+  'picture': {
+    'img': {
+      'src': 'https://placehold.co/300x300',
+      'alt': 'Portrait'
+    }
+  },
+  'title': 'A single story card',
+  'description': 'The individual card used inside a story card carousel.',
+  'author': 'Jane Doe',
+  'role': 'Project lead',
+  'link': {
+    'label': 'Read the story',
+    'path': '#'
+  }
+}) }}

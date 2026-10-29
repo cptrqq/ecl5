@@ -1,6 +1,0 @@
-name: Embedded
-props:
-  media_type: embedded
-  description: Embedded video.
-slots:
-  embedded_media: <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video" allowfullscreen></iframe>

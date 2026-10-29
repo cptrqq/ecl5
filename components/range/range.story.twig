@@ -1,0 +1,16 @@
+{#
+  Range component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/range/range.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:range', {
+  'id': 'rng',
+  'name': 'amount',
+  'min': 0,
+  'max': 100,
+  'value': 50,
+  'step': 1
+}) }}

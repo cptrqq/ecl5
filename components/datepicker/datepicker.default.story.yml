@@ -1,5 +1,0 @@
-name: Default
-props:
-  id: dp
-  name: date
-  placeholder: dd/mm/yyyy

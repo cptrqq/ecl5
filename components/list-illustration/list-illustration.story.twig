@@ -1,0 +1,37 @@
+{#
+  List Illustration component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/list-illustration/list-illustration.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:list-illustration', {
+  'column': 3,
+  'items': [
+    {
+      'icon': {
+        'name': 'leaf',
+        'family': 'phosphor'
+      },
+      'title': 'Sustainable',
+      'description': 'Greener policies for all.'
+    },
+    {
+      'icon': {
+        'name': 'shield-check',
+        'family': 'phosphor'
+      },
+      'title': 'Safe',
+      'description': 'Protecting citizens.'
+    },
+    {
+      'icon': {
+        'name': 'handshake',
+        'family': 'phosphor'
+      },
+      'title': 'United',
+      'description': 'Working together.'
+    }
+  ]
+}) }}

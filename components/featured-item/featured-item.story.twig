@@ -1,0 +1,25 @@
+{#
+  Featured Item component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/featured-item/featured-item.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:featured-item', {
+  'micro_title': 'Spotlight',
+  'title': 'Featured story title',
+  'description': 'A prominent item pairing media with a short text and a link.',
+  'link': {
+    'label': 'Learn more',
+    'path': '#'
+  },
+  'media_container': {
+    'picture': {
+      'img': {
+        'src': 'https://placehold.co/640x360',
+        'alt': 'Example image'
+      }
+    }
+  }
+}) }}

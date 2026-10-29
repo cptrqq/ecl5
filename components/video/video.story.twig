@@ -1,0 +1,26 @@
+{#
+  Video component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/video/video.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:video', {
+  'poster': 'https://placehold.co/640x360',
+  'sources': [
+    {
+      'src': 'https://example.com/video.mp4',
+      'type': 'video/mp4'
+    }
+  ],
+  'tracks': [
+    {
+      'kind': 'captions',
+      'label': 'English',
+      'src': '#',
+      'src_lang': 'en',
+      'default': true
+    }
+  ]
+}) }}

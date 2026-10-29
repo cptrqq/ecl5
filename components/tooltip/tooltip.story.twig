@@ -1,0 +1,13 @@
+{#
+  Tooltip component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/tooltip/tooltip.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:tooltip', {
+  'id': 'tt',
+  'label': 'Hover for more info',
+  'content': {'#markup': 'Additional details shown in a tooltip.'}
+}) }}

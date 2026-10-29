@@ -1,8 +1,0 @@
-name: Picture
-props:
-  picture:
-    img:
-      src: https://placehold.co/640x360
-      alt: Example image
-  description: A descriptive caption.
-  credit: © European Union, 2026

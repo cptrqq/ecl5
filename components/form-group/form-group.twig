@@ -17,7 +17,7 @@
     {%- if helper_text -%}
       <div class="ecl-help-block{{ disabled ? ' ecl-help-block--disabled' }}"{% if id %} id="{{ id }}-helper"{% endif %}>{{ helper_text }}</div>
     {%- endif -%}
-    {%- block control %}{{ control }}{% endblock -%}
+    {%- block control %}{{ control|render }}{% endblock -%}
     {%- if invalid and invalid_text -%}
       <div class="ecl-feedback-message"{% if id %} id="{{ id }}-feedback"{% endif %}>
         {{ include('ecl5:icon', { name: 'warning-circle', family: 'phosphor', size: 's', extra_classes: 'ecl-feedback-message__icon' }) }}

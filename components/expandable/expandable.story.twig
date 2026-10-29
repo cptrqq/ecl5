@@ -1,0 +1,14 @@
+{#
+  Expandable component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/expandable/expandable.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:expandable', {
+  'id': 'exp',
+  'label_collapsed': 'Show more',
+  'label_expanded': 'Show less',
+  'content': {'#markup': '<p>This content is revealed when the toggle is activated.</p>'}
+}) }}

@@ -1,0 +1,29 @@
+{#
+  Notification component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/notification/notification.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+<h2 class="ecl-u-type-heading-2">Info</h2>
+
+{{ include('ecl5:notification', {
+  'variant': 'info',
+  'title': 'Information',
+  'description': 'This page was updated recently.',
+  'links': [
+    {
+      'label': 'See changes',
+      'path': '#'
+    }
+  ]
+}) }}
+
+<h2 class="ecl-u-type-heading-2">Warning</h2>
+
+{{ include('ecl5:notification', {
+  'variant': 'warning',
+  'title': 'Scheduled maintenance',
+  'description': 'The service will be unavailable on Sunday.'
+}) }}

@@ -1,0 +1,16 @@
+{#
+  Page Summary component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/page-summary/page-summary.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:page-summary', {
+  'title': 'In this page',
+  'description': 'A short summary of the page content and what to expect.',
+  'icon': {
+    'name': 'list',
+    'family': 'phosphor'
+  }
+}) }}

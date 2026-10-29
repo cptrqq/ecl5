@@ -1,0 +1,71 @@
+{#
+  Card component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/card/card.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:card', {
+  'picture': {
+    'img': {
+      'src': 'https://placehold.co/640x360',
+      'alt': 'Example image'
+    }
+  },
+  'title': {
+    'label': 'New funding opportunities',
+    'path': '#'
+  },
+  'description': 'Calls for proposals are now open across several programmes.',
+  'labels': [
+    {
+      'label': 'News',
+      'variant': 'high'
+    }
+  ],
+  'primary_meta': [
+    '12 March 2026'
+  ],
+  'links': [
+    {
+      'label': 'Read more',
+      'path': '#'
+    }
+  ]
+}) }}
+
+<h2 class="ecl-u-type-heading-2">Composition: article grid</h2>
+<p class="ecl-u-type-text-3">Three <code>card</code> components in a responsive <code>ecl-row</code>.</p>
+
+<div class="ecl-row">
+{% for _i in [1, 2, 3] %}
+  <div class="ecl-col-12 ecl-col-m-4">
+    {{ include('ecl5:card', {
+      'picture': {
+        'img': {
+          'src': 'https://placehold.co/640x360',
+          'alt': 'Example image ' ~ _i
+        }
+      },
+      'title': {
+        'label': 'Article number ' ~ _i,
+        'path': '#'
+      },
+      'description': 'Calls for proposals are now open across several programmes.',
+      'labels': [
+        {
+          'label': 'News',
+          'variant': 'high'
+        }
+      ],
+      'links': [
+        {
+          'label': 'Read more',
+          'path': '#'
+        }
+      ]
+    }) }}
+  </div>
+{% endfor %}
+</div>

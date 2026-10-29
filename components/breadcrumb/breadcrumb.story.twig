@@ -1,0 +1,27 @@
+{#
+  Breadcrumb component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/breadcrumb/breadcrumb.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:breadcrumb', {
+  'links': [
+    {
+      'label': 'Home',
+      'path': '#'
+    },
+    {
+      'label': 'Policies',
+      'path': '#'
+    },
+    {
+      'label': 'Energy',
+      'path': '#'
+    },
+    {
+      'label': 'Current page'
+    }
+  ]
+}) }}

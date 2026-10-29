@@ -1,0 +1,24 @@
+{#
+  Description List component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/description-list/description-list.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:description-list', {
+  'items': [
+    {
+      'term': 'Status',
+      'definition': 'Open'
+    },
+    {
+      'term': 'Deadline',
+      'definition': '30 June 2026'
+    },
+    {
+      'term': 'Budget',
+      'definition': '€1.5 billion'
+    }
+  ]
+}) }}

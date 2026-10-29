@@ -1,0 +1,26 @@
+{#
+  Unordered List component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/unordered-list/unordered-list.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:unordered-list', {
+  'items': [
+    {
+      'label': 'First point'
+    },
+    {
+      'label': 'Second point',
+      'nested': [
+        {
+          'label': 'Nested point'
+        }
+      ]
+    },
+    {
+      'label': 'Third point'
+    }
+  ]
+}) }}

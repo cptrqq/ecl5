@@ -1,0 +1,28 @@
+{#
+  File component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/file/file.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:file', {
+  'icon': {
+    'name': 'file-pdf',
+    'family': 'phosphor'
+  },
+  'title': 'Annual activity report 2026',
+  'description': 'The full report of the past year.',
+  'language': 'English',
+  'meta': '(2.4 MB - PDF)',
+  'primary_meta': [
+    '2.4 MB',
+    'PDF'
+  ],
+  'download': {
+    'link': {
+      'label': 'Download',
+      'path': '#'
+    }
+  }
+}) }}

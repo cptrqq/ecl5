@@ -2,6 +2,6 @@
 {%- apply spaceless -%}
   {%- set classes = ['ecl-page-information', extra_classes]|filter(c => c)|join(' ') -%}
   <div class="{{ classes }}">
-    {%- block content %}{{ content }}{% endblock -%}
+    {%- block content %}{{ content|render }}{% endblock -%}
   </div>
 {%- endapply -%}

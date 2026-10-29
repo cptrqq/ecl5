@@ -1,0 +1,42 @@
+{#
+  Add To Calendar component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/add-to-calendar/add-to-calendar.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:add-to-calendar', {
+  'title': 'Annual conference 2026',
+  'meta': [
+    {
+      'icon': {
+        'name': 'calendar',
+        'family': 'phosphor'
+      },
+      'label': '12 March 2026'
+    },
+    {
+      'icon': {
+        'name': 'clock',
+        'family': 'phosphor'
+      },
+      'label': '09:00 – 17:00'
+    },
+    {
+      'icon': {
+        'name': 'map-pin',
+        'family': 'phosphor'
+      },
+      'label': 'Brussels, Belgium'
+    }
+  ],
+  'button': {
+    'label': 'Add to calendar',
+    'variant': 'primary',
+    'icon': {
+      'name': 'calendar-plus',
+      'family': 'phosphor'
+    }
+  }
+}) }}

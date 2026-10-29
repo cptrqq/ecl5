@@ -1,0 +1,30 @@
+{#
+  Radio component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/radio/radio.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:radio', {
+  'name': 'choice',
+  'items': [
+    {
+      'id': 'r1',
+      'label': 'Yes',
+      'value': 'yes',
+      'checked': true
+    },
+    {
+      'id': 'r2',
+      'label': 'No',
+      'value': 'no'
+    },
+    {
+      'id': 'r3',
+      'label': 'Maybe',
+      'value': 'maybe',
+      'helper': 'Undecided'
+    }
+  ]
+}) }}

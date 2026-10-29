@@ -1,4 +1,0 @@
-name: Link
-props:
-  label: Topic
-  path: '#'

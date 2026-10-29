@@ -1,0 +1,25 @@
+{#
+  Inpage Navigation component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/inpage-navigation/inpage-navigation.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:inpage-navigation', {
+  'title': 'Page contents',
+  'links': [
+    {
+      'label': 'Introduction',
+      'path': '#introduction'
+    },
+    {
+      'label': 'Background',
+      'path': '#background'
+    },
+    {
+      'label': 'Conclusions',
+      'path': '#conclusions'
+    }
+  ]
+}) }}

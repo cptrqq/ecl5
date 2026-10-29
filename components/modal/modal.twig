@@ -21,7 +21,7 @@
         </header>
         <div class="ecl-modal__body">
           <div class="ecl-modal__body-scroll" id="{{ id }}-body-scroll" data-ecl-modal-scroll>
-            {%- block body %}{{ body }}{% endblock -%}
+            {%- block body %}{{ body|render }}{% endblock -%}
           </div>
           <div class="ecl-modal__body-overflow" aria-hidden="true"></div>
         </div>

@@ -1,0 +1,23 @@
+{#
+  Quiz component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/quiz/quiz.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:quiz', {
+  'title': 'Test your knowledge',
+  'items': [
+    {
+      'question': 'How many Member States does the EU have?',
+      'answer': '27 Member States.',
+      'answer_title': 'Correct answer',
+      'flip_text': 'Reveal the answer',
+      'flip_icon': {
+        'name': 'arrow-right',
+        'family': 'phosphor'
+      }
+    }
+  ]
+}) }}

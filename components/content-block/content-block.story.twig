@@ -1,0 +1,39 @@
+{#
+  Content Block component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/content-block/content-block.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:content-block', {
+  'title': {
+    'label': 'Content block title',
+    'path': '#'
+  },
+  'description': 'A reusable block of title, description, labels, meta and links.',
+  'labels': [
+    {
+      'label': 'News',
+      'variant': 'high'
+    }
+  ],
+  'primary_meta': [
+    '12 March 2026'
+  ],
+  'secondary_meta': [
+    {
+      'icon': {
+        'name': 'chat-circle',
+        'family': 'phosphor'
+      },
+      'label': '12 comments'
+    }
+  ],
+  'links': [
+    {
+      'label': 'Read more',
+      'path': '#'
+    }
+  ]
+}) }}

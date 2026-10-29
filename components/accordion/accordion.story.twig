@@ -1,0 +1,26 @@
+{#
+  Accordion component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/accordion/accordion.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:accordion', {
+  'name': 'faq',
+  'items': [
+    {
+      'label': 'What is ECL?',
+      'content': 'The Europa Component Library is the EC design system.',
+      'open': true
+    },
+    {
+      'label': 'How do I use it?',
+      'content': 'Include components with the SDC syntax.'
+    },
+    {
+      'label': 'Is it accessible?',
+      'content': 'Yes, components follow WCAG AA.'
+    }
+  ]
+}) }}

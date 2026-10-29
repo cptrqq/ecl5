@@ -1,5 +1,0 @@
-name: Default
-props:
-  id: fu
-  name: files
-  multiple: true

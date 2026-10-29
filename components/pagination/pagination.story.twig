@@ -1,0 +1,41 @@
+{#
+  Pagination component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/pagination/pagination.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:pagination', {
+  'label': 'Pagination',
+  'items': [
+    {
+      'type': 'previous',
+      'path': '#'
+    },
+    {
+      'label': '1',
+      'path': '#'
+    },
+    {
+      'label': '2',
+      'path': '#',
+      'type': 'current'
+    },
+    {
+      'label': '3',
+      'path': '#'
+    },
+    {
+      'type': 'ellipsis'
+    },
+    {
+      'label': '10',
+      'path': '#'
+    },
+    {
+      'type': 'next',
+      'path': '#'
+    }
+  ]
+}) }}

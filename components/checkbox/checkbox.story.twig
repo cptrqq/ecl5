@@ -1,0 +1,30 @@
+{#
+  Checkbox component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/checkbox/checkbox.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:checkbox', {
+  'name': 'topics',
+  'items': [
+    {
+      'id': 'c1',
+      'label': 'Energy',
+      'value': 'energy',
+      'checked': true
+    },
+    {
+      'id': 'c2',
+      'label': 'Climate',
+      'value': 'climate'
+    },
+    {
+      'id': 'c3',
+      'label': 'Transport',
+      'value': 'transport',
+      'disabled': true
+    }
+  ]
+}) }}

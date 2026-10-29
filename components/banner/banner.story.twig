@@ -1,0 +1,25 @@
+{#
+  Banner component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/banner/banner.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:banner', {
+  'title': 'Horizon Europe',
+  'description': 'Funding research and innovation across the Union.',
+  'picture': {
+    'img': {
+      'src': 'https://placehold.co/640x360',
+      'alt': 'Example image'
+    }
+  },
+  'cta': {
+    'label': 'Discover',
+    'path': '#'
+  },
+  'variant': 'image-overlay',
+  'size': 'l',
+  'box': 'dark'
+}) }}

@@ -1,0 +1,24 @@
+{#
+  Text Media component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/text-media/text-media.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:text-media', {
+  'title': 'Text and media',
+  'description': 'A section pairing body text with a media container.',
+  'link': {
+    'label': 'Learn more',
+    'path': '#'
+  },
+  'media_container': {
+    'picture': {
+      'img': {
+        'src': 'https://placehold.co/640x360',
+        'alt': 'Example image'
+      }
+    }
+  }
+}) }}

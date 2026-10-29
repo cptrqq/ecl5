@@ -1,0 +1,39 @@
+{#
+  Gallery component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/gallery/gallery.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:gallery', {
+  'items': [
+    {
+      'picture': {
+        'img': {
+          'src': 'https://placehold.co/640x360',
+          'alt': 'Example image'
+        }
+      },
+      'caption': 'Image one'
+    },
+    {
+      'picture': {
+        'img': {
+          'src': 'https://placehold.co/640x360',
+          'alt': 'Example image'
+        }
+      },
+      'caption': 'Image two'
+    },
+    {
+      'picture': {
+        'img': {
+          'src': 'https://placehold.co/640x360',
+          'alt': 'Example image'
+        }
+      },
+      'caption': 'Image three'
+    }
+  ]
+}) }}

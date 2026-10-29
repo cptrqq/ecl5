@@ -1,0 +1,21 @@
+{#
+  Tag component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/tag/tag.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+<h2 class="ecl-u-type-heading-2">Link</h2>
+
+{{ include('ecl5:tag', {
+  'label': 'Topic',
+  'path': '#'
+}) }}
+
+<h2 class="ecl-u-type-heading-2">Removable</h2>
+
+{{ include('ecl5:tag', {
+  'label': 'Active filter',
+  'type': 'removable'
+}) }}

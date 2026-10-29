@@ -1,0 +1,37 @@
+{#
+  Social Media Follow component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/social-media-follow/social-media-follow.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:social-media-follow', {
+  'title': 'Follow us',
+  'links': [
+    {
+      'label': 'Facebook',
+      'path': '#',
+      'icon': {
+        'name': 'facebook-logo',
+        'family': 'phosphor'
+      }
+    },
+    {
+      'label': 'X',
+      'path': '#',
+      'icon': {
+        'name': 'x-logo',
+        'family': 'phosphor'
+      }
+    },
+    {
+      'label': 'LinkedIn',
+      'path': '#',
+      'icon': {
+        'name': 'linkedin-logo',
+        'family': 'phosphor'
+      }
+    }
+  ]
+}) }}

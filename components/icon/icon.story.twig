@@ -1,0 +1,24 @@
+{#
+  Icon component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/icon/icon.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+<h2 class="ecl-u-type-heading-2">Colored</h2>
+
+{{ include('ecl5:icon', {
+  'name': 'check-circle',
+  'family': 'phosphor',
+  'size': 'xl',
+  'color': 'success'
+}) }}
+
+<h2 class="ecl-u-type-heading-2">Default</h2>
+
+{{ include('ecl5:icon', {
+  'name': 'home',
+  'family': 'phosphor',
+  'size': 'l'
+}) }}

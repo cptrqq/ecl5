@@ -1,0 +1,31 @@
+{#
+  Select component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/select/select.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:select', {
+  'id': 'sel',
+  'name': 'country',
+  'options': [
+    {
+      'value': '',
+      'label': 'Choose a country…'
+    },
+    {
+      'value': 'be',
+      'label': 'Belgium'
+    },
+    {
+      'value': 'fr',
+      'label': 'France',
+      'selected': true
+    },
+    {
+      'value': 'de',
+      'label': 'Germany'
+    }
+  ]
+}) }}

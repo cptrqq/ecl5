@@ -1,6 +1,0 @@
-name: Default
-props:
-  size: l
-  text: Loading…
-  visible: true
-  centered: true

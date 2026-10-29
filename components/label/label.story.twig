@@ -1,0 +1,21 @@
+{#
+  Label component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/label/label.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+<h2 class="ecl-u-type-heading-2">High</h2>
+
+{{ include('ecl5:label', {
+  'label': 'New',
+  'variant': 'high'
+}) }}
+
+<h2 class="ecl-u-type-heading-2">Medium</h2>
+
+{{ include('ecl5:label', {
+  'label': 'Updated',
+  'variant': 'medium'
+}) }}

@@ -1,0 +1,115 @@
+{#
+  Content Item component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/content-item/content-item.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:content-item', {
+  'picture': {
+    'img': {
+      'src': 'https://placehold.co/640x360',
+      'alt': 'Example image'
+    },
+    'size': 'medium',
+    'position': 'left'
+  },
+  'date': {
+    'day': '12',
+    'month': 'MAR',
+    'year': '2026'
+  },
+  'title': 'Content item title',
+  'description': 'A horizontal teaser combining a date block, picture and content.',
+  'primary_meta': [
+    'News'
+  ],
+  'links': [
+    {
+      'label': 'Read more',
+      'path': '#'
+    }
+  ]
+}) }}
+
+<h2 class="ecl-u-type-heading-2">Composition: news listing</h2>
+<p class="ecl-u-type-text-3">Two <code>content-item</code> components, a <code>separator</code> and <code>pagination</code>.</p>
+
+{{ include('ecl5:content-item', {
+  'picture': {
+    'img': {
+      'src': 'https://placehold.co/640x360',
+      'alt': 'Example image'
+    },
+    'size': 'medium',
+    'position': 'left'
+  },
+  'date': {
+    'day': '12',
+    'month': 'MAR',
+    'year': '2026'
+  },
+  'title': 'Content item title',
+  'description': 'A horizontal teaser combining a date block, picture and content.',
+  'primary_meta': [
+    'News'
+  ],
+  'links': [
+    {
+      'label': 'Read more',
+      'path': '#'
+    }
+  ]
+}) }}
+
+{{ include('ecl5:content-item', {
+  'picture': {
+    'img': {
+      'src': 'https://placehold.co/640x360',
+      'alt': 'Example image'
+    },
+    'size': 'medium',
+    'position': 'left'
+  },
+  'date': {
+    'day': '12',
+    'month': 'MAR',
+    'year': '2026'
+  },
+  'title': 'Second news item',
+  'description': 'Another teaser in the same list.',
+  'primary_meta': [
+    'News'
+  ],
+  'links': [
+    {
+      'label': 'Read more',
+      'path': '#'
+    }
+  ]
+}) }}
+
+{{ include('ecl5:separator', {}) }}
+
+{{ include('ecl5:pagination', {
+  'label': 'Pagination',
+  'items': [
+    {
+      'type': 'previous',
+      'path': '#'
+    },
+    {
+      'label': '1',
+      'path': '#'
+    },
+    {
+      'label': '2',
+      'path': '#'
+    },
+    {
+      'type': 'next',
+      'path': '#'
+    }
+  ]
+}) }}

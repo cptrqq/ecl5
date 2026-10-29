@@ -107,23 +107,32 @@ navigation-list / navigation-list-item · pagination · tabs
 
 ## Stories
 
-Stories target the [Storybook SDC addon](https://github.com/iberdinsky-skilld/sdc-addon)
-(`storybook-addon-sdc`), which loads Drupal Single Directory Components directly
-into Storybook.
+Every component ships with a **`<name>.story.twig`** file
+(`components/<name>/<name>.story.twig`) for the component playground
+(`sdc_component_library` module, `/en/components`). A story file is a
+self-contained Twig template that includes the component with realistic example
+props:
 
-- **Per component:** standalone **`*.story.yml`** files (singular `story`) named
-  `components/<name>/<name>.<story-id>.story.yml`, with `name`, `props` and —
-  for the slot-based components — `slots` (render-array nodes). Slots that embed
-  another component use `type: component` + `component: 'ecl5:<name>'`, which is
-  the native component-in-component mechanism.
-- **Composition examples:** free-form, multi-component layouts live in
-  `stories/compositions.stories.js` (standard CSF using the addon's
-  `<component>.component(args)` runtime) — an article grid, news listing, event
-  page, contact form and a full page (header + content + footer).
+```twig
+{{ include('ecl5:button', {
+  'label': 'Read more',
+  'variant': 'primary',
+}) }}
+```
 
-> Note: this is **not** the `.stories.twig` format of the separate
-> [`storybook`](https://www.drupal.org/project/storybook) contrib module, nor
-> the obsolete plural `*.stories.yml` of the SDC Story Generator.
+- Components with several variants (`button`, `tag`, `notification`,
+  `media-container`, …) render each variant under its own `<h2>`.
+- Slot-based components (`expandable`, `popover`, `tooltip`,
+  `page-information`, `form-group`, `modal`, `media-container`) receive their
+  slot as a render array — e.g. `content: { '#markup': '…' }` — which the
+  component prints with `{{ content|render }}`.
+- **Composition examples** (components used inside components) are embedded in
+  the story of the main component: an article grid of `card`s (`card`), a news
+  listing of `content-item` + `separator` + `pagination` (`content-item`), an
+  event page of `page-header` + `add-to-calendar` + `fact-figures`
+  (`page-header`), a contact form of `form-group` + `button` (`form-group`) and
+  a full page of `site-header` + `page-header` + `text-media` + `site-footer`
+  (`site-header`).
 
 ## Project layout
 
@@ -136,9 +145,7 @@ assets/
 components/
   <name>/<name>.component.yml       SDC metadata + prop schema
   <name>/<name>.twig                self-contained markup
-  <name>/<name>.<story>.story.yml   Storybook SDC story/-ies
-stories/
-  compositions.stories.js           composition demos (CSF)
+  <name>/<name>.story.twig          playground story (+ composition demos)
 ecl5.info.yml
 ecl5.libraries.yml                  global + print libraries
 ```

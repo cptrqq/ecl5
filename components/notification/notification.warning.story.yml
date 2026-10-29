@@ -1,5 +1,0 @@
-name: Warning
-props:
-  variant: warning
-  title: Scheduled maintenance
-  description: The service will be unavailable on Sunday.

@@ -1,0 +1,238 @@
+{#
+  Site Header component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/site-header/site-header.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:site-header', {
+  'site_name': 'Example site',
+  'logo': {
+    'src_desktop': 'https://placehold.co/160x80?text=Logo',
+    'alt': 'European Commission',
+    'path': '#'
+  },
+  'cta_link': {
+    'label': 'Subscribe',
+    'path': '#'
+  },
+  'language_selector': {
+    'href': '#',
+    'label': 'English',
+    'aria_label': 'Change language'
+  },
+  'search_form': {
+    'input': {
+      'name': 'q',
+      'placeholder': 'Search…',
+      'id': 'sh-search'
+    },
+    'button_label': 'Search'
+  },
+  'search_toggle': {
+    'label': 'Search'
+  },
+  'menu': {
+    'items': [
+      {
+        'label': 'Home',
+        'path': '#',
+        'is_current': true
+      },
+      {
+        'label': 'Policies',
+        'path': '#',
+        'children': [
+          {
+            'label': 'Energy',
+            'path': '#'
+          },
+          {
+            'label': 'Climate',
+            'path': '#'
+          }
+        ]
+      },
+      {
+        'label': 'News',
+        'path': '#'
+      },
+      {
+        'label': 'Contact',
+        'path': '#'
+      }
+    ]
+  }
+}) }}
+
+<h2 class="ecl-u-type-heading-2">Composition: full page</h2>
+<p class="ecl-u-type-text-3"><code>site-header</code>, <code>page-header</code>, <code>text-media</code> and <code>site-footer</code> stacked.</p>
+
+{{ include('ecl5:site-header', {
+  'site_name': 'Example site',
+  'logo': {
+    'src_desktop': 'https://placehold.co/160x80?text=Logo',
+    'alt': 'European Commission',
+    'path': '#'
+  },
+  'cta_link': {
+    'label': 'Subscribe',
+    'path': '#'
+  },
+  'language_selector': {
+    'href': '#',
+    'label': 'English',
+    'aria_label': 'Change language'
+  },
+  'search_form': {
+    'input': {
+      'name': 'q',
+      'placeholder': 'Search…',
+      'id': 'sh-search'
+    },
+    'button_label': 'Search'
+  },
+  'search_toggle': {
+    'label': 'Search'
+  },
+  'menu': {
+    'items': [
+      {
+        'label': 'Home',
+        'path': '#',
+        'is_current': true
+      },
+      {
+        'label': 'Policies',
+        'path': '#',
+        'children': [
+          {
+            'label': 'Energy',
+            'path': '#'
+          },
+          {
+            'label': 'Climate',
+            'path': '#'
+          }
+        ]
+      },
+      {
+        'label': 'News',
+        'path': '#'
+      },
+      {
+        'label': 'Contact',
+        'path': '#'
+      }
+    ]
+  }
+}) }}
+
+{{ include('ecl5:page-header', {
+  'title': 'Funding & tenders',
+  'description': 'Find calls for proposals and tenders.',
+  'breadcrumb': {
+    'links': [
+      {
+        'label': 'Home',
+        'path': '#'
+      },
+      {
+        'label': 'Funding',
+        'path': '#'
+      },
+      {
+        'label': 'Tenders'
+      }
+    ]
+  },
+  'meta': [
+    'News',
+    '12 March 2026'
+  ]
+}) }}
+
+{{ include('ecl5:text-media', {
+  'title': 'Text and media',
+  'description': 'A section pairing body text with a media container.',
+  'link': {
+    'label': 'Learn more',
+    'path': '#'
+  },
+  'media_container': {
+    'picture': {
+      'img': {
+        'src': 'https://placehold.co/640x360',
+        'alt': 'Example image'
+      }
+    }
+  }
+}) }}
+
+{{ include('ecl5:site-footer', {
+  'section_contact': {
+    'title': 'Contact',
+    'links': [
+      {
+        'label': 'Contact us',
+        'path': '#'
+      },
+      {
+        'label': 'Help',
+        'path': '#'
+      }
+    ]
+  },
+  'section_about': {
+    'title': 'About',
+    'links': [
+      {
+        'label': 'About the Commission',
+        'path': '#'
+      },
+      {
+        'label': 'Departments',
+        'path': '#'
+      }
+    ]
+  },
+  'section_common': {
+    'social_media': {
+      'title': 'Follow us',
+      'links': [
+        {
+          'label': 'Facebook',
+          'path': '#',
+          'icon': {
+            'name': 'facebook-logo',
+            'family': 'phosphor'
+          }
+        },
+        {
+          'label': 'X',
+          'path': '#',
+          'icon': {
+            'name': 'x-logo',
+            'family': 'phosphor'
+          }
+        }
+      ]
+    },
+    'links': [
+      {
+        'label': 'Legal notice',
+        'path': '#'
+      },
+      {
+        'label': 'Cookies',
+        'path': '#'
+      },
+      {
+        'label': 'Privacy',
+        'path': '#'
+      }
+    ],
+    'links_inline': true
+  }
+}) }}

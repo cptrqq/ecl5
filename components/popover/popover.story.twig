@@ -1,0 +1,20 @@
+{#
+  Popover component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/popover/popover.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:popover', {
+  'id': 'pop',
+  'toggle': {
+    'label': 'More info',
+    'icon': {
+      'name': 'info',
+      'family': 'phosphor'
+    }
+  },
+  'close_label': 'Close',
+  'content': {'#markup': '<p>Additional contextual information shown in a popover.</p>'}
+}) }}

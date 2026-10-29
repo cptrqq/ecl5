@@ -1,0 +1,21 @@
+{#
+  Navigation List Item component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/navigation-list-item/navigation-list-item.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:navigation-list-item', {
+  'title': {
+    'label': 'Destination title',
+    'path': '#'
+  },
+  'description': 'A single navigation list item.',
+  'links': [
+    {
+      'label': 'Related link',
+      'path': '#'
+    }
+  ]
+}) }}

@@ -1,8 +1,0 @@
-name: Info
-props:
-  variant: info
-  title: Information
-  description: This page was updated recently.
-  links:
-    - label: See changes
-      path: '#'

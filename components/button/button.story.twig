@@ -1,0 +1,25 @@
+{#
+  Button component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/button/button.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+<h2 class="ecl-u-type-heading-2">Primary</h2>
+
+{{ include('ecl5:button', {
+  'label': 'Read more',
+  'variant': 'primary'
+}) }}
+
+<h2 class="ecl-u-type-heading-2">With icon</h2>
+
+{{ include('ecl5:button', {
+  'label': 'Download',
+  'variant': 'secondary',
+  'icon': {
+    'name': 'download-simple',
+    'family': 'phosphor'
+  }
+}) }}

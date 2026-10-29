@@ -14,7 +14,7 @@
       {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'fluid', extra_classes: 'ecl-button__icon' }) }}
     </button>
     <div id="{{ id }}-content" class="ecl-expandable__content" hidden>
-      {%- block content %}{{ content }}{% endblock -%}
+      {%- block content %}{{ content|render }}{% endblock -%}
     </div>
   </div>
 {%- endapply -%}

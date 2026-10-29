@@ -1,9 +1,0 @@
-name: Default
-props:
-  items:
-    - term: Status
-      definition: Open
-    - term: Deadline
-      definition: 30 June 2026
-    - term: Budget
-      definition: €1.5 billion

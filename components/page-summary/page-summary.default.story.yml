@@ -1,7 +1,0 @@
-name: Default
-props:
-  title: In this page
-  description: A short summary of the page content and what to expect.
-  icon:
-    name: list
-    family: phosphor

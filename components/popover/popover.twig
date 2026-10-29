@@ -18,7 +18,7 @@
           {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }) }}
         </button>
         <div class="ecl-popover__content">
-          {%- block content %}{{ content }}{% endblock -%}
+          {%- block content %}{{ content|render }}{% endblock -%}
         </div>
       </div>
     </div>

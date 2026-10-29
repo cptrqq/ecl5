@@ -1,0 +1,74 @@
+{#
+  Site Footer component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/site-footer/site-footer.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:site-footer', {
+  'section_contact': {
+    'title': 'Contact',
+    'links': [
+      {
+        'label': 'Contact us',
+        'path': '#'
+      },
+      {
+        'label': 'Help',
+        'path': '#'
+      }
+    ]
+  },
+  'section_about': {
+    'title': 'About',
+    'links': [
+      {
+        'label': 'About the Commission',
+        'path': '#'
+      },
+      {
+        'label': 'Departments',
+        'path': '#'
+      }
+    ]
+  },
+  'section_common': {
+    'social_media': {
+      'title': 'Follow us',
+      'links': [
+        {
+          'label': 'Facebook',
+          'path': '#',
+          'icon': {
+            'name': 'facebook-logo',
+            'family': 'phosphor'
+          }
+        },
+        {
+          'label': 'X',
+          'path': '#',
+          'icon': {
+            'name': 'x-logo',
+            'family': 'phosphor'
+          }
+        }
+      ]
+    },
+    'links': [
+      {
+        'label': 'Legal notice',
+        'path': '#'
+      },
+      {
+        'label': 'Cookies',
+        'path': '#'
+      },
+      {
+        'label': 'Privacy',
+        'path': '#'
+      }
+    ],
+    'links_inline': true
+  }
+}) }}

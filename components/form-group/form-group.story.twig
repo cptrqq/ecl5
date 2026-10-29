@@ -1,0 +1,46 @@
+{#
+  Form Group component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/form-group/form-group.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:form-group', {
+  'label': 'Email address',
+  'for': 'email',
+  'helper_text': 'We will never share it.',
+  'required': true,
+  'required_text': '*',
+  'control': {'#markup': '<input id="email" name="email" type="email" placeholder="name@example.com" class="ecl-text-input">'}
+}) }}
+
+<h2 class="ecl-u-type-heading-2">Composition: contact form</h2>
+<p class="ecl-u-type-text-3"><code>form-group</code> wrapping a text input, a select and a text area, plus a <code>button</code>.</p>
+
+{{ include('ecl5:form-group', {
+  'label': 'Full name',
+  'for': 'fullname',
+  'required': true,
+  'required_text': '*',
+  'control': {'#markup': '<input id="fullname" name="fullname" type="text" placeholder="Your name" class="ecl-text-input">'}
+}) }}
+
+{{ include('ecl5:form-group', {
+  'label': 'Country',
+  'for': 'country',
+  'helper_text': 'Select your country of residence.',
+  'control': {'#markup': '<select id="country" name="country" class="ecl-select">\n  <option value="">Choose a country…</option>\n  <option value="be">Belgium</option>\n  <option value="fr" selected>France</option>\n  <option value="de">Germany</option>\n</select>'}
+}) }}
+
+{{ include('ecl5:form-group', {
+  'label': 'Message',
+  'for': 'message',
+  'control': {'#markup': '<textarea id="message" name="message" rows="5" placeholder="Your message…" class="ecl-textarea"></textarea>'}
+}) }}
+
+{{ include('ecl5:button', {
+  'label': 'Send message',
+  'variant': 'primary',
+  'type': 'submit'
+}) }}

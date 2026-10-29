@@ -1,0 +1,23 @@
+{#
+  Menu Item component stories — component playground preview.
+
+  Story file for the sdc_component_library module
+  (components/menu-item/menu-item.story.twig).
+  Each story includes the component with realistic example props.
+#}
+
+{{ include('ecl5:menu-item', {
+  'id': 'mi',
+  'label': 'Policies',
+  'path': '#',
+  'children': [
+    {
+      'label': 'Energy',
+      'path': '#'
+    },
+    {
+      'label': 'Climate',
+      'path': '#'
+    }
+  ]
+}) }}
