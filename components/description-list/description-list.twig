@@ -26,9 +26,9 @@
               {%- set defs = item.definition is iterable ? item.definition : [item.definition] -%}
               {%- for def in defs -%}
                 <dd class="ecl-description-list__definition">
-                  {%- if def is map and def.label is defined -%}
+                  {%- if def is mapping and def.label is defined -%}
                     {{ include('ecl5:link', def) }}
-                  {%- elseif def is map -%}
+                  {%- elseif def is mapping -%}
                     {{ def.label|default('') }}
                   {%- else -%}
                     {{ def }}
