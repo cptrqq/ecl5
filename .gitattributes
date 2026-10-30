@@ -1,0 +1,5 @@
+# Keep dev-only files out of dist archives (composer installs from dist by default).
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/PROGRESS.md export-ignore
+/.test/ export-ignore

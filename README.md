@@ -28,7 +28,28 @@ behaviour without pulling in the upstream Twig packages.
 
 ## Installation
 
-Place this module in your project (e.g. `web/modules/custom/ecl5`) and enable it:
+### Composer
+
+```bash
+composer require cptrqq/ecl5
+```
+
+> **Not on Packagist yet.** Until the package is registered, add the git
+> repository first:
+>
+> ```bash
+> composer config repositories.ecl5 vcs https://github.com/cptrqq/ecl5.git
+> composer require cptrqq/ecl5
+> ```
+
+It is a single-module package, so `composer/installers` places it in
+`web/modules/contrib/ecl5`.
+
+### Manual
+
+Clone or copy the module into your project (e.g. `web/modules/custom/ecl5`).
+
+Then enable it:
 
 ```bash
 drush en ecl5
@@ -150,9 +171,12 @@ components/
   <name>/<name>.story.twig          playground story (+ composition demos)
 ecl5.info.yml
 ecl5.libraries.yml                  global + print libraries
+composer.json                       package metadata (drupal-module)
 ```
 
 ## Credits & licensing
+
+The module code is licensed under the [GPL-2.0-or-later](LICENSE).
 
 The visual design, CSS, JavaScript and font/image assets are from the
 [Europa Component Library](https://ec.europa.eu/component-library/), © European

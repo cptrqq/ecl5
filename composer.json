@@ -1,0 +1,36 @@
+{
+    "name": "cptrqq/ecl5",
+    "type": "drupal-module",
+    "description": "Europa Component Library (ECL v5) for Drupal as Single Directory Components, without the @ecl / @ecl-twig include dependencies.",
+    "keywords": [
+        "Drupal",
+        "ECL",
+        "Europa",
+        "Component Library",
+        "Single Directory Components",
+        "SDC",
+        "Twig"
+    ],
+    "homepage": "https://github.com/cptrqq/ecl5",
+    "license": "GPL-2.0-or-later",
+    "support": {
+        "issues": "https://github.com/cptrqq/ecl5/issues",
+        "source": "https://github.com/cptrqq/ecl5"
+    },
+    "require": {
+        "php": ">=8.3",
+        "drupal/core-recommended": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Drupal\\ecl5\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
