@@ -4,13 +4,19 @@
   {%- set label_collapsed = label_collapsed|default('Show more') -%}
   {%- set label_expanded = label_expanded|default('Show less') -%}
   {%- set classes = ['ecl-expandable', extra_classes]|filter(c => c)|join(' ') -%}
+  {# Toggle button props. Caller may override the button's look (variant/style/
+     size) via the `button` object; everything functional (label, type, caret
+     icon, toggle class + the data-ecl-* widget hooks) is forced below so the
+     Expandable JS keeps working. variant defaults to tertiary but is
+     overridable — e.g. button: { variant: 'primary', style: 'highlight' } gives
+     the yellow (primary-highlight) toggle. #}
+  {%- set button = button|default({}) -%}
   <div class="{{ classes }}" data-ecl-expandable data-ecl-auto-init="Expandable">
     {# Toggle composed from the button component (upstream ECL 5 does the same). #}
-    {{ include('ecl5:button', {
+    {{ include('ecl5:button', { variant: 'tertiary' }|merge(button)|merge({
       'label': label_collapsed,
-      'variant': 'tertiary',
       'type': 'button',
-      'icon': { name: 'caret-down', family: 'phosphor', size: 'fluid' },
+      'icon': (button.icon|default({}))|merge({ name: 'caret-down', family: 'phosphor', size: 'fluid' }),
       'extra_classes': 'ecl-expandable__toggle',
       'extra_attributes': [
         { name: 'aria-controls', value: id ~ '-content' },
@@ -19,7 +25,7 @@
         { name: 'data-ecl-label-expanded', value: label_expanded },
         { name: 'data-ecl-label-collapsed', value: label_collapsed },
       ],
-    }, false) }}
+    }), false) }}
     <div id="{{ id }}-content" class="ecl-expandable__content" hidden>
       {%- block content %}{{ content|render }}{% endblock -%}
     </div>

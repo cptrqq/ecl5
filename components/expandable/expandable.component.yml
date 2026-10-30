@@ -1,7 +1,7 @@
 $schema: 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
 name: Expandable
 status: stable
-description: 'Toggleable region controlled by a tertiary button (show/hide more).'
+description: 'Toggleable region controlled by a button (show/hide more). The toggle is a tertiary button by default; pass `button` to restyle it.'
 props:
   type: object
   properties:
@@ -16,6 +16,27 @@ props:
       default: 'Show less'
     extra_classes:
       type: string
+    button:
+      type: object
+      title: Toggle button
+      description: >-
+        Overrides for the toggle button''s look (passed to the button
+        component). The label, type, caret icon, toggle class and the
+        data-ecl-* widget hooks are always forced. variant defaults to
+        "tertiary". For the yellow highlight toggle pass
+        { variant: "primary", style: "highlight" }.
+      properties:
+        variant:
+          type: string
+          enum: [primary, secondary, tertiary, ghost, call]
+        style:
+          type: string
+          enum: ['', highlight, neutral, inverted]
+        size:
+          type: string
+          enum: ['', s, m, l]
+        icon:
+          type: object
 slots:
   content:
     title: Content
