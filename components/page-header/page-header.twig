@@ -84,7 +84,7 @@
             {%- if is_expandable -%}
               <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-button--l ecl-button--icon-only ecl-page-header-expandable__toggle"
                 aria-controls="{{ panel_id }}" aria-expanded="false" data-ecl-page-header-expandable-toggle>
-                <span class="ecl-button__label" aria-hidden="true">{{ expandable.toggle_label|default('') }}</span>
+                <span class="ecl-button__label">{{ expandable.toggle_label|default('') }}</span>
                 {{ include('ecl5:icon', { name: 'caret-down', family: 'phosphor', size: 'm', extra_classes: 'ecl-button__icon' }, false) }}
               </button>
             {%- endif -%}

@@ -33,19 +33,19 @@
       <div class="ecl-news-ticker__controls">
         <div class="ecl-news-ticker__actions">
           <button type="button" class="ecl-button ecl-button--tertiary ecl-button--icon-only ecl-news-ticker__prev" data-ecl-news-ticker-prev>
-            <span class="ecl-button__label" aria-hidden="true">{{ sr_previous|default('Previous') }}</span>
+            <span class="ecl-button__label">{{ sr_previous|default('Previous') }}</span>
             {{ include('ecl5:icon', { name: 'caret-left', family: 'phosphor', extra_classes: 'ecl-button__icon' }, false) }}
           </button>
           <button type="button" class="ecl-button ecl-button--tertiary ecl-button--icon-only ecl-news-ticker__play" data-ecl-news-ticker-play>
-            <span class="ecl-button__label" aria-hidden="true">{{ sr_play|default('Play') }}</span>
+            <span class="ecl-button__label">{{ sr_play|default('Play') }}</span>
             {{ include('ecl5:icon', { name: 'play-circle', family: 'phosphor', extra_classes: 'ecl-button__icon' }, false) }}
           </button>
           <button type="button" class="ecl-button ecl-button--tertiary ecl-button--icon-only ecl-news-ticker__pause" data-ecl-news-ticker-pause>
-            <span class="ecl-button__label" aria-hidden="true">{{ sr_pause|default('Pause') }}</span>
+            <span class="ecl-button__label">{{ sr_pause|default('Pause') }}</span>
             {{ include('ecl5:icon', { name: 'pause-circle', family: 'phosphor', extra_classes: 'ecl-button__icon' }, false) }}
           </button>
           <button type="button" class="ecl-button ecl-button--tertiary ecl-button--icon-only ecl-news-ticker__next" data-ecl-news-ticker-next>
-            <span class="ecl-button__label" aria-hidden="true">{{ sr_next|default('Next') }}</span>
+            <span class="ecl-button__label">{{ sr_next|default('Next') }}</span>
             {{ include('ecl5:icon', { name: 'caret-right', family: 'phosphor', extra_classes: 'ecl-button__icon' }, false) }}
           </button>
         </div>

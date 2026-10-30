@@ -14,7 +14,7 @@
     <div id="{{ id }}" class="ecl-popover__container" hidden>
       <div class="ecl-popover__scrollable">
         <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-button--icon-only ecl-popover__close" data-ecl-popover-close>
-          <span class="ecl-button__label" aria-hidden="true">{{ close_label|default('Close') }}</span>
+          <span class="ecl-button__label">{{ close_label|default('Close') }}</span>
           {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }, false) }}
         </button>
         <div class="ecl-popover__content">

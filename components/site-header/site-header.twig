@@ -67,7 +67,7 @@
                         <div class="ecl-site-header__custom-action-title" id="custom-action-overlay-title">{{ custom_action.overlay.title|default('') }}</div>
                         {%- if custom_action.overlay.close_label is defined and custom_action.overlay.close_label is not empty -%}
                           <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-button--icon-only ecl-site-header__custom-action-close" data-ecl-custom-action-close>
-                            <span class="ecl-button__label" aria-hidden="true">{{ custom_action.overlay.close_label }}</span>
+                            <span class="ecl-button__label">{{ custom_action.overlay.close_label }}</span>
                             {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }, false) }}
                           </button>
                         {%- endif -%}
@@ -204,7 +204,7 @@
             <div class="ecl-site-header__language-title" id="ecl-site-header__language-title">{{- ls.overlay.title|default('') -}}</div>
             {%- if ls.overlay.close_label is defined and ls.overlay.close_label is not empty -%}
               <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-button--icon-only ecl-site-header__language-close" data-ecl-language-list-close>
-                <span class="ecl-button__label" aria-hidden="true">{{ ls.overlay.close_label }}</span>
+                <span class="ecl-button__label">{{ ls.overlay.close_label }}</span>
                 {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }, false) }}
               </button>
             {%- endif -%}
