@@ -1,0 +1,93 @@
+<?php
+
+/**
+ * @file
+ * Hooks for the ECL 5 Components module.
+ */
+
+/**
+ * Returns this module's bundled ECL asset paths (relative to the Drupal root).
+ *
+ * @return array
+ *   Associative array with 'css' and 'js' lists of root-relative paths.
+ */
+function _ecl5_bundled_ecl_assets() {
+  $path = \Drupal::service('extension.list.module')->getPath('ecl5');
+  return [
+    'css' => [
+      $path . '/assets/styles/ecl-ec.css',
+      $path . '/assets/styles/ecl-ec-color-modes.css',
+      $path . '/assets/styles/ecl-ec-print.css',
+    ],
+    'js' => [
+      $path . '/assets/scripts/ecl-ec.js',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_css_alter().
+ *
+ * The ecl5 module bundles its own copy of the ECL stylesheet so it can work
+ * standalone. But many sites already load ECL from elsewhere (e.g. the oe_theme
+ * contrib theme ships ecl-ec.css globally). Loading two copies of ECL means
+ * duplicate, colliding rules whose winner is decided by cascade order. If any
+ * OTHER extension already provides an ECL stylesheet on this page, drop our
+ * bundled copy and defer to theirs. Our small ecl5-overrides.css is kept (it is
+ * not an ECL build, it only patches conflicts such as the expandable caret
+ * rotation).
+ */
+function ecl5_css_alter(array &$css, $assets = NULL, $language = NULL) {
+  $bundled = _ecl5_bundled_ecl_assets();
+  $module_path = \Drupal::service('extension.list.module')->getPath('ecl5');
+
+  // Is an ECL stylesheet provided by someone other than this module?
+  $provided_elsewhere = FALSE;
+  foreach (array_keys($css) as $key) {
+    if (!is_string($key)) {
+      continue;
+    }
+    if (preg_match('#(^|/)ecl-ec(-[a-z-]+)?\.css$#', $key)
+      && strpos($key, $module_path . '/') !== 0) {
+      $provided_elsewhere = TRUE;
+      break;
+    }
+  }
+
+  if ($provided_elsewhere) {
+    foreach ($bundled['css'] as $path) {
+      unset($css[$path]);
+    }
+  }
+}
+
+/**
+ * Implements hook_js_alter().
+ *
+ * Same rationale as ecl5_css_alter(): if another extension already loads the
+ * ECL script (ecl-ec.js) on this page, drop our bundled copy. ECL's widgets are
+ * attribute-driven (data-ecl-auto-init / data-ecl-*), so the already-present
+ * ECL runtime initialises our components too.
+ */
+function ecl5_js_alter(array &$javascript, $assets = NULL, $language = NULL) {
+  $bundled = _ecl5_bundled_ecl_assets();
+  $module_path = \Drupal::service('extension.list.module')->getPath('ecl5');
+
+  $provided_elsewhere = FALSE;
+  foreach (array_keys($javascript) as $key) {
+    if (!is_string($key)) {
+      continue;
+    }
+    if (preg_match('#(^|/)ecl-ec\.js$#', $key)
+      && strpos($key, $module_path . '/') !== 0) {
+      $provided_elsewhere = TRUE;
+      break;
+    }
+  }
+
+  if ($provided_elsewhere) {
+    foreach ($bundled['js'] as $path) {
+      unset($javascript[$path]);
+    }
+  }
+}

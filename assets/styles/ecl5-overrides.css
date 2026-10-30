@@ -1,0 +1,40 @@
+/*
+ * ecl5 module overrides for conflicts with oe_theme's bundled ECL.
+ *
+ * Some sites also load oe_theme's own ECL build
+ * (themes/contrib/oe_theme/dist/ec/styles/ecl-ec.css). Where both define the
+ * same selector at equal specificity, the theme CSS loads after this module's
+ * (or after dedupe, is the only copy) and wins. oe_theme's build zeroes the
+ * rotation on every disclosure toggle caret (transform: rotate(0deg)), which
+ * cancels the open/close rotation affordance.
+ *
+ * Each rule below restores rotate(180deg) with a higher-specificity,
+ * order-independent selector (an always-present data-ecl-* attribute and/or an
+ * extra class raises specificity above oe_theme's (0,0,3,0) rules), so it wins
+ * regardless of load order and whether this module's own ecl-ec.css is present.
+ */
+
+/* Expandable */
+.ecl-expandable__toggle[data-ecl-expandable-toggle][aria-expanded="true"] .ecl-icon {
+  transform: rotate(180deg);
+}
+
+/* Tabs "more" toggle */
+.ecl-button.ecl-tabs__toggle[aria-expanded="true"] .ecl-button__icon {
+  transform: rotate(180deg);
+}
+
+/* Timeline "show more" toggle */
+.ecl-timeline__toggle[data-ecl-timeline-button][aria-expanded="true"] .ecl-icon {
+  transform: rotate(180deg);
+}
+
+/* Page header expandable toggle */
+.ecl-page-header-expandable__toggle[data-ecl-page-header-expandable-toggle][aria-expanded="true"] .ecl-icon {
+  transform: rotate(180deg);
+}
+
+/* File translation list toggle (driven by the .ecl-file--open state) */
+.ecl-file--open .ecl-file__translation-toggle[data-ecl-file-translation-toggle] .ecl-button__icon {
+  transform: rotate(180deg);
+}

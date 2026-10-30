@@ -4,6 +4,7 @@ global:
     theme:
       assets/styles/ecl-ec.css: {}
       assets/styles/ecl-ec-color-modes.css: {}
+      assets/styles/ecl5-overrides.css: {}
   js:
     assets/scripts/ecl-ec.js: { attributes: { defer: true } }
 
