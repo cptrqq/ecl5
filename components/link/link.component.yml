@@ -15,7 +15,12 @@ props:
     variant:
       type: string
       title: Variant
-      enum: ['', standalone, primary, secondary]
+      description: >-
+        ECL link type. Plain/standalone are normal links; the primary/secondary/
+        tertiary families (and their -highlight/-neutral/-inverted modifiers)
+        style the link to look like a button (e.g. primary-highlight = yellow
+        CTA button). Emitted as the single compound class ecl-link--<variant>.
+      enum: ['', standalone, primary, primary-highlight, primary-neutral, secondary, secondary-neutral, secondary-inverted, tertiary, tertiary-neutral, tertiary-inverted]
     inverted:
       type: boolean
       title: Inverted

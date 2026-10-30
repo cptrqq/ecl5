@@ -26,3 +26,14 @@
     'size': 'xs'
   }
 }) }}
+
+<h2 class="ecl-u-type-heading-2">Button-styled links (CTA)</h2>
+
+{% for v in ['primary', 'primary-highlight', 'secondary', 'tertiary'] %}
+  {{ include('ecl5:link', {
+    'label': v,
+    'path': '#',
+    'variant': v,
+    'icon': { 'name': 'arrow-right', 'family': 'phosphor', 'size': 'xs' }
+  }) }}
+{% endfor %}
