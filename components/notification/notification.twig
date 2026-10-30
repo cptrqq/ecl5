@@ -13,8 +13,10 @@
     {{ include('ecl5:icon', icon_props|merge({ title: sr_icon|default('') }), false) }}
     <div class="ecl-notification__content">
       {%- if closeable -%}
-        <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-notification__close" data-ecl-notification-close>
-          <span class="ecl-button__label">{{ close_label|default('Close') }}</span>
+        <button type="button" class="ecl-button ecl-button--tertiary ecl-button--neutral ecl-notification__close {{  close.extra_classes|default() }}" data-ecl-notification-close>
+          {% if not close.hide_label %}
+          <span class="ecl-button__label">{{ close.label|default('Close') }}</span>
+          {% endif %}
           {{ include('ecl5:icon', { name: 'x', family: 'phosphor', extra_classes: 'ecl-button__icon' }, false) }}
         </button>
       {%- endif -%}
