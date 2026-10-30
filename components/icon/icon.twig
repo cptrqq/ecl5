@@ -8,7 +8,14 @@
   #}
   {%- set size = size|default('m') -%}
   {%- set family = family|default('phosphor') -%}
-  {%- set _aliases = { 'home': 'house', 'close': 'x' } -%}
+  {# Aliases: common/legacy names (incl. pre-v5 ECL icon-set names like
+     ui--corner-arrow / general--feedback) → their Phosphor glyph. #}
+  {%- set _aliases = {
+    'home': 'house',
+    'close': 'x',
+    'corner-arrow': 'arrow-right',
+    'feedback': 'chat-centered-text',
+  } -%}
   {%- set _key = _aliases[name]|default(name) -%}
   {%- set _sprite = icon_path|default(ecl5_icon_sprite()) -%}
   {%- set classes = [
